@@ -3698,6 +3698,7 @@ function haveResult(){ return state.finished && answeredCount() >= ITEMS.length;
 
 /* ================= イントロ ================= */
 function renderIntro(){
+  CONSENT_RETURN = null;
   const resume = answeredCount() > 0 && !state.finished;
   const done = haveResult();
   const figs = ["hedgehog","owl","fox"];
@@ -5020,10 +5021,18 @@ function docHTML(doc){
 }
 function renderDoc(kind){
   const doc = kind === "terms" ? TERMS_DOC : (kind === "about" ? ABOUT_DOC : PRIVACY_DOC);
+  /* 同意画面から開いた場合は、閉じたときに同意画面へ戻す */
+  const fromConsent = !!CONSENT_RETURN && (kind === "terms" || kind === "privacy");
   toolShell(doc.title, '<div class="doc">' + docHTML(doc) + '</div>'
-    + (kind === "about"
-        ? '<button class="btn-sub" id="againGuide">はじめての方への案内を見る</button>'
-        : '<button class="btn-sub" data-go="safety">プライバシーと安全にもどる</button>'), "", "re:act note");
+    + (fromConsent
+        ? '<button class="btn-sub" id="docToConsent">同意画面にもどる</button>'
+        : (kind === "about"
+            ? '<button class="btn-sub" id="againGuide">はじめての方への案内を見る</button>'
+            : '<button class="btn-sub" data-go="safety">プライバシーと安全にもどる</button>')), "", "re:act note");
+  if(fromConsent){
+    bind("docToConsent", backToConsent);
+    bind("toolBack", backToConsent);
+  }
   if(kind === "about") bind("againGuide", function(){ renderGuide(function(){ renderDoc("about"); }); });
   Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
     b.onclick = function(){ nav(b.dataset.go); };
@@ -5056,9 +5065,19 @@ function renderSafety(){
   });
 }
 
+/* 同意画面から規約・ポリシーを開いたときの戻り先。
+   読みに行っただけで同意フローが途切れないようにする */
+let CONSENT_RETURN = null;
+function backToConsent(){
+  const r = CONSENT_RETURN;
+  CONSENT_RETURN = null;
+  if(r) renderConsent(r.after, r.checked);
+  else { renderIntro(); show("intro"); }
+}
+
 /* 初回のみの確認 */
-function renderConsent(after){
-  let checked = false;
+function renderConsent(after, initialChecked){
+  let checked = !!initialChecked;
   function draw(){
     el.tool.innerHTML = '<div class="card fade" style="margin-top:36px">'
       + '<div class="logo-sm round" style="margin-bottom:18px">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
@@ -5079,15 +5098,21 @@ function renderConsent(after){
       if(ev.key === " " || ev.key === "Enter"){ ev.preventDefault(); checked = !checked; draw(); }
     };
     Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
-      b.onclick = function(ev){ ev.stopPropagation(); nav(b.dataset.go); };
+      b.onclick = function(ev){
+        ev.stopPropagation();
+        /* チェックの状態ごと覚えておき、読み終わったらここへ戻す */
+        CONSENT_RETURN = {after: after, checked: checked};
+        renderDoc(b.dataset.go);
+      };
     });
     bind("cGo", function(){
       if(!checked) return;
+      CONSENT_RETURN = null;
       state.consent = {terms:CONSENT_REQUIRED.terms, privacy:CONSENT_REQUIRED.privacy, at:new Date().toISOString()};
       save();
       after();
     });
-    bind("cBack", function(){ renderIntro(); show("intro"); });
+    bind("cBack", function(){ CONSENT_RETURN = null; renderIntro(); show("intro"); });
   }
   draw();
 }
