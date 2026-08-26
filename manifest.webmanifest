@@ -1,0 +1,18 @@
+{
+  "name": "re:act note",
+  "short_name": "re:act note",
+  "description": "失敗したとき、責められたとき。その瞬間に出やすい自分の反応を、60の場面から見てみる自己理解ツール。",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FCFAF6",
+  "theme_color": "#FCFAF6",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

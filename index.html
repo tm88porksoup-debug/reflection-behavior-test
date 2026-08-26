@@ -4,12 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="re:act — 間違えたとき、責められたとき、失うのが怖くなったとき。追い詰められた自分の中でどんな反応が出やすいかを60の場面から見てみる自己理解ツール。回答は端末内にのみ保存されます。">
-<meta name="robots" content="noindex">
-<title>re:act — そのときの自分を知る</title>
+<meta name="description" content="re:act note — 間違えたとき、責められたとき、失うのが怖くなったとき。追い詰められた自分の中でどんな反応が出やすいかを60の場面から見てみる自己理解ツール。回答は端末内にのみ保存されます。">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#FCFAF6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#221F1C">
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="re:act note">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<!-- OGPは絶対URLで指定する（SNSやメッセージアプリは相対パスを解決できないことがある）。
+     公開先を変えたときは、下の og:url / og:image / twitter:image の3か所を書き換えること。
+     現在の公開先：GitHub Pages（Settings → Pages → Branch: main / root） -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tm88porksoup-debug.github.io/reflection-behavior-test/">
+<meta property="og:site_name" content="re:act note">
+<meta property="og:title" content="re:act note — そのときの自分を知る">
+<meta property="og:description" content="失敗したとき、責められたとき。その瞬間に出やすい自分の反応を、60の場面から見てみる自己理解ツール。">
+<meta property="og:image" content="https://tm88porksoup-debug.github.io/reflection-behavior-test/og.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="re:act note — そのときの自分を知る">
+<meta name="twitter:description" content="失敗したとき、責められたとき。その瞬間に出やすい自分の反応を、60の場面から見てみる自己理解ツール。">
+<meta name="twitter:image" content="https://tm88porksoup-debug.github.io/reflection-behavior-test/og.png">
+<title>re:act note — そのときの自分を知る</title>
 <style>
 /* ============================================================
-   re:act — design system
+   re:act note — design system
    「休日の午後、静かなカフェで自分のことを少し考える時間。」
    くすんだ自然色 / 大きめの余白 / 柔らかい角丸 / 控えめな動き
    ============================================================ */
@@ -505,6 +527,7 @@ svg{max-width:100%;height:auto;display:block;}
 }
 :root[data-theme="dark"] .memo{background:rgba(0,0,0,.14);}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .memo{background:rgba(0,0,0,.14);}}
+.memo-body{font-size:.93rem;line-height:2.1;white-space:pre-wrap;word-break:break-word;}
 .memo-view{
   border-radius:var(--r-md);padding:18px;background:var(--sand-soft);
   font-size:.93rem;line-height:2.1;margin-bottom:18px;
@@ -724,12 +747,156 @@ svg{max-width:100%;height:auto;display:block;}
   a[href]:after{content:"";}
 }
 
+
+/* ---------- v5: 法務・情報ページ ---------- */
+.home-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  min-height:40px;padding:8px 14px 8px 10px;margin-bottom:10px;
+  background:transparent;border:1px solid var(--line);border-radius:var(--r-pill);
+  color:var(--text-sub);font-size:.84rem;cursor:pointer;
+}
+.home-btn:active{background:var(--surface-2);}
+.privacy-note{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:.8rem;line-height:1.9;color:var(--text-sub);text-align:left;
+}
+.inline-link{
+  background:none;border:none;padding:0 2px;margin:0;
+  color:var(--sage-deep);font-size:inherit;font-family:inherit;
+  text-decoration:underline;cursor:pointer;line-height:inherit;
+}
+.foot{padding:26px 4px 8px;text-align:center;}
+.foot-l{
+  background:none;border:none;padding:10px 12px;margin:0 2px;
+  color:var(--text-sub);font-size:.8rem;text-decoration:underline;cursor:pointer;
+  min-height:40px;
+}
+.foot-n{font-size:.74rem;line-height:1.9;color:var(--text-faint);margin-top:12px;padding:0 8px;}
+.doc{font-size:.92rem;line-height:2;}
+.doc-lead{font-size:.92rem;line-height:2;color:var(--text-sub);margin:0 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line);}
+.doc-sec{margin-bottom:26px;}
+.doc-h{font-size:1rem;font-weight:700;margin-bottom:10px;line-height:1.7;}
+.doc-h.sub{font-size:.94rem;color:var(--text-sub);margin-top:18px;}
+.doc-p{font-size:.9rem;line-height:2;margin:0 0 12px;color:var(--text-sub);}
+.doc-l{margin:0 0 12px;padding-left:1.2em;}
+.doc-l li{font-size:.89rem;line-height:1.95;color:var(--text-sub);margin-bottom:6px;}
+.doc-meta{
+  margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.8rem;line-height:2;color:var(--text-faint);
+}
+.safety-grid{display:flex;flex-direction:column;gap:2px;margin-top:8px;}
+.safety-row{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:15px 2px;border-bottom:1px solid var(--line);
+}
+.safety-row:last-child{border-bottom:none;}
+.safety-k{font-size:.92rem;font-weight:700;}
+.safety-v{font-size:.86rem;color:var(--text-sub);text-align:right;}
+.consent{
+  display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;
+  margin-top:22px;padding:16px;min-height:60px;
+  background:var(--surface-2);border:1px solid var(--line-strong);border-radius:var(--r-md);
+  cursor:pointer;font-size:.92rem;line-height:1.9;color:var(--text);
+}
+.consent[aria-checked="true"]{border-color:var(--sage);background:var(--sage-soft);}
+.consent .box{
+  flex:0 0 auto;width:22px;height:22px;border-radius:7px;margin-top:3px;
+  border:1.5px solid var(--line-strong);background:var(--surface);
+  display:flex;align-items:center;justify-content:center;font-size:.76rem;color:var(--on-accent);
+}
+.consent[aria-checked="true"] .box{background:var(--accent);border-color:var(--accent);}
+.consent-t{flex:1 1 auto;}
+.save-list{display:flex;flex-direction:column;}
+.save-row{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 2px;border-bottom:1px solid var(--line);
+}
+.save-row:last-child{border-bottom:none;}
+.save-k{flex:1 1 auto;font-size:.92rem;line-height:1.6;}
+.save-v{flex:0 0 auto;font-size:.84rem;color:var(--text-sub);font-variant-numeric:tabular-nums;}
+.save-del{
+  flex:0 0 auto;min-height:38px;padding:8px 14px;
+  border:1px solid var(--line-strong);border-radius:var(--r-pill);
+  background:transparent;color:var(--risk);font-size:.82rem;cursor:pointer;
+}
+.toast{
+  position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));
+  transform:translate(-50%, 12px);
+  max-width:calc(100% - 40px);padding:13px 20px;border-radius:var(--r-pill);
+  background:var(--text);color:var(--bg);font-size:.86rem;line-height:1.6;
+  box-shadow:var(--shadow);opacity:0;pointer-events:none;
+  transition:opacity .24s ease-out, transform .24s ease-out;z-index:60;
+}
+.toast.on{opacity:1;transform:translate(-50%, 0);}
+@media print{ .home-btn,.foot,.toast,.save-del,.consent{display:none !important;} }
+
+
+/* ---------- v6 ---------- */
+.logo-n{font-weight:400;letter-spacing:.04em;color:var(--text-sub);}
+.logo .logo-n{font-size:.62em;}
+.logo-sm .logo-n{font-size:.86em;}
+.sh-brand .logo-n{font-size:.8em;}
+.guide-list{display:flex;flex-direction:column;gap:16px;margin-top:22px;}
+.guide-i{display:flex;gap:14px;align-items:flex-start;}
+.guide-i span{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  background:var(--sage-soft);color:var(--sage-deep);
+  font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:4px;
+}
+.guide-t{font-size:1rem;font-weight:700;line-height:1.7;}
+.guide-s{font-size:.88rem;line-height:1.85;color:var(--text-sub);margin-top:2px;}
+.empty{text-align:center;padding:20px 0 8px;}
+.empty-fig{width:96px;margin:0 auto 18px;opacity:.9;}
+.empty-t{font-size:1.14rem;font-weight:700;margin-bottom:10px;}
+.empty-s{font-size:.9rem;line-height:1.95;color:var(--text-sub);margin-bottom:22px;}
+.rec-dv{font-size:.7rem;color:var(--text-faint);margin-left:10px;}
+.design-row{display:flex;gap:10px;margin-top:12px;}
+.design-b{
+  flex:1 1 0;min-width:0;min-height:80px;padding:14px 6px;
+  border:1px solid var(--line-strong);border-radius:var(--r-md);
+  background:var(--surface);cursor:pointer;text-align:center;
+}
+.design-b.on{border-color:var(--sage);background:var(--sage-soft);}
+.design-n{display:block;font-size:.84rem;font-weight:700;line-height:1.4;}
+.design-s{display:block;font-size:.7rem;line-height:1.5;color:var(--text-sub);margin-top:4px;}
+.priv-check{display:flex;gap:12px;margin:16px 0 4px;}
+.priv-col{flex:1 1 0;min-width:0;background:var(--surface-2);border-radius:var(--r-md);padding:14px 12px;}
+.priv-h{font-size:.74rem;color:var(--text-sub);margin-bottom:8px;letter-spacing:.04em;}
+.priv-i{font-size:.78rem;line-height:1.7;padding:3px 0 3px 16px;position:relative;color:var(--text-sub);}
+.priv-i.yes::before{content:"✓";position:absolute;left:0;color:var(--sage-deep);}
+.priv-i.no::before{content:"—";position:absolute;left:0;color:var(--text-faint);}
+@media (max-width:359px){ .priv-check{flex-direction:column;} .design-row{flex-direction:column;} }
+
+
+.upd-bar{
+  position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));
+  transform:translate(-50%,14px);display:flex;align-items:center;gap:10px;
+  max-width:calc(100% - 32px);padding:12px 14px 12px 18px;border-radius:var(--r-pill);
+  background:var(--surface);border:1px solid var(--line-strong);box-shadow:var(--shadow);
+  font-size:.86rem;color:var(--text);opacity:0;transition:opacity .24s ease-out,transform .24s ease-out;z-index:70;
+}
+.upd-bar.on{opacity:1;transform:translate(-50%,0);}
+.upd-bar button{
+  min-height:38px;padding:8px 14px;border-radius:var(--r-pill);border:none;
+  background:var(--accent);color:var(--on-accent);font-size:.84rem;font-weight:700;cursor:pointer;
+}
+.upd-bar .upd-x{background:transparent;color:var(--text-sub);font-weight:400;padding:8px 6px;}
+.a2h{
+  display:flex;align-items:center;gap:10px;
+  background:var(--sand-soft);border-radius:var(--r-md);
+  padding:14px 12px 14px 16px;margin-bottom:18px;
+  font-size:.84rem;line-height:1.8;color:var(--text-sub);
+}
+.a2h-x{background:none;border:none;color:var(--text-faint);font-size:.78rem;cursor:pointer;min-height:38px;padding:0 6px;flex:0 0 auto;}
+@media print{ .upd-bar,.a2h{display:none !important;} }
+
 </style>
 </head>
 <body>
 
 <div id="topbar" class="topbar hidden">
   <div class="topbar-inner">
+    <button class="home-btn" id="navHome"><span aria-hidden="true">←</span> ホーム</button>
     <div class="progress-meta">
       <span id="progressSection">SECTION 1</span>
       <span id="progressCount">1 / 60</span>
@@ -770,6 +937,10 @@ const AXES = {
   H:{key:"H",name:"回避・隠蔽",group:"risk",desc:"黙る・遅らせる・距離を取るという形で先送りしやすいか"}
 };
 const AXIS_ORDER = ["A","B","C","D","E","F","G","H"];
+
+/* 診断ロジックのバージョン。設問・配点・スコアリング・キャラクター判定・分析を
+   変更したときは必ず上げること。記録にも保存し、異なる版どうしは同条件で比較しない */
+const DIAGNOSTIC_VERSION = "1.0";
 
 /* 表側は自然な言葉、詳細側は正式名称。専門用語を大きく出さないための対応表 */
 const SOFT = {
@@ -1880,6 +2051,258 @@ const CHAR_COPY = {
 };
 CHAR_ORDER.forEach(function(id){ CHARS[id].copy = CHAR_COPY[id]; });
 
+/* ================================================================
+   法務・ポリシー関連
+   ─ 記載内容は、実際の実装と一致させること。
+     実装を変えたときは、この文書と DOC_VERSIONS も必ず見直すこと。
+   ─ 日付・バージョンは公開時に確認して更新する。
+   ================================================================ */
+const DOC_VERSIONS = {
+  terms:   {v:"1.0", made:"2026年8月26日", rev:"2026年8月26日"},
+  privacy: {v:"1.0", made:"2026年8月26日", rev:"2026年8月26日"}
+};
+/* 利用者に再確認を求めたい重要改定を行ったときだけ、この値を上げる */
+const CONSENT_REQUIRED = {terms:"1.0", privacy:"1.0"};
+
+function consentOK(){
+  const c = state.consent;
+  return !!(c && c.terms === CONSENT_REQUIRED.terms && c.privacy === CONSENT_REQUIRED.privacy);
+}
+
+const PRIVACY_DOC = {
+  key:"privacy",
+  title:"プライバシーポリシー",
+  lead:"re:act noteの運営者（以下「運営者」といいます。）は、本サービスにおける利用者に関する情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。",
+  sections:[
+  {h:"第1条　適用範囲", p:[
+    "本ポリシーは、自己理解ツール「re:act note」（以下「本サービス」といいます。）および本サービス内で提供する各機能（re:act note、今日の1問、re:play、re:phrase、re:mind、re:view、re:pair、re:cord、re:shareを含みます。）における利用者情報の取扱いに適用されます。"]},
+
+  {h:"第2条　取り扱う情報", p:[
+    "本サービスが取り扱う情報は、次の3つに分かれます。それぞれ性質が異なるため、分けて説明します。"],
+   sub:[
+    {h:"1. 利用者の端末内に保存される情報", p:[
+      "本サービスの利用にあたり、次の情報が利用者の端末内に保存されます。"],
+     list:[
+      "診断の回答および診断途中の回答・進捗",
+      "選択肢の表示順（診断中に同じ並びを保つために使用します）",
+      "診断結果（8軸の分析結果、キャラクターの判定結果、理解―実行ギャップ、プレッシャーに関する分析、トリガーに関する分析、責任スタイル、結果として表示される文章を含みます）",
+      "診断日時および回答時の状態（利用者が選択した場合）",
+      "re:cordに保存した診断結果の記録と、その一言メモ",
+      "選択した価値観",
+      "「次に意識するひとつ」として選択した内容",
+      "未来の自分へのメモ",
+      "re:pairに入力した下書き",
+      "今日の1問の回答履歴",
+      "利用規約および本ポリシーの確認状況（確認したバージョンと日時）",
+      "結果画面の表示状態などのサービス設定"],
+     after:[
+      "これらは原則として、利用者が使用しているブラウザのlocalStorage等の端末内保存領域に保存されます。"]},
+
+    {h:"2. re:act note独自の仕組みでは現在取得していない情報", p:[
+      "本サービスは、現在の仕様において、次の情報をre:act note独自の仕組みでは取得していません。"],
+     list:[
+      "氏名",
+      "住所",
+      "電話番号",
+      "メールアドレス",
+      "生年月日",
+      "正確な位置情報",
+      "アカウント登録に関する情報",
+      "診断の回答および診断結果の、運営者が管理するサーバーへの保存"]},
+
+    {h:"3. サイトの閲覧に伴う技術情報", p:[
+      "本サービスをGitHub Pages等の第三者のホスティングサービスを利用して公開する場合、サイトへのアクセスに伴って、次の情報がホスティングサービス提供者側で取り扱われる可能性があります。"],
+     list:[
+      "IPアドレス",
+      "ブラウザおよび端末に関する情報",
+      "アクセス日時",
+      "アクセスしたURL",
+      "その他、通常のWebサイト閲覧に伴い記録されるアクセスログ"],
+     after:[
+      "これは、Webサイトを表示するために通信事業者やホスティング事業者側で生じる処理であり、本サービスが診断の回答や診断結果を収集することとは異なります。これらの情報の取扱いは、当該ホスティングサービス提供者の定めによります。"]}
+   ]},
+
+  {h:"第3条　利用目的", p:[
+    "前条1に記載した端末内の情報は、次の目的で利用します。"],
+   list:[
+    "診断結果を計算し、表示するため",
+    "診断を中断した場合に、途中から再開できるようにするため",
+    "診断中に選択肢の表示順を一定に保つため",
+    "過去の診断結果を保存し、再表示するため",
+    "過去の結果と現在の結果を比較して表示するため",
+    "利用者が作成したメモや下書きを保存し、再表示するため",
+    "利用者が選択した「次に意識するひとつ」をホーム画面に表示するため",
+    "今日の1問を提供し、同じ日に同じ問いを表示するため",
+    "re:cordの一覧および各記録を表示するため",
+    "利用者が選択した設定や表示状態を維持するため",
+    "利用規約および本ポリシーの確認状況を記録し、重要な改定時に再度確認を求めるため",
+    "本サービス内の各機能を適切に動作させるため"]},
+
+  {h:"第4条　端末内での保存について", p:[],
+   list:[
+    "診断の回答および診断結果は、原則として利用者の端末内に保存されます。",
+    "保存にはブラウザの保存領域（localStorage等）を利用します。",
+    "運営者が、利用者の端末内に保存された内容を直接閲覧する仕組みは現在実装していません。",
+    "ブラウザのデータやサイトデータを削除した場合、保存内容が失われる可能性があります。",
+    "別のスマートフォン、別のパソコン、別のブラウザへは自動的に引き継がれません。",
+    "共有の端末を利用する場合、同じブラウザを利用する他の人から診断結果等を見られる可能性があります。",
+    "保存された内容は、利用者ご自身でいつでも削除できます（第7条）。"]},
+
+  {h:"第5条　外部への送信について", p:[
+    "現在の実装において、診断の回答、診断結果、メモ、価値観、今日の1問の回答、re:cordの記録等を、運営者が管理する外部サーバーへ送信する処理は実装していません。",
+    "また、現在の実装において、アクセス解析サービス、広告配信、ヒートマップ、行動分析サービス、マーケティング目的の計測、外部のAIサービス等は使用していません。",
+    "ただし、第2条3に記載のとおり、Webサイトを表示すること自体に伴う技術情報が、ホスティングサービス提供者側で取り扱われる可能性があります。「インターネット上へ一切情報が送信されない」という意味ではありません。",
+    "将来、外部サービスの導入等により情報の取扱いが変わる場合には、事前に本ポリシーおよび必要な表示を見直します。"]},
+
+  {h:"第6条　第三者への提供", p:[
+    "運営者は、利用者の診断の回答、診断結果、メモ等を第三者へ販売または提供することは行いません。ただし、次の場合を除きます。"],
+   list:[
+    "利用者ご自身がre:share等の機能を用いて、自らの操作により共有した場合",
+    "法令に基づき、開示または提供が必要となる場合"],
+   after:[
+    "re:shareによる共有は、利用者ご自身が共有内容を選択し、プレビューを確認したうえで共有操作を行った場合にのみ実行されます。利用者が選択していない情報を、本サービスが共有内容へ追加することはありません。",
+    "共有カードには、初期状態ではキャラクターと一言のみが含まれます。回避・隠蔽、自己正当化、防衛的反発といった、守りに入るときの反応の数値は、利用者が選択した場合でも共有カードには含めていません。",
+    "利用者が外部のサービスへ共有した後は、当該サービス（LINE、Instagram、X等を含みます。）における情報の取扱いについて、各サービスの利用規約およびプライバシーポリシーが適用されます。"]},
+
+  {h:"第7条　保存期間および削除", p:[
+    "端末内に保存された情報は、原則として、利用者ご自身が削除するか、ブラウザのサイトデータ等が削除されるか、または保存領域が失われるまで、端末内に残る可能性があります。",
+    "本サービス内の「保存データを管理する」画面から、診断の記録、未来の自分へのメモ、今日の1問の履歴、選択したルール、re:pairの下書き、診断途中の回答、およびすべてのデータを、それぞれ削除できます。",
+    "削除した内容は元に戻せません。"]},
+
+  {h:"第8条　安全管理のための方針", p:[
+    "運営者は、現在の実装において、次の方針をとっています。"],
+   list:[
+    "サービスの提供に必要以上の情報を取得しないこと",
+    "診断に関する処理を、原則として利用者の端末内で完結させること",
+    "機能上必要のない外部通信を行わないこと",
+    "利用者が入力した文章を画面に表示する際、その内容がプログラムとして解釈されないよう処理すること",
+    "外部ライブラリへの依存を可能な限り減らすこと",
+    "公開するコードに、認証情報等の秘密にすべき情報を含めないこと",
+    "サービスの仕様を変更する際に、情報の取扱いを見直すこと"]},
+
+  {h:"第9条　未成年者の利用について", p:[
+    "本サービスは、自己理解を目的としたツールであり、医学的診断、精神疾患等の診断、臨床心理検査を行うものではありません。年齢にかかわらず、利用者の人格を否定する表現や、将来の行動を断定する表現は用いません。",
+    "未成年の方が利用する場合は、必要に応じて保護者の方とご相談のうえご利用ください。"]},
+
+  {h:"第10条　運営者および問い合わせ", p:[
+    "本サービスは、法人ではなく、個人によって制作・運営されている無料の自己理解Webアプリです。",
+    "現在、専用の問い合わせ窓口は設けていません。"]},
+
+  {h:"第11条　本ポリシーの改定", p:[
+    "運営者は、本ポリシーを改定することがあります。改定した場合は、本ページに改定日およびバージョンを表示します。",
+    "重要な改定を行った場合には、本サービス内で改めて確認を求めることがあります。"]}
+  ]
+};
+
+const TERMS_DOC = {
+  key:"terms",
+  title:"利用規約",
+  lead:"本規約は、自己理解ツール「re:act note」（以下「本サービス」といいます。）の利用条件および、本サービスを提供する者（以下「運営者」といいます。）と利用者との関係について定めるものです。",
+  sections:[
+  {h:"第1条　適用", p:[
+    "本規約は、本サービスの利用に関して、運営者と利用者との間に適用されます。",
+    "利用者は、本サービスを利用することにより、本規約に同意したものとみなされます。"]},
+
+  {h:"第2条　サービスの目的", p:[
+    "本サービスは、利用者が、失敗、責任、対人関係、プレッシャー等の場面における自身の反応の傾向を振り返るための、自己理解ツールです。",
+    "本サービスは、利用者を良い人・悪い人といった優劣で分類することを目的としていません。"]},
+
+  {h:"第3条　診断結果について", p:[
+    "本サービスは、次のいずれも行うものではありません。"],
+   list:[
+    "医学的診断",
+    "精神疾患等の診断",
+    "臨床心理検査",
+    "人格の優劣の判定",
+    "犯罪の予測",
+    "浮気・不貞行為の予測",
+    "裏切りの予測",
+    "その他、将来の行動についての確定的な予測"],
+   after:[
+    "診断結果は、利用者ご自身が入力・選択した回答をもとに、一定のロジックによって生成される参考情報です。利用者の人格や将来の行動を確定的に表すものではありません。",
+    "本サービスは心理学研究の知見を参考にしていますが、科学的に妥当性が検証された心理尺度そのものではありません。回答したときの状態や回答の仕方によって、結果は変わり得ます。"]},
+
+  {h:"第4条　利用上の注意", p:[
+    "重要な人生上の判断、医療、法律、金銭、安全に関わる事項、その他専門的な判断を要する事項について、本サービスの結果のみに依存しないでください。",
+    "心身の不調や、対応に困る出来事について助けが必要な場合は、医療機関、公的な相談窓口、専門家等、適切な相談先の利用をご検討ください。"]},
+
+  {h:"第5条　利用者の責任", p:[
+    "利用者は、自身の判断と責任において本サービスを利用するものとします。",
+    "本条は、法令上運営者が負うべき責任を利用者へ転嫁するものではありません。"]},
+
+  {h:"第6条　禁止事項", p:[
+    "利用者は、本サービスの利用にあたり、次の行為を行ってはなりません。"],
+   list:[
+    "法令または公序良俗に反する行為",
+    "第三者の権利を侵害する行為",
+    "不正アクセスまたはこれを試みる行為",
+    "本サービスに対する攻撃行為",
+    "本サービスの運営を妨害する行為",
+    "脆弱性を発見した場合に、これを悪用する行為",
+    "他人になりすます行為",
+    "本サービスを利用して第三者へ不当な損害を与える行為",
+    "その他、運営者が合理的な理由により不適切と判断する行為"]},
+
+  {h:"第7条　知的財産権", p:[
+    "本サービスの名称、文章、オリジナルキャラクター、イラスト、デザイン、プログラムその他のコンテンツについて、法令上保護される権利が存在する場合、当該権利は運営者または正当な権利者に帰属します。",
+    "本サービスが第三者のライブラリ等を使用する場合には、当該ライブラリのライセンス条件が優先して適用されます。"]},
+
+  {h:"第8条　サービスの変更・停止", p:[
+    "運営者は、必要に応じて、本サービスの機能の変更、アップデート、メンテナンス、公開の停止、またはサービスの終了を行うことがあります。",
+    "サービスを終了する場合であっても、利用者の端末内に保存された情報は、利用者ご自身が削除するまで端末内に残ります。"]},
+
+  {h:"第9条　保証について", p:[
+    "運営者は、本サービスについて、その正確性、完全性、有用性、特定の目的への適合性を、絶対的に保証するものではありません。",
+    "本サービスは、利用者の自己理解のきっかけとして提供されるものです。"]},
+
+  {h:"第10条　責任の範囲", p:[
+    "運営者は、本サービスの利用によって利用者に生じた損害について、運営者の故意または重大な過失による場合を除き、責任を負わないことがあります。",
+    "本規約のうち、消費者契約法その他の適用される法令によって認められない範囲で運営者の責任を免除または制限する部分は、当該範囲において適用されません。",
+    "本条は、運営者の故意または重大な過失による損害についてまで、責任を免れることを定めるものではありません。"]},
+
+  {h:"第11条　本規約の変更", p:[
+    "運営者は、本規約を変更することがあります。変更した場合は、本ページに改定日およびバージョンを表示します。",
+    "重要な変更を行った場合には、本サービス内で改めて確認を求めることがあります。"]},
+
+  {h:"第12条　準拠法", p:[
+    "本規約は、日本法を準拠法とします。",
+    "裁判管轄については、現時点で本サービスの運営に係る所在地等を公開していないため、本規約では定めていません。必要が生じた場合に、あらためて定めます。"]}
+  ]
+};
+
+const ABOUT_DOC = {
+  key:"about",
+  title:"この診断について",
+  lead:"re:act noteが何を知るためのもので、何を判定するものではないのかをまとめました。",
+  sections:[
+  {h:"何を知るためのものか", p:[
+    "re:act noteは、失敗したとき、責められたとき、嘘や問題が発覚しそうなとき、何かを失うのが怖いときに、自分の中でどんな反応が出やすいのかを知るためのツールです。",
+    "多くの人は、落ち着いているときの自分と、追い詰められたときの自分が少し違います。その差を知っておくと、実際に何かあったときに、問題をこれ以上大きくしない選択がしやすくなります。"]},
+
+  {h:"何を判定するものではないか", p:[
+    "re:act noteは、人間の良し悪しを決めるものではありません。次のことも行いません。"],
+   list:[
+    "医学的診断、精神疾患等の診断、臨床心理検査",
+    "人格の優劣の判定",
+    "将来の不倫・犯罪・裏切り等の予測",
+    "本性を暴くこと"]},
+
+  {h:"どんな考え方を参考にしているか", p:[
+    "罪悪感と羞恥心の違い、道徳的な正当化のはたらき、誠実さと謙虚さに関する研究、状況判断テストの考え方、効果的な謝罪に関する研究など、心理学で扱われてきた考え方を参考に設計しています。",
+    "ただし、既存の心理尺度をそのまま使っているわけではなく、科学的に妥当性が検証された尺度でもありません。設問も配点も、すべてこのサービスのために作られたものです。"]},
+
+  {h:"結果は変わり得ます", p:[
+    "その日の状態、回答するときの気分、どこまで正直に答えるかによって、結果は変わります。同じ人でも、疲れているときと落ち着いているときでは違う結果が出ることがあります。",
+    "診断の前に「今日はいつもの自分に近いか」を聞いているのは、その日の状態と、いつもの自分を混同しないためです。",
+    "結果は「あなたはこういう人間です」という判定ではなく、「この回答の仕方をした人には、こういう反応が出やすい傾向があります」という参考情報として読んでください。"]},
+
+  {h:"使い方の目安", p:[
+    "結果を読んで終わりにせず、「次に意識するひとつ」を選んで持ち帰ることをおすすめします。全部を覚えようとするより、ひとつだけのほうが実際に思い出せます。",
+    "実際に何か起きたときは、re:mindで今の気持ちを確認し、re:pairで出来事を整理する、という使い方ができます。",
+    "しばらく経ってからもう一度受けると、そのときの自分との違いを見られます。良くなった・悪くなったという判定はしません。"]}
+  ]
+};
+
 /* チャプター構成（60問を12問×5に分割して体感を軽くする） */
 const CHAPTERS = [
   {n:1, title:"小さな違和感", end:12, note:"まだ誰も知らない時、自分はどう動くだろう。"},
@@ -2831,6 +3254,16 @@ const EXCUSES = [
   r:"多くの人が経験する状態です。タイミングは待つほど悪くなります。「遅くなったこと自体」も含めて伝える、という方法があります。"}
 ];
 
+/* --- 実際の出来事整理モード：構造化した質問（自由記述は端末外に出さない） --- */
+const EVENT_Q = [
+ {k:"cat", q:"どの領域の出来事ですか", o:["恋愛","仕事","家族","友人","お金","その他"]},
+ {k:"intent", q:"それは、どちらに近いですか", o:["事故・うっかりだった","半分は選んだ","自分で選んでやった"]},
+ {k:"resp", q:"自分の責任は、どのくらいだと感じていますか", o:["小さい","半分くらい","大きい"]},
+ {k:"impact", q:"相手に起きた影響の大きさは", o:["小さい","中くらい","大きい"]},
+ {k:"known", q:"今、どこまで知られていますか", o:["まだ知られていない","一部知られている","すべて知られている"]},
+ {k:"done", q:"現在の対応状況は", o:["まだ何もしていない","説明した","謝罪した","修復を進めている"]}
+];
+
 /* ================================================================
    UI : 画面制御（診断本体と、診断後の体験機能を分けて持つ）
    ================================================================ */
@@ -2870,6 +3303,9 @@ const state = {
   todayRule:null,       // 「次に意識するひとつ」
   daily:{},             // 今日の1問の回答  {"2026-08-26":{q:"d03", a:1}}
   repair:null,          // re:pair の下書き
+  consent:null,         // 利用規約・プライバシーポリシーの確認状況
+  guideSeen:false,      // 初回の短い案内を見たかどうか
+  a2hSeen:false,        // ホーム画面追加の案内を出したかどうか
   legacyHistory:[]      // 旧履歴（数値のみ）。比較に使う
 };
 
@@ -2892,6 +3328,7 @@ function todayKey(){
   return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2);
 }
 
+let SAVE_FAILED = false;   // 端末の保存領域が使えない場合に true
 function save(){
   try{
     localStorage.setItem(STORE_KEY, JSON.stringify({
@@ -2899,41 +3336,90 @@ function save(){
       answers:state.answers, idx:state.idx, finished:state.finished, perm:state.perm,
       values:state.values, memo:state.memo, level:state.level, preState:state.preState,
       records:state.records, todayRule:state.todayRule, daily:state.daily,
-      repair:state.repair, legacyHistory:state.legacyHistory
+      guideSeen:state.guideSeen, a2hSeen:state.a2hSeen,
+      repair:state.repair, legacyHistory:state.legacyHistory,
+      consent:state.consent
     }));
-  }catch(e){ /* 保存できない環境でも利用は続けられる */ }
+    SAVE_FAILED = false;
+    return true;
+  }catch(e){
+    /* プライベートモードや保存容量の上限などで保存できないことがある。
+       利用そのものは続けられるので、止めずに知らせるだけにする */
+    SAVE_FAILED = true;
+    return false;
+  }
 }
 
-function load(){
-  let d = null;
-  try{ d = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); }catch(e){}
-  if(d){
-    Object.keys(state).forEach(function(k){ if(d[k] !== undefined) state[k] = d[k]; });
-    return true;
+let LOAD_PARTIAL = false;   // 一部を読み込めなかった場合に true
+
+/* 保存データが古い形式・破損していても、アプリ全体を止めない。
+   読めた分だけ復旧し、勝手に全消去はしない */
+function readStore(key){
+  let raw = null;
+  try{ raw = localStorage.getItem(key); }catch(e){ return null; }
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){
+    /* 壊れていても消さずに退避しておく */
+    try{ localStorage.setItem(key + "_broken", raw); }catch(e2){}
+    LOAD_PARTIAL = true;
+    return null;
   }
+}
+function adopt(d){
+  const isObj = function(v){ return v && typeof v === "object" && !Array.isArray(v); };
+  const isArr = Array.isArray;
+  const pick = [
+    ["answers", isObj, {}], ["perm", isObj, {}], ["values", isArr, []],
+    ["records", isArr, []], ["daily", isObj, {}], ["legacyHistory", isArr, []],
+    ["consent", isObj, null], ["repair", isObj, null]
+  ];
+  pick.forEach(function(p){
+    if(d[p[0]] === undefined) return;
+    if(p[1](d[p[0]])) state[p[0]] = d[p[0]];
+    else LOAD_PARTIAL = true;
+  });
+  if(typeof d.idx === "number" && isFinite(d.idx)) state.idx = Math.max(0, Math.floor(d.idx));
+  if(typeof d.level === "number") state.level = Math.min(3, Math.max(1, Math.floor(d.level)));
+  state.finished = !!d.finished;
+  if(typeof d.memo === "string") state.memo = d.memo;
+  if(typeof d.todayRule === "string") state.todayRule = d.todayRule;
+  if(typeof d.preState === "string") state.preState = d.preState;
+  if(typeof d.guideSeen === "boolean") state.guideSeen = d.guideSeen;
+  if(typeof d.a2hSeen === "boolean") state.a2hSeen = d.a2hSeen;
+  /* 記録は1件ずつ検証し、壊れた1件のために全部を失わないようにする */
+  if(isArr(state.records)){
+    const ok = state.records.filter(function(r){
+      return r && typeof r === "object" && r.snap && r.snap.r && r.snap.r.norm && r.snap.ch;
+    });
+    if(ok.length !== state.records.length) LOAD_PARTIAL = true;
+    state.records = ok;
+  }
+}
+function load(){
+  const d = readStore(STORE_KEY);
+  if(d){ adopt(d); return true; }
   /* --- 旧バージョンからの移行（消さずに引き継ぐ） --- */
   for(let i=0;i<OLD_KEYS.length;i++){
-    let old = null;
-    try{ old = JSON.parse(localStorage.getItem(OLD_KEYS[i]) || "null"); }catch(e){}
+    const old = readStore(OLD_KEYS[i]);
     if(!old) continue;
-    state.answers = old.answers || {};
-    state.idx = old.idx || 0;
+    state.answers = (old.answers && typeof old.answers === "object") ? old.answers : {};
+    state.idx = typeof old.idx === "number" ? old.idx : 0;
     state.finished = !!old.finished;
-    state.perm = old.perm || {};
-    state.values = old.values || [];
+    state.perm = (old.perm && typeof old.perm === "object") ? old.perm : {};
+    state.values = Array.isArray(old.values) ? old.values : [];
     state.memo = typeof old.memo === "string" ? old.memo : null;
-    state.legacyHistory = old.history || [];
+    state.legacyHistory = Array.isArray(old.history) ? old.history : [];
     save();
     return true;
   }
   return false;
 }
-
 function wipeAll(){
   try{ localStorage.removeItem(STORE_KEY); OLD_KEYS.forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
   state.answers = {}; state.idx = 0; state.finished = false; state.perm = {};
   state.values = []; state.memo = null; state.level = 1; state.preState = null;
   state.records = []; state.todayRule = null; state.daily = {}; state.repair = null;
+  state.consent = null; state.guideSeen = false; state.a2hSeen = false;
   state.legacyHistory = []; RESULT = null;
 }
 function wipePart(kind){
@@ -2941,8 +3427,152 @@ function wipePart(kind){
   if(kind === "memo"){ state.memo = null; }
   if(kind === "daily"){ state.daily = {}; }
   if(kind === "repair"){ state.repair = null; }
-  if(kind === "answers"){ state.answers = {}; state.idx = 0; state.finished = false; state.perm = {}; RESULT = null; }
-  save();
+  if(kind === "rule"){ state.todayRule = null; }
+  if(kind === "answers"){
+    state.answers = {}; state.idx = 0; state.finished = false; state.perm = {};
+    state.preState = null; RESULT = null; VIEWING_RECORD = null;
+  }
+  return save();
+}
+
+/* ================================================================
+   バックアップ（書き出し／読み込み）
+   外部へは送信しない。利用者の端末内でファイルにするだけ。
+   ================================================================ */
+const BACKUP_VERSION = 1;
+const BACKUP_APP = "re:act note";
+const BACKUP_MAX_BYTES = 4 * 1024 * 1024;   // 4MB を超えるファイルは受け付けない
+
+function backupObject(){
+  return {
+    app: BACKUP_APP,
+    backupVersion: BACKUP_VERSION,
+    diagnosticVersion: DIAGNOSTIC_VERSION,
+    exportedAt: new Date().toISOString(),
+    data: {
+      answers: state.answers, idx: state.idx, finished: state.finished, perm: state.perm,
+      values: state.values, memo: state.memo, level: state.level, preState: state.preState,
+      records: state.records, todayRule: state.todayRule, daily: state.daily,
+      repair: state.repair, legacyHistory: state.legacyHistory,
+      consent: state.consent, guideSeen: state.guideSeen
+    }
+  };
+}
+function backupFileName(){
+  const d = new Date();
+  const p = function(n){ return ("0" + n).slice(-2); };
+  return "react-note-backup-" + d.getFullYear() + "-" + p(d.getMonth()+1) + "-" + p(d.getDate()) + ".json";
+}
+
+/* 読み込んだファイルは信用しない。形と型を確かめてから使う */
+function validateBackup(obj){
+  const isObj = function(v){ return v && typeof v === "object" && !Array.isArray(v); };
+  if(!isObj(obj)) return {ok:false};
+  if(obj.app !== BACKUP_APP) return {ok:false};
+  const bv = obj.backupVersion;
+  if(typeof bv !== "number" || !isFinite(bv) || bv < 1 || bv > BACKUP_VERSION) return {ok:false};
+  if(!isObj(obj.data)) return {ok:false};
+  const d = obj.data;
+
+  const clean = {};
+  clean.answers = isObj(d.answers) ? d.answers : {};
+  clean.perm = isObj(d.perm) ? d.perm : {};
+  clean.idx = (typeof d.idx === "number" && isFinite(d.idx)) ? Math.max(0, Math.floor(d.idx)) : 0;
+  clean.finished = !!d.finished;
+  clean.level = (typeof d.level === "number") ? Math.min(3, Math.max(1, Math.floor(d.level))) : 1;
+  clean.values = Array.isArray(d.values) ? d.values.filter(function(v){ return typeof v === "string"; }).slice(0,3) : [];
+  clean.memo = typeof d.memo === "string" ? d.memo.slice(0, 4000) : null;
+  clean.todayRule = typeof d.todayRule === "string" ? d.todayRule.slice(0, 200) : null;
+  clean.preState = typeof d.preState === "string" ? d.preState.slice(0, 20) : null;
+  clean.guideSeen = !!d.guideSeen;
+  clean.consent = isObj(d.consent) ? {
+    terms: typeof d.consent.terms === "string" ? d.consent.terms.slice(0,10) : null,
+    privacy: typeof d.consent.privacy === "string" ? d.consent.privacy.slice(0,10) : null,
+    at: typeof d.consent.at === "string" ? d.consent.at.slice(0,40) : null
+  } : null;
+  clean.repair = isObj(d.repair) ? (function(){
+    const r = {};
+    REPAIR_STEPS.forEach(function(st){
+      if(typeof d.repair[st.k] === "string") r[st.k] = d.repair[st.k].slice(0, 4000);
+    });
+    return r;
+  })() : null;
+  clean.daily = isObj(d.daily) ? (function(){
+    const o = {};
+    Object.keys(d.daily).slice(0, 400).forEach(function(k){
+      const v = d.daily[k];
+      if(isObj(v) && typeof v.q === "string" && typeof v.a === "number"){
+        o[String(k).slice(0,10)] = {q: v.q.slice(0,10), a: Math.max(0, Math.floor(v.a))};
+      }
+    });
+    return o;
+  })() : {};
+  clean.records = Array.isArray(d.records) ? d.records.filter(function(r){
+    if(!(r && typeof r === "object" && typeof r.id === "string" && typeof r.t === "string")) return false;
+    const sp = r.snap;
+    if(!(sp && sp.r && sp.r.norm && sp.a2 && sp.nar && Array.isArray(sp.ift))) return false;
+    /* 表示に必要なものが全部そろっている記録だけを受け入れる */
+    const okNorm = AXIS_ORDER.concat(["S"]).every(function(k){ return typeof sp.r.norm[k] === "number"; });
+    const okGap = sp.r.gap && typeof sp.r.gap.value === "number";
+    const okCh = sp.ch && CHARS[sp.ch.initial] && CHARS[sp.ch.recovery]
+      && Array.isArray(sp.ch.initialReasons) && Array.isArray(sp.ch.recoveryReasons);
+    const okA2 = Array.isArray(sp.a2.contradictions) && sp.a2.triggerInfo && sp.a2.hotCold && Array.isArray(sp.a2.pressure);
+    return okNorm && okGap && okCh && okA2;
+  }).slice(-20).map(function(r){
+    r.note = typeof r.note === "string" ? r.note.slice(0, 200) : "";
+    r.next = typeof r.next === "string" ? r.next.slice(0, 200) : null;
+    r.dv = typeof r.dv === "string" ? r.dv.slice(0, 10) : null;
+    return r;
+  }) : [];
+  clean.legacyHistory = Array.isArray(d.legacyHistory) ? d.legacyHistory.slice(-20) : [];
+
+  return {ok:true, clean:clean, meta:{
+    exportedAt: typeof obj.exportedAt === "string" ? obj.exportedAt : null,
+    diagnosticVersion: typeof obj.diagnosticVersion === "string" ? obj.diagnosticVersion : null,
+    backupVersion: bv,
+    counts: {
+      records: clean.records.length,
+      daily: Object.keys(clean.daily).length,
+      memo: clean.memo ? 1 : 0,
+      rule: clean.todayRule ? 1 : 0,
+      answers: Object.keys(clean.answers).length
+    }
+  }};
+}
+
+function applyBackup(clean){
+  Object.keys(clean).forEach(function(k){ state[k] = clean[k]; });
+  RESULT = null; VIEWING_RECORD = null;
+  return save();
+}
+
+/* 書き出し。環境によって保存の仕方が違うので、順に試す */
+function exportBackup(done){
+  const json = JSON.stringify(backupObject(), null, 2);
+  const name = backupFileName();
+  const blob = new Blob([json], {type:"application/json"});
+  (async function(){
+    if(isHosted()){
+      /* 公開ページではページ側からのダウンロードが止められるので、
+         用意されている保存の仕組みを使う。使えなければ本文表示にまわす */
+      try{
+        const dl = await window.claude.use("downloads");
+        if(dl){ await dl.save({filename:name, data:blob}); done("saved"); return; }
+      }catch(e){
+        if(e && e.code === "declined"){ done("declined"); return; }
+      }
+      done("fallback", json, name);
+      return;
+    }
+    try{
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      done("saved");
+    }catch(e){ done("fallback", json, name); }
+  })();
 }
 
 /* ---- re:cord ---- */
@@ -2951,6 +3581,7 @@ function makeSnapshot(){
   return {
     id: "rec_" + Date.now(),
     t: new Date().toISOString(),
+    dv: DIAGNOSTIC_VERSION,
     preState: state.preState,
     note: "",
     next: state.todayRule,
@@ -2995,9 +3626,9 @@ function show(which){
 }
 function bind(id, fn){ const b = document.getElementById(id); if(b) b.onclick = fn; }
 
-/* 埋め込み表示（iframe など）では、ブラウザが confirm / alert / prompt を
-   無効化することがある。その場合ボタンが無反応になってしまうため、
-   確認も入力も画面の中だけで完結させる。
+/* 埋め込み表示（iframe・アプリ内ブラウザ）では、ブラウザが confirm / alert / prompt を
+   無効化することがある。そのままではボタンが無反応になってしまうため、
+   確認も入力も通知も、画面の中だけで完結させる。
    確認は「もう一度押す」方式。6秒たつと自動で元に戻る。 */
 let confirmKey = null, confirmTimer = null;
 function confirmTwice(key, target, label){
@@ -3017,7 +3648,20 @@ function confirmTwice(key, target, label){
 }
 /* 公開ページ（claude.ai のビューア）で動いているか */
 function isHosted(){ return !!(window.claude && typeof window.claude.use === "function"); }
-function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+/* 利用者の自由入力は、原則として textContent で描画する。
+   やむを得ず文字列連結でHTMLを組む場合のために、エスケープも用意しておく */
+function esc(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+/* data-user-text を持つ要素に、利用者入力を textContent として流し込む */
+function fillUserText(root, map){
+  Array.prototype.forEach.call((root || document).querySelectorAll("[data-user-text]"), function(el){
+    const k = el.getAttribute("data-user-text");
+    el.textContent = (map && map[k] != null) ? String(map[k]) : "";
+  });
+}
 
 /* 結果の計算（キャッシュ付き） */
 function computeAll(){
@@ -3032,12 +3676,14 @@ function comparePair(){
   const rs = state.records || [];
   if(rs.length >= 2){
     const a = rs[rs.length-2], b = rs[rs.length-1];
-    return {prev:a.snap.r.norm, now:b.snap.r.norm, prevT:a.t, nowT:b.t, prevCh:a.snap.ch};
+    return {prev:a.snap.r.norm, now:b.snap.r.norm, prevT:a.t, nowT:b.t, prevCh:a.snap.ch,
+            prevDv:a.dv || null, nowDv:b.dv || null};
   }
   if(rs.length === 1 && RESULT && state.finished){
     const a = rs[rs.length-1];
     if(a.snap.r.norm !== RESULT.r.norm){
-      return {prev:a.snap.r.norm, now:RESULT.r.norm, prevT:a.t, nowT:new Date().toISOString(), prevCh:a.snap.ch};
+      return {prev:a.snap.r.norm, now:RESULT.r.norm, prevT:a.t, nowT:new Date().toISOString(), prevCh:a.snap.ch,
+              prevDv:a.dv || null, nowDv:DIAGNOSTIC_VERSION};
     }
   }
   const lh = state.legacyHistory || [];
@@ -3070,7 +3716,7 @@ function renderIntro(){
 
   /* ---- ブランド ---- */
   h += '<div class="card fade" style="' + (state.todayRule ? '' : 'margin-top:26px;') + 'text-align:center">'
-     + '<div class="logo">re<span class="c">:</span>act</div>'
+     + '<div class="logo">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
      + '<div class="tagline">そのときの自分を知る。</div>'
      + (state.todayRule ? '' : '<div class="hero-art">' + figs.map(function(id){ return '<div class="fig">' + CHARS[id].svg + '</div>'; }).join("") + '</div>')
      + (state.todayRule
@@ -3079,10 +3725,14 @@ function renderIntro(){
           + '<p class="brand-body">「ちゃんとしたい」と思っていても、焦ったとき。怒られたとき。失うのが怖いとき。人は、いつも同じようには動けません。</p>'
           + '<p class="brand-body">60の場面から、あなたの&#8220;とっさの反応&#8221;を見てみます。</p>')
      + (done
-        ? '<button class="btn" id="btnResult">前回の結果を見る</button><button class="btn-sub" id="btnStart">もう一度、自分を見てみる</button>'
-        : '<button class="btn" id="btnStart">' + (resume ? ('続きから再開する　' + answeredCount() + ' / 60') : '自分を見てみる') + '</button>')
+        ? '<button class="btn" id="btnResult">前回の結果を見る</button><button class="btn-sub" id="btnRestart">もう一度、自分を見てみる</button>'
+        : (resume
+            ? '<button class="btn" id="btnStart">続きから再開する　' + answeredCount() + ' / 60</button>'
+              + '<button class="btn-sub" id="btnRestart">最初からやり直す</button>'
+            : '<button class="btn" id="btnStart">自分を見てみる</button>'))
      + '<div class="meta-row"><span>全60問</span><span class="dot"></span><span>約10〜15分</span><span class="dot"></span><span>途中保存できます</span></div>'
-     + '<div class="meta-row" style="margin-top:6px"><span>回答はこの端末の中だけに保存されます</span></div>'
+     + '<div class="privacy-note">診断の回答や結果は、この端末のブラウザ内に保存されます。re:act noteから回答を外部のサーバーへ送信する仕組みは、現在実装していません。'
+     + '<button class="inline-link" data-go="safety">プライバシーについて詳しく見る</button></div>'
      + '</div>';
 
   /* ---- 入口は最大3つまで ---- */
@@ -3097,6 +3747,14 @@ function renderIntro(){
   }
   h += '</div>';
 
+  /* ---- ホーム画面に追加できることを、一度だけ小さく案内する ---- */
+  const standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent || "");
+  if(!standalone && isIOS && !state.a2hSeen && /^https?:/.test(location.protocol)){
+    h += '<div class="a2h"><div>ホーム画面に追加すると、アプリのようにすぐ開けます。</div>'
+       + '<button class="a2h-x" id="a2hClose">閉じる</button></div>';
+  }
+
   /* ---- それ以外は「もっと見る」に畳む ---- */
   h += '<button class="btn-sub" id="btnMore">もっと見る</button>'
      + '<div id="moreBox" class="hidden">'
@@ -3106,12 +3764,21 @@ function renderIntro(){
        + '<button class="row-btn" data-go="values">大事にしたいこと</button>'
        + '<button class="row-btn" data-go="settings">保存とデータの削除</button>'
      + '</div>'
-     + '<div class="card"><p class="disclaimer">re:actは心理学研究の知見を参考にした自己理解ツールです。臨床心理検査や医学的診断ではありません。将来の行動を予測するものでもありません。</p></div>'
-     + '</div>';
+     + '</div>'
+     + footerHTML();
 
   el.intro.innerHTML = h;
 
-  bind("btnStart", function(){ done ? startQuiz("btnStart") : renderPreState(); });
+  bind("a2hClose", function(){ state.a2hSeen = true; save(); renderIntro(); });
+  bind("btnStart", function(){ beginQuizFlow(false); });
+  bind("btnRestart", function(){
+    if(answeredCount() > 0){
+      if(!confirmTwice("restart", "btnRestart", "もう一度押すと、ここまでの回答を削除して最初から始めます")) return;
+    }
+    state.answers = {}; state.idx = 0; state.finished = false; state.perm = {};
+    VIEWING_RECORD = null; save();
+    beginQuizFlow(true);
+  });
   bind("btnResult", function(){ computeAll(); state.justFinished = false; renderResult(); show("result"); });
   bind("btnGallery", function(){ renderGallery(haveResult()); });
   bind("btnMore", function(){
@@ -3122,6 +3789,38 @@ function renderIntro(){
   Array.prototype.forEach.call(el.intro.querySelectorAll("[data-go]"), function(b){
     b.onclick = function(){ nav(b.dataset.go); };
   });
+}
+
+/* 診断をはじめる流れ。初回、または重要な改定があったときだけ確認をはさむ */
+function beginQuizFlow(fresh){
+  const go = function(){
+    if(fresh || answeredCount() === 0) renderPreState();
+    else startQuiz();
+  };
+  const consentStep = function(){ if(!consentOK()) renderConsent(go); else go(); };
+  if(!state.guideSeen) renderGuide(consentStep); else consentStep();
+}
+
+/* 初回だけの短い案内。長い説明はしない */
+function renderGuide(after){
+  const items = [
+    {t:"60問、5つのチャプターで進みます", s:"ひとつずつ、場面を読んで選ぶだけです。"},
+    {t:"途中保存できます", s:"いつでもホームへ戻れて、続きから再開できます。"},
+    {t:"良い・悪いは判定しません", s:"自分の反応のクセを知るための診断です。"}
+  ];
+  el.tool.innerHTML = '<div class="card fade" style="margin-top:36px">'
+    + '<div class="logo-sm round" style="margin-bottom:18px">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
+    + '<h1 class="tool-h round">はじめる前に、3つだけ</h1>'
+    + '<div class="guide-list">' + items.map(function(it,i){
+        return '<div class="guide-i"><span>' + (i+1) + '</span><div><div class="guide-t">' + it.t + '</div>'
+          + '<div class="guide-s">' + it.s + '</div></div></div>';
+      }).join("") + '</div>'
+    + '<button class="btn" id="gGo" style="margin-top:22px">自分を見てみる</button>'
+    + '<button class="btn-sub" id="gBack">ホームにもどる</button>'
+    + '<p class="disclaimer" style="margin-top:16px">くわしくは「この診断について」で、いつでも確認できます。</p></div>';
+  show("tool");
+  bind("gGo", function(){ state.guideSeen = true; save(); after(); });
+  bind("gBack", function(){ state.guideSeen = true; save(); renderIntro(); show("intro"); });
 }
 
 /* 診断前の「今の自分」（任意・スコアには影響しない） */
@@ -3147,9 +3846,10 @@ function renderPreState(){
   bind("preSkip", function(){ state.preState = null; save(); startQuiz(); });
 }
 
-function startQuiz(btnId){
-  if(state.finished){ if(!confirmTwice("restart", btnId || "btnStart", "もう一度押すと、最初からやり直します（前回の回答は上書き）")) return;
-    state.answers = {}; state.idx = 0; state.finished = false; state.perm = {}; save(); }
+function startQuiz(){
+  if(state.finished && answeredCount() >= ITEMS.length){
+    state.answers = {}; state.idx = 0; state.finished = false; state.perm = {}; save();
+  }
   let i = 0;
   while(i < ITEMS.length && isAnswered(ITEMS[i])) i++;
   state.idx = Math.min(i, ITEMS.length - 1);
@@ -3159,7 +3859,7 @@ function startQuiz(btnId){
 /* ================= 設問 ================= */
 function updateProgress(){
   const c = chapterOf(state.idx);
-  el.pSection.textContent = "CHAPTER " + c.n + "　" + c.title;
+  el.pSection.textContent = "CHAPTER " + c.n + " / " + CHAPTERS.length + "　" + c.title;
   el.pCount.textContent = (state.idx + 1) + " / " + ITEMS.length;
   el.pFill.style.width = (state.idx / ITEMS.length * 100) + "%";
 }
@@ -3268,24 +3968,35 @@ function goNext(){
 function renderCheckpoint(done){
   const next = chapterOf(state.idx);
   const fig = ["hedgehog","fox","owl","deer","beaver"][next.n - 1] || "owl";
+  const left = ITEMS.length - state.idx;
+  const mins = Math.max(1, Math.round(left * 13 / 60));
+  const chLeft = CHAPTERS.length - done.n;
   el.quiz.innerHTML = '<div class="card checkpoint fade" style="margin-top:36px">'
     + '<div class="cp-fig">' + CHARS[fig].svg + '</div>'
-    + '<div class="cp-n">CHAPTER ' + next.n + '</div>'
-    + '<div class="cp-t round">' + next.title + '</div>'
-    + '<div class="cp-c">' + next.note + '</div>'
-    + '<div class="cp-c faint" style="font-size:.8rem;margin-top:14px">' + done.end + ' / ' + ITEMS.length + ' 問がおわりました</div>'
-    + '<button class="btn" id="cpNext" style="margin-top:26px">続ける</button>'
-    + '<button class="btn-sub" id="cpStop">今日はここまでにする</button></div>';
+    + '<div class="cp-n">CHAPTER ' + done.n + ' 完了</div>'
+    + '<div class="cp-t round">' + done.title + '</div>'
+    + '<div class="cp-c">ここまで保存しました。</div>'
+    + '<div class="cp-c faint" style="font-size:.82rem;margin-top:12px">'
+      + (chLeft > 0 ? 'のこり' + chLeft + 'チャプター　／　あと約' + mins + '分' : 'あと少しです') + '</div>'
+    + '<hr class="sep">'
+    + '<div class="cp-next">つぎは CHAPTER ' + next.n + '　' + next.title + '</div>'
+    + '<p class="muted" style="font-size:.9rem">' + next.note + '</p>'
+    + '<button class="btn" id="cpNext" style="margin-top:20px">このまま続ける</button>'
+    + '<button class="btn-sub" id="cpStop">ここで休む</button></div>';
   updateProgress();
+  toast("ここまで保存しました");
   bind("cpNext", renderQuestion);
-  bind("cpStop", function(){ renderIntro(); show("intro"); });
+  bind("cpStop", function(){
+    save(); renderIntro(); show("intro");
+    toast("続きは保存されています");
+  });
 }
 
 /* 結果の前に、短い間を置く（過剰な疑似AI演出にはしない） */
 function renderAnalyzing(done){
   const lines = ["あなたの反応を整理しています", "守ろうとする瞬間", "向き合える瞬間", "その差を見ています"];
   el.tool.innerHTML = '<div class="analyzing">'
-    + '<div class="logo-sm round">re<span class="c">:</span>act</div>'
+    + '<div class="logo-sm round">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
     + '<div class="an-line" id="anLine"></div>'
     + '<div class="an-dots"><i></i><i></i><i></i></div></div>';
   show("tool");
@@ -3459,7 +4170,7 @@ function renderResult(){
        + '<h2>' + ymd(VIEWING_RECORD.t) + 'の記録</h2>'
        + '<p class="muted" style="font-size:.9rem">保存された結果を表示しています。'
        + (VIEWING_RECORD.preState ? '回答したときの状態は「' + preStateLabel(VIEWING_RECORD.preState) + '」でした。' : '')
-       + (VIEWING_RECORD.note ? '<br>メモ：' + esc(VIEWING_RECORD.note) : '') + '</p>'
+       + (VIEWING_RECORD.note ? '<br>メモ：<span data-user-text="recnote"></span>' : '') + '</p>'
        + '<button class="btn-sub" data-go="record">記録の一覧にもどる</button>'
        + '<button class="btn-sub" id="backToNow">いまの結果にもどる</button></div>';
   }else{
@@ -3676,7 +4387,10 @@ function renderResult(){
       .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); }).slice(0,3);
     h += '<div class="card"><h2>前回との違い</h2>'
        + '<p class="muted" style="font-size:.88rem">前回：' + ymd(cmp.prevT) + '　／　今回：' + ymd(cmp.nowT) + '</p>'
-       + '<p class="muted" style="font-size:.88rem">良くなった・悪くなったという見方はしません。回答の傾向がどう動いたかだけを見ます。</p>';
+       + '<p class="muted" style="font-size:.88rem">良くなった・悪くなったという見方はしません。回答の傾向がどう動いたかだけを見ます。</p>'
+       + ((cmp.prevDv && cmp.nowDv && cmp.prevDv !== cmp.nowDv)
+           ? '<div class="flag">前回とは診断方法が一部異なるため、変化は参考としてご覧ください。（前回 v' + cmp.prevDv + ' ／ 今回 v' + cmp.nowDv + '）</div>'
+           : '');
     diffs.forEach(function(x){
       const dir = x.d > 0 ? "少し高く出ています" : (x.d < 0 ? "少し低く出ています" : "ほぼ同じでした");
       h += '<div class="hist"><span>' + SOFT[x.k] + '</span><span class="hist-v">' + cmp.prev[x.k] + ' → ' + cmp.now[x.k] + '　' + dir + '</span></div>';
@@ -3689,16 +4403,17 @@ function renderResult(){
     h += '<div class="note">この結果を記録しておくと、次に受けたときに「前回との違い」を見られます。良くなった・悪くなったという判定はしません。</div>';
   }
 
-  h += '<div class="card"><h2>re:act characters</h2><p class="muted" style="font-size:.9rem">どの反応にも、人としての理由があります。優劣はありません。</p>' + galleryHTML(true) + '</div>';
+  h += '<div class="card"><h2>re:act note characters</h2><p class="muted" style="font-size:.9rem">どの反応にも、人としての理由があります。優劣はありません。</p>' + galleryHTML(true) + '</div>';
   h += '</div>'; // /lv3
 
   h += '<div class="card"><div class="logo-sm round" style="margin-bottom:12px">re<span class="c">:</span>act</div>'
-     + '<p class="disclaimer">re:actは心理学研究の知見を参考にした自己理解ツールであり、臨床心理検査・医学的診断・科学的に妥当性が検証済みの心理尺度ではありません。将来の不倫・犯罪・裏切り等を予測するものではありません。回答・履歴・メモは外部に送信されず、この端末内だけに保存されています。</p>'
+     + '<p class="disclaimer">re:act noteは心理学研究の知見を参考にした自己理解ツールであり、臨床心理検査・医学的診断・科学的に妥当性が検証済みの心理尺度ではありません。将来の不倫・犯罪・裏切り等を予測するものではありません。回答・履歴・メモは外部に送信されず、この端末内だけに保存されています。</p>'
      + '<button class="btn-sub" data-go="print">結果を印刷・PDFで保存する</button>'
      + '<button class="btn-sub" id="btnAgain">もう一度やってみる</button>'
      + '<button class="btn-sub" id="btnWipe2">保存されたデータを全部削除する</button></div>';
 
   el.result.innerHTML = h;
+  fillUserText(el.result, {recnote: VIEWING_RECORD ? VIEWING_RECORD.note : ""});
 
   bind("btnLv2", function(){ state.level = Math.max(state.level,2); save();
     document.getElementById("lv2").classList.remove("hidden");
@@ -3722,6 +4437,7 @@ function renderResult(){
       Array.prototype.forEach.call(el.result.querySelectorAll("[data-one]"), function(x){ x.classList.remove("on"); });
       b.classList.add("on");
       document.getElementById("pickNote2").textContent = '「' + state.todayRule + '」をホームに表示しています。';
+      toast("変更を保存しました");
     };
   });
   bind("recSave", function(){
@@ -3729,10 +4445,10 @@ function renderResult(){
     saveRecord(note);
     state.justFinished = false;
     const b = document.getElementById("recSave");
-    b.textContent = "記録しました"; b.disabled = true;
+    b.textContent = "記録しました"; b.disabled = true; toast("記録しました");
   });
   bind("backToNow", function(){ VIEWING_RECORD = null; computeAll(); renderResult(); show("result"); });
-  bind("btnAgain", function(){ VIEWING_RECORD = null; startQuiz("btnAgain"); });
+  bind("btnAgain", function(){ VIEWING_RECORD = null; startQuiz(); });
   bind("btnWipe2", function(){
     if(!confirmTwice("wipe2", "btnWipe2", "もう一度押すと、保存データを全部削除します")) return;
     wipeAll(); save(); renderIntro(); show("intro");
@@ -3783,6 +4499,10 @@ function nav(name, arg){
   if(name === "share")    return renderShare();
   if(name === "pickone")  return renderPickOne();
   if(name === "settings") return renderSettings();
+  if(name === "safety")   return renderSafety();
+  if(name === "privacy")  return renderDoc("privacy");
+  if(name === "terms")    return renderDoc("terms");
+  if(name === "about")    return renderDoc("about");
   if(name === "print"){ window.print(); return; }
   if(name === "rules"){
     state.level = 3; save(); renderResult(); show("result");
@@ -3791,7 +4511,7 @@ function nav(name, arg){
     return;
   }
 }
-function backBtn(label){ return '<button class="btn-sub" id="toolBack">' + (label || "とじる") + '</button>'; }
+function backBtn(label){ return '<button class="btn-sub" id="toolBack">' + (label || "閉じる") + '</button>'; }
 function toolShell(title, body, lead, sub){
   el.tool.innerHTML = '<div class="card fade" style="margin-top:20px">'
     + (sub ? '<div class="sec-k">' + sub + '</div>' : '')
@@ -3819,13 +4539,14 @@ function renderPickOne(){
     }).join("") + '</div>'
     + '<div class="picked-note" id="pickNote">' + (state.todayRule ? '「' + state.todayRule + '」をホームに表示しています。' : 'ひとつ選ぶと、ホームに小さく表示されます。あとから変えられます。') + '</div>';
   toolShell("次に意識するなら、どれにしますか？", body,
-    "全部やろうとしなくて大丈夫です。ひとつだけ持って帰るほうが、実際に思い出せます。", "re:act");
+    "全部やろうとしなくて大丈夫です。ひとつだけ持って帰るほうが、実際に思い出せます。", "re:act note");
   Array.prototype.forEach.call(el.tool.querySelectorAll(".pick-b"), function(b){
     b.onclick = function(){
       state.todayRule = opts[parseInt(b.dataset.i,10)]; save();
       Array.prototype.forEach.call(el.tool.querySelectorAll(".pick-b"), function(x){ x.classList.remove("on"); });
       b.classList.add("on");
       document.getElementById("pickNote").textContent = '「' + state.todayRule + '」をホームに表示しています。';
+      toast("変更を保存しました");
     };
   });
 }
@@ -3848,7 +4569,7 @@ function renderDaily(){
         + '<p class="disclaimer" style="margin-top:18px">明日には、別の問いになります。</p>'
         + '<button class="btn-sub" id="dailyRedo">選び直す</button>';
     }
-    toolShell("今日の1問", body, mdOnly(new Date()) + "の問いです。", "re:act");
+    toolShell("今日の1問", body, mdOnly(new Date()) + "の問いです。", "re:act note");
     Array.prototype.forEach.call(el.tool.querySelectorAll(".opt[data-i]"), function(b){
       b.onclick = function(){
         state.daily = state.daily || {};
@@ -3881,7 +4602,7 @@ function renderMind(){
       + '<div class="logo-sm round" style="margin-bottom:8px">re<span class="c">:</span>mind</div>'
       + '<div class="sec-k" style="margin-bottom:26px">今の気持ちを確認する</div>'
       + inner
-      + '<button class="btn-sub" id="toolBack" style="margin-top:30px">とじる</button></div>';
+      + '<button class="btn-sub" id="toolBack" style="margin-top:30px">閉じる</button></div>';
     bind("toolBack", function(){
       if(haveResult()){ renderResult(); show("result"); } else { renderIntro(); show("intro"); }
     });
@@ -3904,7 +4625,7 @@ function renderMind(){
       shell('<div class="panic-msg">' + (high
         ? "今は、判断より防衛が先に出やすい状態かもしれません。正しい判断を出すより、悪手を1つ減らすほうが大事です。決めるのは後でいい。"
         : "進められそうですね。順番に1つずつ確認していきましょう。") + '</div>'
-        + (state.memo ? '<div class="memo-paper" style="margin-bottom:20px"><div class="memo-k">future me</div><div style="font-size:.93rem;line-height:2.1">' + esc(state.memo).replace(/\n/g,"<br>") + '</div></div>' : '')
+        + (state.memo ? '<div class="memo-paper" style="margin-bottom:20px"><div class="memo-k">future me</div><div class="memo-body" data-user-text="memo"></div></div>' : '')
         + '<button class="btn" id="emStart">1つずつ確認する</button>'
         + '<button class="btn-sub" data-go="pair">先に、出来事を整理する</button>');
     }else{
@@ -3916,6 +4637,7 @@ function renderMind(){
             : '<div class="note">ここまでできれば、少なくとも今日、これ以上大きくすることは避けられます。残りは明日でいい。</div><button class="btn-sub" data-go="pair">出来事を整理する</button>')
         + (stepI > 0 ? '<button class="btn-sub" id="emPrev">前にもどる</button>' : ''));
     }
+    fillUserText(el.tool, {memo: state.memo});
     Array.prototype.forEach.call(el.tool.querySelectorAll(".feel-b"), function(b){
       b.onclick = function(){ feel = b.dataset.k; draw(); };
     });
@@ -3969,7 +4691,7 @@ function renderPair(){
         + '<div class="cmp-k">' + c.en + '</div>'
         + '<div class="cmp-j">' + c.ja + '　<span class="faint" style="font-weight:400;font-size:.88rem">' + c.q + '</span></div>'
         + '<div class="cmp-h" style="margin:0 0 10px">' + c.hint + '</div>'
-        + '<textarea class="memo pair-in" data-k="' + c.k + '" rows="3" placeholder="ここに書けます">' + esc(draft[c.k] || "") + '</textarea>'
+        + '<textarea class="memo pair-in" data-k="' + c.k + '" rows="3" placeholder="ここに書けます"></textarea>'
         + '</div>';
     }).join("") + '</div>'
     + '<button class="btn" id="pairSave" style="margin-top:18px">下書きを保存する</button>'
@@ -3978,12 +4700,16 @@ function renderPair(){
   toolShell("関係をどう直す？", body,
     "実際にあった出来事を、5つに分けて整理します。全部埋めなくて大丈夫です。埋まらない欄があること自体が手がかりになります。",
     "re:pair");
+  Array.prototype.forEach.call(el.tool.querySelectorAll(".pair-in"), function(t){
+    t.value = draft[t.dataset.k] || "";
+  });
   bind("pairSave", function(){
     const d = {};
     Array.prototype.forEach.call(el.tool.querySelectorAll(".pair-in"), function(t){ d[t.dataset.k] = t.value; });
     state.repair = d; save();
     const b = document.getElementById("pairSave");
-    b.textContent = "保存しました"; setTimeout(function(){ b.textContent = "下書きを保存する"; }, 1600);
+    b.textContent = "保存しました"; toast("保存しました");
+    setTimeout(function(){ b.textContent = "下書きを保存する"; }, 1600);
   });
   bind("pairClear", function(){
     if(!confirmTwice("pairClear", "pairClear", "もう一度押すと、下書きを消します")) return;
@@ -4083,7 +4809,7 @@ function renderGallery(full){
     galleryHTML(full),
     "失敗が起きたときに出やすい反応を、11のキャラクターで表しています。良い反応・悪い反応という区別はありません。"
     + (full ? "" : "どれが出やすいかの仕組みは、回答への影響を避けるため診断の後に表示します。"),
-    "re:act characters");
+    "re:act note characters");
 }
 
 /* ---------------- 大事にしたいこと ---------------- */
@@ -4096,7 +4822,7 @@ function renderValues(){
     + '<button class="btn" id="valSave">保存する</button>';
   toolShell("あなたが大事にしたい自分", body,
     "「自分は何を大事にして生きたいか」を3つまで選んでください。診断の点数には影響しません。この端末の中にだけ残ります。",
-    "re:act");
+    "re:act note");
   function refresh(){ document.getElementById("valCount").textContent = chosen.length + " / 3 選んでいます"; }
   Array.prototype.forEach.call(el.tool.querySelectorAll(".val-chip.pick"), function(b){
     b.onclick = function(){
@@ -4124,16 +4850,18 @@ function renderMemo(){
   toolShell("未来の自分へ",
     '<div class="memo-paper">'
     + '<div class="memo-k">future me</div>'
-    + '<textarea id="memoBox" class="memo" rows="15">' + esc(val) + '</textarea>'
+    + '<textarea id="memoBox" class="memo" rows="15"></textarea>'
     + '<button class="btn" id="memoSave">この端末に保存する</button>'
     + '</div>'
     + '<div class="note" style="margin-top:16px">re:mind を開いたとき、最初にこのメモが出ます。外部には送信されません。</div>',
     "いま落ち着いている状態で、将来やらかした自分に向けて書いておく文章です。結果から下書きを作ってあります。自由に書き換えてください。",
-    "re:act");
+    "re:act note");
+  document.getElementById("memoBox").value = val;
   bind("memoSave", function(){
     state.memo = document.getElementById("memoBox").value; save();
     const b = document.getElementById("memoSave");
-    b.textContent = "保存しました"; setTimeout(function(){ b.textContent = "この端末に保存する"; }, 1600);
+    b.textContent = "保存しました"; toast("保存しました");
+    setTimeout(function(){ b.textContent = "この端末に保存する"; }, 1600);
   });
 }
 
@@ -4191,18 +4919,23 @@ function renderRecord(){
   const rs = (state.records || []).slice().reverse();
   let body = "";
   if(!rs.length){
-    body = '<div class="note">まだ記録がありません。診断の結果画面から「この結果を記録する」を選ぶと、そのときの自分をここに残せます。</div>';
+    body = '<div class="empty">'
+      + '<div class="empty-fig">' + CHARS.owl.svg + '</div>'
+      + '<div class="empty-t round">まだ記録はありません。</div>'
+      + '<div class="empty-s">最初の診断をすると、ここにそのときの自分が残ります。<br>結果画面の「この結果を記録する」から保存できます。</div>'
+      + '<button class="btn" id="emptyStart">自分を見てみる</button></div>';
   }else{
     body = rs.map(function(rec){
       const ch = rec.snap.ch;
       const c0 = (rec.snap.a2.contradictions && rec.snap.a2.contradictions[0]) || null;
       return '<div class="rec-card">'
-        + '<div class="rec-date">' + ymd(rec.t) + (rec.preState ? '　' + preStateLabel(rec.preState) : '') + '</div>'
+        + '<div class="rec-date">' + ymd(rec.t) + (rec.preState ? '　' + preStateLabel(rec.preState) : '')
+          + (rec.dv ? '<span class="rec-dv">診断方式 v' + rec.dv + '</span>' : '') + '</div>'
         + '<div class="rec-mini">' + CHARS[ch.initial].svg + (ch.same ? '' : CHARS[ch.recovery].svg) + '</div>'
         + '<div class="rec-ch">' + CHARS[ch.initial].name + (ch.same ? '' : ' × ' + CHARS[ch.recovery].name) + '</div>'
         + (c0 ? '<div class="rec-q">「' + c0.title + '」</div>' : '')
         + (rec.next ? '<div class="rec-note">次に意識する：' + rec.next + '</div>' : '')
-        + (rec.note ? '<div class="rec-note">' + esc(rec.note) + '</div>' : '')
+        + (rec.note ? '<div class="rec-note" data-user-text="note_' + rec.id + '"></div>' : '')
         + '<div class="rec-actions"><button data-open="' + rec.id + '">この結果を見る</button>'
         + '<button data-note="' + rec.id + '">メモ</button>'
         + '<button data-del="' + rec.id + '">削除</button></div>'
@@ -4211,6 +4944,10 @@ function renderRecord(){
   }
   body += '<div class="note" style="margin-top:18px">記録はこの端末のブラウザ内だけに残ります。ブラウザのデータを消したときや、別の端末・別のブラウザで開いたときには引き継がれません。</div>';
   toolShell("自分の記録", body, "そのときの自分を、あとから見返せます。", "re:cord");
+  bind("emptyStart", function(){ renderIntro(); show("intro"); beginQuizFlow(false); });
+  const noteMap = {};
+  (state.records || []).forEach(function(rec){ noteMap["note_" + rec.id] = rec.note; });
+  fillUserText(el.tool, noteMap);
 
   Array.prototype.forEach.call(el.tool.querySelectorAll("[data-open]"), function(b){
     b.onclick = function(){ openRecord(b.dataset.open); };
@@ -4225,22 +4962,29 @@ function renderRecord(){
       if(open){ open.parentNode.removeChild(open); return; }
       const box = document.createElement("div");
       box.className = "rec-note-edit";
-      box.innerHTML = '<input class="rec-input" maxlength="120" placeholder="一言メモ（任意）　例：仕事で余裕がなかった時期">'
-        + '<button class="btn-sub" style="margin-top:0">メモを保存する</button>';
-      card.appendChild(box);
-      const input = box.querySelector("input");
+      const input = document.createElement("input");
+      input.className = "rec-input";
+      input.maxLength = 120;
+      input.placeholder = "一言メモ（任意）　例：仕事で余裕がなかった時期";
       input.value = rec.note || "";
-      input.focus();
-      box.querySelector("button").onclick = function(){
-        rec.note = input.value.slice(0,120); save(); renderRecord();
+      const ok = document.createElement("button");
+      ok.className = "btn-sub";
+      ok.style.marginTop = "0";
+      ok.textContent = "メモを保存する";
+      ok.onclick = function(){
+        rec.note = input.value.slice(0,120);
+        save(); renderRecord(); toast("メモを保存しました");
       };
+      box.appendChild(input); box.appendChild(ok);
+      card.appendChild(box);
+      input.focus();
     };
   });
   Array.prototype.forEach.call(el.tool.querySelectorAll("[data-del]"), function(b){
     b.onclick = function(){
       if(!confirmTwice("del_" + b.dataset.del, b, "もう一度押すと削除")) return;
       state.records = state.records.filter(function(r){ return r.id !== b.dataset.del; });
-      save(); renderRecord();
+      save(); renderRecord(); toast("記録を削除しました");
     };
   });
 }
@@ -4253,46 +4997,279 @@ function openRecord(id){
   renderResult(); show("result");
 }
 
-/* ---------------- 設定・削除 ---------------- */
+/* ---------------- 情報・法務・設定 ---------------- */
+/* ================================================================
+   法務・情報ページ / 同意 / 保存データ管理
+   ================================================================ */
+function docHTML(doc){
+  const ver = DOC_VERSIONS[doc.key];
+  function block(sec, lv){
+    let out = '<div class="doc-sec">'
+      + '<div class="doc-h' + (lv ? " sub" : "") + '">' + sec.h + '</div>';
+    (sec.p || []).forEach(function(t){ out += '<p class="doc-p">' + t + '</p>'; });
+    if(sec.list && sec.list.length){
+      out += '<ul class="doc-l">' + sec.list.map(function(t){ return '<li>' + t + '</li>'; }).join("") + '</ul>';
+    }
+    (sec.after || []).forEach(function(t){ out += '<p class="doc-p">' + t + '</p>'; });
+    (sec.sub || []).forEach(function(sb){ out += block(sb, true); });
+    return out + '</div>';
+  }
+  return (doc.lead ? '<p class="doc-lead">' + doc.lead + '</p>' : '')
+    + doc.sections.map(function(s){ return block(s, false); }).join("")
+    + (ver ? '<div class="doc-meta">制定日：' + ver.made + '<br>最終改定日：' + ver.rev + '<br>バージョン：' + ver.v + '</div>' : '');
+}
+function renderDoc(kind){
+  const doc = kind === "terms" ? TERMS_DOC : (kind === "about" ? ABOUT_DOC : PRIVACY_DOC);
+  toolShell(doc.title, '<div class="doc">' + docHTML(doc) + '</div>'
+    + (kind === "about"
+        ? '<button class="btn-sub" id="againGuide">はじめての方への案内を見る</button>'
+        : '<button class="btn-sub" data-go="safety">プライバシーと安全にもどる</button>'), "", "re:act note");
+  if(kind === "about") bind("againGuide", function(){ renderGuide(function(){ renderDoc("about"); }); });
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
+    b.onclick = function(){ nav(b.dataset.go); };
+  });
+}
+
+/* 一般利用者向けの要約ページ */
+function renderSafety(){
+  const rows = [
+    ["診断の回答", "この端末の中で処理します"],
+    ["アカウント登録", "必要ありません"],
+    ["回答の外部送信", "現在は行っていません"],
+    ["広告・行動追跡", "現在は使用していません"],
+    ["保存データ", "いつでも削除できます"]
+  ];
+  const body = '<div class="safety-grid">' + rows.map(function(r){
+      return '<div class="safety-row"><div class="safety-k">' + r[0] + '</div><div class="safety-v">' + r[1] + '</div></div>';
+    }).join("") + '</div>'
+    + '<p class="doc-p" style="margin-top:20px">診断の回答や結果は、この端末のブラウザ内に保存されます。re:act noteから診断の回答を外部のサーバーへ送信する仕組みは、現在実装していません。</p>'
+    + '<p class="doc-p">ただし、このページをインターネット上で公開している場合、Webサイトを表示すること自体に伴って、IPアドレスやアクセス日時などの技術情報がホスティング事業者側で扱われる可能性があります。「インターネット上へ一切情報が送信されない」という意味ではありません。</p>'
+    + '<div class="card inner" style="margin-top:20px">'
+      + '<button class="row-btn" data-go="privacy">プライバシーポリシー全文を見る</button>'
+      + '<button class="row-btn" data-go="terms">利用規約を見る</button>'
+      + '<button class="row-btn" data-go="settings">保存データを管理する</button>'
+      + '<button class="row-btn" data-go="about">この診断について</button>'
+    + '</div>';
+  toolShell("プライバシーと安全", body, "", "re:act note");
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
+    b.onclick = function(){ nav(b.dataset.go); };
+  });
+}
+
+/* 初回のみの確認 */
+function renderConsent(after){
+  let checked = false;
+  function draw(){
+    el.tool.innerHTML = '<div class="card fade" style="margin-top:36px">'
+      + '<div class="logo-sm round" style="margin-bottom:18px">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
+      + '<h1 class="tool-h round">はじめる前に</h1>'
+      + '<p class="muted" style="font-size:.92rem">診断の回答や結果は、この端末のブラウザ内に保存されます。re:act noteから回答を外部のサーバーへ送信する仕組みは、現在実装していません。</p>'
+      + '<div class="consent" id="cChk" role="checkbox" tabindex="0" aria-checked="' + checked + '">'
+        + '<span class="box">' + (checked ? "✓" : "") + '</span>'
+        + '<span class="consent-t"><button class="inline-link" data-go="terms">利用規約</button>に同意し、'
+        + '<button class="inline-link" data-go="privacy">プライバシーポリシー</button>を確認しました</span></div>'
+      + '<button class="btn" id="cGo" style="margin-top:20px"' + (checked ? "" : " disabled") + '>診断をはじめる</button>'
+      + '<button class="btn-sub" id="cBack">ホームにもどる</button>'
+      + '<p class="disclaimer" style="margin-top:18px">re:act noteは心理学研究の知見を参考にした自己理解ツールです。臨床心理検査や医学的診断ではありません。</p>'
+      + '</div>';
+    show("tool");
+    const chk = document.getElementById("cChk");
+    chk.onclick = function(){ checked = !checked; draw(); };
+    chk.onkeydown = function(ev){
+      if(ev.key === " " || ev.key === "Enter"){ ev.preventDefault(); checked = !checked; draw(); }
+    };
+    Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
+      b.onclick = function(ev){ ev.stopPropagation(); nav(b.dataset.go); };
+    });
+    bind("cGo", function(){
+      if(!checked) return;
+      state.consent = {terms:CONSENT_REQUIRED.terms, privacy:CONSENT_REQUIRED.privacy, at:new Date().toISOString()};
+      save();
+      after();
+    });
+    bind("cBack", function(){ renderIntro(); show("intro"); });
+  }
+  draw();
+}
+
+/* 保存データを管理する */
 function renderSettings(){
-  const body = '<div class="note">回答と記録は、この端末のブラウザ内だけに保存されます。外部には送信されません。ブラウザのデータを消したときや、別の端末・別のブラウザで開いたときには引き継がれません。</div>'
-    + '<div class="card inner">'
-    + '<button class="row-btn" data-w="records">診断の記録を削除する<span>' + ((state.records||[]).length) + '件</span></button>'
-    + '<button class="row-btn" data-w="memo">未来の自分へのメモを削除する</button>'
-    + '<button class="row-btn" data-w="daily">今日の1問の履歴を削除する<span>' + Object.keys(state.daily||{}).length + '件</span></button>'
-    + '<button class="row-btn" data-w="repair">re:pair の下書きを削除する</button>'
-    + '<button class="row-btn" data-w="answers">いまの回答をリセットする</button>'
+  const counts = {
+    records: (state.records || []).length,
+    daily: Object.keys(state.daily || {}).length,
+    memo: state.memo ? 1 : 0,
+    rule: state.todayRule ? 1 : 0,
+    repair: state.repair ? 1 : 0,
+    answers: answeredCount()
+  };
+  const rows = [
+    ["診断の記録（re:cord）", counts.records + "件", "records"],
+    ["今日の1問の履歴", counts.daily + "件", "daily"],
+    ["未来の自分へのメモ", counts.memo ? "1件" : "なし", "memo"],
+    ["次に意識するひとつ", counts.rule ? "1件" : "なし", "rule"],
+    ["re:pairの下書き", counts.repair ? "1件" : "なし", "repair"],
+    ["診断途中の回答", counts.answers + " / " + ITEMS.length, "answers"]
+  ];
+  const body = '<div class="save-list">' + rows.map(function(r){
+      return '<div class="save-row"><div class="save-k">' + r[0] + '</div><div class="save-v">' + r[1] + '</div>'
+        + '<button class="save-del" data-w="' + r[2] + '">削除</button></div>';
+    }).join("") + '</div>'
+    + (SAVE_FAILED ? '<div class="flag" style="margin-top:16px">この端末では、いまデータを保存できていない可能性があります。ブラウザのプライベートモードや保存容量の設定をご確認ください。</div>' : '')
+    + '<div class="card inner" style="margin-top:20px">'
+      + '<div class="sec-k">バックアップ</div>'
+      + '<p class="muted" style="font-size:.88rem">この端末に保存されている内容を、ファイルとして書き出せます。機種変更のときや、念のため控えを残しておきたいときに使えます。書き出したファイルは外部に送信されません。</p>'
+      + '<button class="btn-sub" id="bkOut">データを書き出す</button>'
+      + '<button class="btn-sub" id="bkIn">データを読み込む</button>'
+      + '<input type="file" id="bkFile" accept="application/json,.json" class="hidden">'
+      + '<div id="bkNote"></div>'
     + '</div>'
-    + '<button class="btn-sub" id="wipeAllBtn" style="color:var(--risk);border-color:var(--risk)">すべてのデータを削除する</button>';
-  toolShell("保存とデータの削除", body, "", "re:act");
+    + '<button class="btn-sub" id="wipeAllBtn" style="margin-top:20px">すべてのデータを削除する</button>'
+    + '<div class="note" style="margin-top:18px">保存された内容は、この端末のブラウザ内だけに残ります。ブラウザのデータを消したときや、別の端末・別のブラウザで開いたときには引き継がれません。共有の端末では、同じブラウザを使う他の人から結果を見られる可能性があります。</div>'
+    + '<div class="card inner"><button class="row-btn" data-go="privacy">プライバシーポリシー</button>'
+    + '<button class="row-btn" data-go="terms">利用規約</button></div>';
+  toolShell("保存データを管理する", body, "いま、このブラウザに保存されている内容です。", "re:act note");
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
+    b.onclick = function(){ nav(b.dataset.go); };
+  });
+  const names = {records:"診断の記録", daily:"今日の1問の履歴", memo:"未来の自分へのメモ",
+                 rule:"次に意識するひとつ", repair:"re:pairの下書き", answers:"診断途中の回答"};
   Array.prototype.forEach.call(el.tool.querySelectorAll("[data-w]"), function(b){
     b.onclick = function(){
-      const names = {records:"診断の記録", memo:"未来の自分へのメモ", daily:"今日の1問の履歴", repair:"re:pairの下書き", answers:"いまの回答"};
-      if(!confirmTwice("wp_" + b.dataset.w, b, "もう一度押すと、" + names[b.dataset.w] + "を削除します")) return;
-      wipePart(b.dataset.w); renderSettings();
+      const k = b.dataset.w;
+      if(!confirmTwice("wp_" + k, b, "もう一度押すと削除")) return;
+      wipePart(k); renderSettings(); toast(names[k] + "を削除しました");
     };
   });
-  bind("wipeAllBtn", function(){
-    if(!confirmTwice("wipeAll", "wipeAllBtn", "本当に消していいですか？　もう一度押すと、すべて削除されます（元に戻せません）")) return;
-    wipeAll(); save(); renderIntro(); show("intro");
+  bind("bkOut", function(){
+    exportBackup(function(status, json, name){
+      const box = document.getElementById("bkNote");
+      if(status === "saved"){ toast("データを書き出しました"); return; }
+      if(status === "declined"){ return; }
+      /* ダウンロードできない環境では、本文を表示してコピーできるようにする */
+      box.innerHTML = '<div class="note" style="margin-top:14px">この環境では直接保存できませんでした。下の内容をすべて選んでコピーし、'
+        + name + ' などの名前でテキストファイルとして保存してください。</div>'
+        + '<textarea class="memo" id="bkText" rows="8" readonly></textarea>'
+        + '<button class="btn-sub" id="bkCopy">コピーする</button>';
+      document.getElementById("bkText").value = json;
+      bind("bkCopy", function(){
+        const t = document.getElementById("bkText");
+        t.select();
+        try{ document.execCommand("copy"); toast("コピーしました"); }catch(e){ toast("コピーできませんでした"); }
+      });
+    });
   });
+  bind("bkIn", function(){ document.getElementById("bkFile").click(); });
+  document.getElementById("bkFile").onchange = function(ev){
+    const f = ev.target.files && ev.target.files[0];
+    ev.target.value = "";
+    if(!f) return;
+    if(f.size > BACKUP_MAX_BYTES){
+      document.getElementById("bkNote").innerHTML = '<div class="flag" style="margin-top:14px">このファイルは読み込めませんでした。ファイルが大きすぎるようです。</div>';
+      return;
+    }
+    const fr = new FileReader();
+    fr.onerror = function(){
+      document.getElementById("bkNote").innerHTML = '<div class="flag" style="margin-top:14px">このファイルは読み込めませんでした。</div>';
+    };
+    fr.onload = function(){
+      let obj = null;
+      try{ obj = JSON.parse(String(fr.result)); }catch(e){ obj = null; }
+      const v = obj ? validateBackup(obj) : {ok:false};
+      if(!v.ok){
+        document.getElementById("bkNote").innerHTML = '<div class="flag" style="margin-top:14px">このファイルは読み込めませんでした。<br>'
+          + 'ファイルが壊れているか、re:act note のバックアップではない可能性があります。</div>';
+        return;
+      }
+      renderRestore(v);
+    };
+    fr.readAsText(f);
+  };
+
+  bind("wipeAllBtn", function(){
+    /* 上の一覧に何が消えるかが出ているので、ここでは強めの確認だけを出す */
+    if(!confirmTwice("wipeAll", "wipeAllBtn",
+        "本当に消していいですか？　もう一度押すと、上の全部と確認状況が消えます（元に戻せません）")) return;
+    wipeAll(); save(); renderIntro(); show("intro");
+    toast("保存されていたデータを削除しました");
+  });
+}
+
+/* 読み込む前に、何が入っているかを見せる */
+function renderRestore(v){
+  const m = v.meta;
+  const rows = [
+    ["バックアップの作成日", m.exportedAt ? ymd(m.exportedAt) : "不明"],
+    ["診断の記録", m.counts.records + "件"],
+    ["今日の1問", m.counts.daily + "件"],
+    ["未来の自分へのメモ", m.counts.memo ? "あり" : "なし"],
+    ["次に意識するひとつ", m.counts.rule ? "あり" : "なし"],
+    ["診断の回答", m.counts.answers + "問"],
+    ["診断方式", m.diagnosticVersion ? "v" + m.diagnosticVersion : "不明"]
+  ];
+  const body = '<div class="save-list">' + rows.map(function(r){
+      return '<div class="save-row"><div class="save-k">' + r[0] + '</div><div class="save-v">' + r[1] + '</div></div>';
+    }).join("") + '</div>'
+    + '<div class="note" style="margin-top:18px">読み込むと、いまこの端末に保存されている内容は、このバックアップの内容に置き換わります。置き換えたあと、元には戻せません。</div>'
+    + '<button class="btn" id="rsGo" style="margin-top:8px">読み込む</button>'
+    + '<button class="btn-sub" id="rsNo">やめる</button>';
+  toolShell("このデータを読み込みますか？", body, "", "re:act note");
+  bind("rsGo", function(){
+    const ok = applyBackup(v.clean);
+    if(haveResult()) computeAll();
+    renderIntro(); show("intro");
+    toast(ok ? "データを読み込みました" : "読み込みましたが、保存できていない可能性があります");
+  });
+  bind("rsNo", function(){ renderSettings(); });
+}
+
+/* 画面下部の小さな通知 */
+let toastTimer = null;
+function toast(msg){
+  let t = document.getElementById("toast");
+  if(!t){
+    t = document.createElement("div");
+    t.id = "toast"; t.className = "toast";
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 2600);
+}
+
+/* ホーム下部のフッター */
+function footerHTML(){
+  return '<div class="foot">'
+    + '<button class="foot-l" data-go="safety">プライバシーと安全</button>'
+    + '<button class="foot-l" data-go="privacy">プライバシーポリシー</button>'
+    + '<button class="foot-l" data-go="terms">利用規約</button>'
+    + '<button class="foot-l" data-go="settings">保存データを管理する</button>'
+    + '<button class="foot-l" data-go="about">この診断について</button>'
+    + '<div class="foot-n">本サービスは個人によって制作・運営されています。現在、専用の問い合わせ窓口は設けていません。</div>'
+    + '</div>';
 }
 
 /* ---------------- re:share ---------------- */
 const SHARE_PALETTE = {
-  bg1:"#F6EFE4", bg2:"#FFFDFA", bg3:"#F3E6E4",
-  text:"#3D3936", sub:"#665E57", rose:"#C79A96", line:"#E7DFD4"
+  bg1:"#F9F2E7", bg2:"#FFFFFF", bg3:"#FAEFEC",
+  text:"#48423C", sub:"#6E655D", rose:"#D3A7A2", line:"#EFE8DE", sage:"#9BB08E"
 };
+const SHARE_DESIGNS = [
+  {k:"simple",    name:"シンプル",     note:"余白を多めに、名前と一言だけ"},
+  {k:"character", name:"キャラクター", note:"初動と立て直しを大きく"},
+  {k:"words",     name:"ことば",       note:"「あなたの中にある矛盾」を主役に"}
+];
+
 /* SVGを画像として書き出すために、CSS変数ではなく実際の色を埋め込む */
 function svgForExport(svg){
   const css = '<style>'
-    + '.ch-bg{fill:#EFE8DE}.ch-body{fill:#C9BCA9}.ch-body2{fill:#DED3C2}'
-    + '.ch-ink{fill:#4A423B}.ch-accent{fill:#C79A96}'
-    + '.ch-line{fill:none;stroke:#4A423B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
-    + '.ch-s2{fill:none;stroke:#DED3C2;stroke-linecap:round;stroke-linejoin:round}'
-    + '.ch-s3{fill:none;stroke:#C9BCA9;stroke-linecap:round;stroke-linejoin:round}'
+    + '.ch-bg{fill:#F0E8DC}.ch-body{fill:#C6B7A0}.ch-body2{fill:#DED2BE}'
+    + '.ch-ink{fill:#4E453D}.ch-accent{fill:#CE9E99}'
+    + '.ch-line{fill:none;stroke:#4E453D;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
+    + '.ch-s2{fill:none;stroke:#DED2BE;stroke-linecap:round;stroke-linejoin:round}'
+    + '.ch-s3{fill:none;stroke:#C6B7A0;stroke-linecap:round;stroke-linejoin:round}'
     + '</style>';
-  let out = svg.replace(/var\(--ch-body\)/g, "#C9BCA9").replace(/var\(--ch-body2\)/g, "#DED3C2");
+  let out = svg.replace(/var\(--ch-body\)/g, "#C6B7A0").replace(/var\(--ch-body2\)/g, "#DED2BE");
   out = out.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ');
   return out.replace(/(<svg[^>]*>)/, "$1" + css);
 }
@@ -4318,139 +5295,182 @@ function wrapLines(ctx, text, maxW){
   return out;
 }
 
-async function buildShareCanvas(opts){
+async function buildShareCanvas(opts, design){
   if(!RESULT) computeAll();
   const R = RESULT, ch = R.ch, cN = CHARS[ch.initial], cR = CHARS[ch.recovery];
-  const W = 1080, MAXH = 1700;
+  const W = 1080, H = 1920;                     /* 縦長SNS向け 9:16 */
   const F = '"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif';
+  const d = design || "simple";
 
-  /* 中身を透明なキャンバスに描いてから、必要な高さだけ切り出す */
-  const tmp = document.createElement("canvas");
-  tmp.width = W; tmp.height = MAXH;
-  const g = tmp.getContext("2d");
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const g = cv.getContext("2d");
+  const grad = g.createLinearGradient(0, 0, W*0.5, H);
+  grad.addColorStop(0, SHARE_PALETTE.bg1);
+  grad.addColorStop(0.5, SHARE_PALETTE.bg2);
+  grad.addColorStop(1, SHARE_PALETTE.bg3);
+  g.fillStyle = grad; g.fillRect(0,0,W,H);
   g.textAlign = "center";
 
   /* ロゴ */
-  g.font = "700 62px " + F;
-  const logoW = g.measureText("re:act").width;
-  const lx = W/2 - logoW/2;
-  g.textAlign = "left";
-  g.fillStyle = SHARE_PALETTE.text; g.fillText("re", lx, 118);
-  const reW = g.measureText("re").width;
-  g.fillStyle = SHARE_PALETTE.rose; g.fillText(":", lx + reW, 118);
-  const cW = g.measureText(":").width;
-  g.fillStyle = SHARE_PALETTE.text; g.fillText("act", lx + reW + cW, 118);
-  g.textAlign = "center";
+  function logo(y, size){
+    g.font = "700 " + size + "px " + F;
+    const w = g.measureText("re:act note").width;
+    let x = W/2 - w/2;
+    g.textAlign = "left";
+    g.fillStyle = SHARE_PALETTE.text; g.fillText("re", x, y); x += g.measureText("re").width;
+    g.fillStyle = SHARE_PALETTE.rose; g.fillText(":", x, y); x += g.measureText(":").width;
+    g.fillStyle = SHARE_PALETTE.text; g.fillText("act note", x, y);
+    g.textAlign = "center";
+  }
+  function line(y){
+    g.strokeStyle = SHARE_PALETTE.line; g.lineWidth = 2;
+    g.beginPath(); g.moveTo(220, y); g.lineTo(W-220, y); g.stroke();
+  }
+  function extras(y){
+    if(opts.contra && R.a2.contradictions[0]){
+      y += 40;
+      g.font = "700 34px " + F; g.fillStyle = SHARE_PALETTE.text;
+      wrapLines(g, R.a2.contradictions[0].title, W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 52; });
+    }
+    if(opts.gap){
+      y += 36;
+      g.font = "400 26px " + F; g.fillStyle = SHARE_PALETTE.sub;
+      g.fillText("わかっていることと、やりそうなことの差", W/2, y); y += 50;
+      g.font = "700 48px " + F; g.fillStyle = SHARE_PALETTE.text;
+      g.fillText(String(R.r.gap.value), W/2, y); y += 24;
+    }
+    if(opts.axes){
+      y += 46;
+      const bw = 620, bx = W/2 - bw/2;
+      ["A","B","C","D","E"].forEach(function(k){
+        g.textAlign = "left";
+        g.font = "400 24px " + F; g.fillStyle = SHARE_PALETTE.sub;
+        g.fillText(SOFT[k], bx, y);
+        g.fillStyle = "#EFE8DE"; g.fillRect(bx + 340, y - 16, 280, 12);
+        g.fillStyle = SHARE_PALETTE.sage; g.fillRect(bx + 340, y - 16, 280 * (R.r.norm[k]/100), 12);
+        g.textAlign = "center";
+        y += 44;
+      });
+    }
+    return y;
+  }
 
-  g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
-  g.fillText("あなたの中に出やすいのは", W/2, 192);
+  logo(180, 60);
+  g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
+  g.fillText("そのときの自分を知る。", W/2, 236);
 
-  const imgN = await loadSvgImage(cN.svg);
-  g.drawImage(imgN, W/2 - 190, 230, 380, 380);
-  let y = 684;
-
-  g.font = "700 76px " + F; g.fillStyle = SHARE_PALETTE.text;
-  g.fillText(cN.name, W/2, y); y += 76;
-
-  g.font = "700 38px " + F;
-  wrapLines(g, "「" + cN.copy + "」", W - 200).forEach(function(l){ g.fillText(l, W/2, y); y += 56; });
-
-  y += 20;
-  g.strokeStyle = SHARE_PALETTE.line; g.lineWidth = 2;
-  g.beginPath(); g.moveTo(200, y); g.lineTo(W-200, y); g.stroke();
-  y += 62;
-
-  if(!ch.same){
-    const imgR = await loadSvgImage(cR.svg);
-    g.drawImage(imgR, W/2 - 85, y - 40, 170, 170);
-    y += 150;
+  if(d === "character"){
+    const imgN = await loadSvgImage(cN.svg);
+    g.drawImage(imgN, W/2 - 210, 330, 420, 420);
     g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
-    g.fillText("落ち着いたあと", W/2, y); y += 50;
-    g.font = "700 46px " + F; g.fillStyle = SHARE_PALETTE.text;
-    g.fillText(cR.name, W/2, y); y += 52;
+    g.fillText("問題が起きた直後", W/2, 812);
+    g.font = "700 74px " + F; g.fillStyle = SHARE_PALETTE.text;
+    g.fillText(cN.name, W/2, 892);
+    g.font = "400 32px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    let y = 950;
+    wrapLines(g, "「" + cN.copy + "」", W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 46; });
+    y += 20; line(y); y += 70;
+    if(!ch.same){
+      const imgR = await loadSvgImage(cR.svg);
+      g.drawImage(imgR, W/2 - 140, y - 40, 280, 280);
+      y += 280;
+      g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
+      g.fillText("落ち着いたあと", W/2, y); y += 62;
+      g.font = "700 56px " + F; g.fillStyle = SHARE_PALETTE.text;
+      g.fillText(cR.name, W/2, y); y += 56;
+      g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
+      wrapLines(g, "「" + cR.copy + "」", W - 260).forEach(function(l){ g.fillText(l, W/2, y); y += 44; });
+    }else{
+      g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+      wrapLines(g, "落ち着いたあとも、同じ反応が続きやすい", W - 240).forEach(function(l){ g.fillText(l, W/2, y); y += 48; });
+    }
+    extras(y);
+  }else if(d === "words"){
+    const c0 = R.a2.contradictions[0];
+    let y = 430;
     g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
-    wrapLines(g, "「" + cR.copy + "」", W - 240).forEach(function(l){ g.fillText(l, W/2, y); y += 42; });
-  }else{
+    g.fillText("あなたの中にある矛盾", W/2, y); y += 90;
+    g.font = "700 56px " + F; g.fillStyle = SHARE_PALETTE.text;
+    wrapLines(g, c0 ? c0.title : cN.copy, W - 200).forEach(function(l){ g.fillText(l, W/2, y); y += 84; });
+    y += 40; line(y); y += 80;
+    const imgN = await loadSvgImage(cN.svg);
+    g.drawImage(imgN, W/2 - 130, y, 260, 260); y += 300;
     g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
-    wrapLines(g, "落ち着いたあとも、同じ反応が続きやすい", W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 46; });
+    g.fillText(ch.same ? "初動も、そのあとも" : "初動は " + cN.name + " ／ 落ち着いたあとは " + cR.name, W/2, y); y += 56;
+    if(ch.same){ g.font = "700 48px " + F; g.fillStyle = SHARE_PALETTE.text; g.fillText(cN.name, W/2, y); y += 40; }
+    g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    y += 30;
+    wrapLines(g, "「" + cN.copy + "」", W - 240).forEach(function(l){ g.fillText(l, W/2, y); y += 46; });
+    extras(y);
+  }else{
+    const imgN = await loadSvgImage(cN.svg);
+    g.drawImage(imgN, W/2 - 200, 470, 400, 400);
+    g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    g.fillText("あなたの中に出やすいのは", W/2, 420);
+    g.font = "700 86px " + F; g.fillStyle = SHARE_PALETTE.text;
+    g.fillText(cN.name, W/2, 990);
+    g.font = "700 38px " + F; g.fillStyle = SHARE_PALETTE.text;
+    let y = 1074;
+    wrapLines(g, "「" + cN.copy + "」", W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 58; });
+    y += 24; line(y); y += 66;
+    g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    g.fillText(ch.same ? "落ち着いたあとも、同じ反応" : "落ち着いたあとは " + cR.name, W/2, y); y += 50;
+    extras(y);
   }
 
-  if(opts.contra && R.a2.contradictions[0]){
-    y += 40;
-    g.font = "700 34px " + F; g.fillStyle = SHARE_PALETTE.text;
-    wrapLines(g, R.a2.contradictions[0].title, W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 52; });
-  }
-  if(opts.gap){
-    y += 34;
-    g.font = "400 26px " + F; g.fillStyle = SHARE_PALETTE.sub;
-    g.fillText("わかっていることと、やりそうなことの差", W/2, y); y += 50;
-    g.font = "700 48px " + F; g.fillStyle = SHARE_PALETTE.text;
-    g.fillText(String(R.r.gap.value), W/2, y); y += 22;
-  }
-  if(opts.axes){
-    y += 46;
-    const bw = 620, bx = W/2 - bw/2;
-    ["A","B","C","D","E"].forEach(function(k){
-      g.textAlign = "left";
-      g.font = "400 24px " + F; g.fillStyle = SHARE_PALETTE.sub;
-      g.fillText(SOFT[k], bx, y);
-      g.fillStyle = "#E7DFD4"; g.fillRect(bx + 340, y - 16, 280, 12);
-      g.fillStyle = "#8FA187"; g.fillRect(bx + 340, y - 16, 280 * (R.r.norm[k]/100), 12);
-      g.textAlign = "center";
-      y += 44;
-    });
-  }
-
-  /* 高さを内容にあわせて決める（縦長を保つ） */
-  const H = Math.max(1200, Math.min(MAXH, Math.round(y + 170)));
-  const cv = document.createElement("canvas");
-  cv.width = W; cv.height = H;
-  const o = cv.getContext("2d");
-  const grad = o.createLinearGradient(0, 0, W*0.4, H);
-  grad.addColorStop(0, SHARE_PALETTE.bg1);
-  grad.addColorStop(0.55, SHARE_PALETTE.bg2);
-  grad.addColorStop(1, SHARE_PALETTE.bg3);
-  o.fillStyle = grad; o.fillRect(0,0,W,H);
-  const contentH = Math.min(y + 20, MAXH);
-  const top = Math.round((H - 150 - contentH) / 2);
-  o.drawImage(tmp, 0, 0, W, contentH, 0, Math.max(0, top), W, contentH);
-
-  o.textAlign = "center";
-  o.font = "400 26px " + F; o.fillStyle = SHARE_PALETTE.sub;
-  o.fillText("そのときの自分を知る。", W/2, H - 84);
-  o.font = "400 22px " + F; o.fillStyle = "#948B82";
-  o.fillText("re:act ／ 性格の良し悪しを判定するものではありません", W/2, H - 44);
-
+  g.font = "400 24px " + F; g.fillStyle = "#948A80";
+  g.fillText("性格の良し悪しを判定するものではありません", W/2, H - 84);
   return cv;
 }
 
 function renderShare(){
   if(!RESULT) computeAll();
   const opts = {contra:false, gap:false, axes:false};
+  let design = "simple";
   let busy = false;
 
   function draw(){
+    const inc = ["初動キャラクターとイラスト", "一言コピー", "立て直しキャラクター"];
+    if(opts.contra) inc.push("あなたの中にある矛盾");
+    if(opts.gap) inc.push("わかっていることとの差");
+    if(opts.axes) inc.push("向き合う力の5つ");
     const body =
-      '<div class="share-opts">'
+      '<div class="sec-k">カードのデザイン</div>'
+      + '<div class="design-row">' + SHARE_DESIGNS.map(function(dd){
+          return '<button class="design-b' + (design === dd.k ? " on" : "") + '" data-d="' + dd.k + '">'
+            + '<span class="design-n">' + dd.name + '</span><span class="design-s">' + dd.note + '</span></button>';
+        }).join("") + '</div>'
+      + '<div class="sec-k" style="margin-top:26px">入れるもの</div>'
+      + '<div class="share-opts">'
       + '<button class="share-opt on" disabled><span class="box">✓</span>キャラクターと一言（標準）</button>'
-      + '<button class="share-opt' + (opts.contra?" on":"") + '" data-o="contra"><span class="box">' + (opts.contra?"✓":"") + '</span>あなたの中にある矛盾も入れる</button>'
-      + '<button class="share-opt' + (opts.gap?" on":"") + '" data-o="gap"><span class="box">' + (opts.gap?"✓":"") + '</span>わかっていることとの差も入れる</button>'
-      + '<button class="share-opt' + (opts.axes?" on":"") + '" data-o="axes"><span class="box">' + (opts.axes?"✓":"") + '</span>向き合う力の5つも入れる</button>'
+      + '<button class="share-opt' + (opts.contra?" on":"") + '" data-o="contra"><span class="box">' + (opts.contra?"✓":"") + '</span>あなたの中にある矛盾</button>'
+      + '<button class="share-opt' + (opts.gap?" on":"") + '" data-o="gap"><span class="box">' + (opts.gap?"✓":"") + '</span>わかっていることとの差</button>'
+      + '<button class="share-opt' + (opts.axes?" on":"") + '" data-o="axes"><span class="box">' + (opts.axes?"✓":"") + '</span>向き合う力の5つ</button>'
       + '</div>'
-      + '<div class="note">守りに入るときの反応（回避・自己正当化・防衛）の数値は、選んでも共有カードには入りません。</div>'
+      + '<div class="priv-check">'
+        + '<div class="priv-col"><div class="priv-h">このカードに含まれます</div>'
+          + inc.map(function(t){ return '<div class="priv-i yes">' + t + '</div>'; }).join("") + '</div>'
+        + '<div class="priv-col"><div class="priv-h">含まれません</div>'
+          + ['あなたが書いたメモ', '診断の回答内容', '保存している記録', 're:pairなどの自由記述',
+             '守りに入るときの反応の数値'].map(function(t){ return '<div class="priv-i no">' + t + '</div>'; }).join("")
+        + '</div></div>'
       + '<div class="share-preview" id="sharePrev"></div>'
       + '<button class="btn" id="shBuild" style="margin-top:18px">カードを作る</button>'
       + '<div id="shActions"></div>'
       + '<hr class="sep">'
-      + '<div class="det"><span class="det-l">友達にもやってもらう</span>結果ではなく、re:act そのものを渡せます。</div>'
-      + '<button class="btn-sub" id="shApp">re:act のリンクを送る</button>'
+      + '<div class="det"><span class="det-l">友達にもやってもらう</span>結果ではなく、re:act note そのものを渡せます。</div>'
+      + '<button class="btn-sub" id="shApp">re:act note のリンクを送る</button>'
       + '<div class="disclaimer" id="shAppNote" style="margin-top:8px"></div>'
       + '<button class="btn-sub" id="shPrint">結果を印刷・PDFで保存する</button>';
     toolShell("結果をシェアする", body,
-      "何を見せるかは選べます。初期状態では、キャラクターと一言だけです。", "re:share");
+      "デザインと、入れるものを選べます。初期状態では、キャラクターと一言だけです。", "re:share");
 
     Array.prototype.forEach.call(el.tool.querySelectorAll("[data-o]"), function(b){
       b.onclick = function(){ opts[b.dataset.o] = !opts[b.dataset.o]; draw(); };
+    });
+    Array.prototype.forEach.call(el.tool.querySelectorAll("[data-d]"), function(b){
+      b.onclick = function(){ design = b.dataset.d; draw(); };
     });
     bind("shBuild", function(){ makeCard(); });
     bind("shApp", shareApp);
@@ -4462,7 +5482,7 @@ function renderShare(){
     const btn = document.getElementById("shBuild");
     btn.textContent = "作成中…";
     try{
-      const cv = await buildShareCanvas(opts);
+      const cv = await buildShareCanvas(opts, design);
       const url = cv.toDataURL("image/png");
       document.getElementById("sharePrev").innerHTML = '<img src="' + url + '" alt="共有カード">';
       document.getElementById("shActions").innerHTML =
@@ -4480,10 +5500,6 @@ function renderShare(){
     busy = false;
   }
 
-  /* 画像として保存。
-     公開ページ（claude.ai のビューア）ではブラウザの直接ダウンロードが使えないため、
-     用意されている保存の仕組みがあればそれを使い、無ければ通常のダウンロード、
-     どちらも使えなければ画像の長押し保存に案内する */
   const LONGPRESS = "この画面からは直接保存できません。上の画像を長押し（パソコンでは右クリック）して保存してください。";
   function saveImage(cv){
     cv.toBlob(async function(blob){
@@ -4496,8 +5512,9 @@ function renderShare(){
           const dl = await window.claude.use("downloads");
           if(dl){
             if(note) note.textContent = "保存の確認を待っています…";
-            await dl.save({filename:"re-act.png", data:blob});
+            await dl.save({filename:"react-note.png", data:blob});
             if(note) note.textContent = "画像を保存しました。";
+            toast("画像を保存しました");
             return;
           }
         }catch(e){
@@ -4512,10 +5529,10 @@ function renderShare(){
       try{
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = url; a.download = "re-act.png";
+        a.href = url; a.download = "react-note.png";
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
-        if(note) note.textContent = "画像を保存しました。保存されていないときは、上の画像を長押し（右クリック）してください。";
+        toast("画像を保存しました");
       }catch(e){
         if(note) note.textContent = LONGPRESS;
       }
@@ -4525,45 +5542,38 @@ function renderShare(){
   function shareImage(cv){
     cv.toBlob(async function(blob){
       if(!blob) return;
-      const file = new File([blob], "re-act.png", {type:"image/png"});
+      const file = new File([blob], "react-note.png", {type:"image/png"});
       try{
         if(navigator.canShare && navigator.canShare({files:[file]})){
-          await navigator.share({files:[file], text:"re:act ／ そのときの自分を知る"});
+          await navigator.share({files:[file], text:"re:act note ／ そのときの自分を知る"});
           return;
         }
-      }catch(e){ /* キャンセルや非対応 */ }
+      }catch(e){ return; }
       saveImage(cv);
     }, "image/png");
   }
 
-  function appNote(text){
-    const n = document.getElementById("shAppNote");
-    if(n) n.textContent = text;
-  }
   async function shareApp(){
     const url = location.href.split("#")[0];
-    const text = "re:act ／ そのときの自分を知る";
-    const web = /^https?:/.test(url);
-    if(web){
-      try{
-        if(navigator.share){
-          await navigator.share({title:"re:act", text:text, url:url});
-          return;
-        }
-      }catch(e){
-        /* 共有をやめた場合と、この画面では使えない場合の両方がここに来る */
+    const text = "re:act note ／ そのときの自分を知る";
+    try{
+      if(navigator.share && /^https?:/.test(url)){
+        await navigator.share({title:"re:act note", text:text, url:url});
+        return;
       }
-      try{
-        if(navigator.clipboard){
-          await navigator.clipboard.writeText(url);
-          appNote("リンクをコピーしました。");
-          return;
-        }
-      }catch(e){}
-      appNote("このページのURLを共有してください：" + url);
-      return;
-    }
-    appNote("このファイルを直接開いているため、リンクは作れません。ファイルそのものを送るか、公開したURLからお使いください。");
+    }catch(e){ return; }
+    try{
+      if(navigator.clipboard && /^https?:/.test(url)){
+        await navigator.clipboard.writeText(url);
+        toast("リンクをコピーしました");
+        return;
+      }
+    }catch(e){}
+    const n = document.getElementById("shAppNote");
+    const msg = /^https?:/.test(url)
+      ? "このページのURLを共有してください：" + url
+      : "このファイルを直接開いているため、リンクは作れません。ファイルそのものを送るか、公開したURLからお使いください。";
+    if(n) n.textContent = msg; else toast(msg);
   }
 
   draw();
@@ -4571,10 +5581,85 @@ function renderShare(){
 
 
 /* ================= 起動 ================= */
+/* 予期しないエラーで真っ白にならないように */
+let FATAL_SHOWN = false;
+function showFatal(){
+  if(FATAL_SHOWN) return;
+  FATAL_SHOWN = true;
+  try{
+    ["quiz","result","tool"].forEach(function(k){ el[k].classList.add("hidden"); });
+    el.topbar.classList.add("hidden");
+    el.intro.classList.remove("hidden");
+    el.intro.innerHTML = '<div class="card fade" style="margin-top:40px;text-align:center">'
+      + '<div class="logo-sm round" style="margin-bottom:20px">re<span class="c">:</span>act <span class="logo-n">note</span></div>'
+      + '<h1 class="tool-h round">うまく読み込めませんでした。</h1>'
+      + '<p class="muted" style="font-size:.92rem">もう一度試してみてください。保存されている回答や記録は、そのまま残っています。</p>'
+      + '<button class="btn" id="fatalHome">ホームへ戻る</button></div>';
+    document.getElementById("fatalHome").onclick = function(){ location.reload(); };
+    window.scrollTo(0,0);
+  }catch(e){}
+}
+window.addEventListener("error", function(ev){
+  /* 画像などの読み込み失敗ではなく、スクリプトのエラーだけを拾う */
+  if(ev && (ev.message || ev.error)) showFatal();
+});
+window.addEventListener("unhandledrejection", function(){ showFatal(); });
+
 load();
 if(haveResult()) computeAll();
+
+/* 診断中の「ホーム」：回答を保存してからホームへ戻る */
+document.getElementById("navHome").onclick = function(){
+  const ok = save();
+  renderIntro(); show("intro");
+  if(!ok){
+    toast("この端末では、途中の回答を保存できない可能性があります");
+  }else if(answeredCount() > 0 && !state.finished){
+    toast("続きは保存されています");
+  }
+};
+
 renderIntro();
 show("intro");
+
+/* ---- アプリとして使えるようにする（PWA） ---- */
+function showUpdateBar(reg){
+  if(document.getElementById("updBar")) return;
+  const bar = document.createElement("div");
+  bar.id = "updBar"; bar.className = "upd-bar";
+  const txt = document.createElement("span");
+  txt.textContent = "新しいバージョンがあります";
+  const btn = document.createElement("button");
+  btn.textContent = "更新する";
+  btn.onclick = function(){
+    if(reg.waiting) reg.waiting.postMessage({type:"SKIP_WAITING"});
+    else location.reload();
+  };
+  const close = document.createElement("button");
+  close.className = "upd-x"; close.textContent = "あとで";
+  close.onclick = function(){ bar.remove(); };
+  bar.appendChild(txt); bar.appendChild(btn); bar.appendChild(close);
+  document.body.appendChild(bar);
+  requestAnimationFrame(function(){ bar.classList.add("on"); });
+}
+if("serviceWorker" in navigator && /^https?:/.test(location.protocol)){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("./sw.js").then(function(reg){
+      if(reg.waiting && navigator.serviceWorker.controller) showUpdateBar(reg);
+      reg.addEventListener("updatefound", function(){
+        const w = reg.installing;
+        if(!w) return;
+        w.addEventListener("statechange", function(){
+          if(w.state === "installed" && navigator.serviceWorker.controller) showUpdateBar(reg);
+        });
+      });
+    }).catch(function(){ /* 使えない環境でも通常どおり動く */ });
+    let reloading = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function(){
+      if(reloading) return; reloading = true; location.reload();
+    });
+  });
+}
 
 window.__diag = {S1:S1,S2:S2,S3:S3,ITEMS:ITEMS,state:state,SCORING:SCORING,ANALYSIS2:ANALYSIS2,
   CHARS:CHARS,CHAR_PICK:CHAR_PICK,TEXT:TEXT,TEXT2:TEXT2,SIM:SIM,AXES:AXES,SOFT:SOFT,DAILY:DAILY,
