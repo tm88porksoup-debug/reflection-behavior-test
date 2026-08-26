@@ -4,241 +4,707 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="失敗・過失・嘘・ルール違反をしてしまった時、自分の中でどんな反応が出やすいのかを60問で整理する自己理解ツール。回答は端末内だけで処理され、外部に送信されません。">
+<meta name="description" content="re:act — 間違えたとき、責められたとき、失うのが怖くなったとき。追い詰められた自分の中でどんな反応が出やすいかを60の場面から見てみる自己理解ツール。回答は端末内にのみ保存されます。">
 <meta name="robots" content="noindex">
-<title>失敗したときの自分 — 反応と行動の自己理解チェック</title>
+<title>re:act — そのときの自分を知る</title>
 <style>
 /* ============================================================
-   デザイン方針：心理テストサイトではなく「落ち着いた自己分析ツール」
-   スマートフォン中心。ライト／ダーク両対応。過剰な演出はしない。
+   re:act — design system
+   「休日の午後、静かなカフェで自分のことを少し考える時間。」
+   くすんだ自然色 / 大きめの余白 / 柔らかい角丸 / 控えめな動き
    ============================================================ */
 :root{
-  --bg:#f6f5f2;
-  --surface:#ffffff;
-  --surface-2:#f0eeea;
-  --text:#22201d;
-  --text-sub:#5d5850;
-  --text-faint:#8b857b;
-  --line:#e0dcd4;
-  --line-strong:#c9c3b8;
-  --accent:#3f6b5f;
-  --accent-soft:#e6efe9;
-  --risk:#8a6a3f;
-  --risk-soft:#f2ebdf;
-  --focus:#3f6b5f;
-  --on-accent:#ffffff;
-  --radius:14px;
-  --maxw:660px;
+  /* base */
+  --bg:#F8F5F0;
+  --surface:#FFFDFA;
+  --surface-2:#F1EBE3;
+  --surface-3:#EBE3D9;
+  --text:#3D3936;
+  --text-sub:#665E57;
+  --text-faint:#8C837A;
+  --line:#E7DFD4;
+  --line-strong:#D7CCBD;
+  /* hue */
+  --rose:#C79A96;
+  --rose-soft:#F3E6E4;
+  --sage:#8FA187;
+  --sage-soft:#E6EBE2;
+  --lavender:#B0A6C4;
+  --lavender-soft:#EDE9F2;
+  --sand:#D3C1A8;
+  --sand-soft:#F0E8DC;
+  --terracotta:#B0705A;
+  --sage-deep:#5C6F54;
+  /* roles */
+  --accent:#6E8065;          /* 主要アクション（深めのセージ） */
+  --accent-soft:var(--sage-soft);
+  --on-accent:#FFFDFA;
+  --risk:#B0705A;            /* 守りに入る反応（テラコッタ） */
+  --risk-soft:#F4E7E0;
+  --focus:#6E8065;
+  /* shape */
+  --r-lg:26px; --r-md:20px; --r-sm:14px; --r-pill:999px;
+  --shadow:0 1px 2px rgba(61,57,54,.035), 0 10px 28px -16px rgba(61,57,54,.14);
+  --shadow-sm:0 1px 2px rgba(61,57,54,.04);
+  --maxw:640px;
+  /* character */
+  --ch-bg:#EFE8DE; --ch-body:#C9BCA9; --ch-body2:#DED3C2;
+  --ch-ink:#4A423B; --ch-accent:#C79A96;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#16171a;
-    --surface:#1e2024;
-    --surface-2:#25282d;
-    --text:#e9e7e3;
-    --text-sub:#b3afa8;
-    --text-faint:#8a867f;
-    --line:#31353b;
-    --line-strong:#454a51;
-    --accent:#87b8a6;
-    --accent-soft:#22322d;
-    --risk:#d0a86f;
-    --risk-soft:#302921;
-    --focus:#87b8a6;
-    --on-accent:#12211d;
+    --bg:#221F1C;
+    --surface:#2A2724;
+    --surface-2:#33302C;
+    --surface-3:#3B3733;
+    --text:#EFE9E1;
+    --text-sub:#C2B9AE;
+    --text-faint:#978D83;
+    --line:#3A3531;
+    --line-strong:#4C4640;
+    --rose:#C79A96;
+    --rose-soft:#3A302E;
+    --sage:#9BAF92;
+    --sage-soft:#2E342B;
+    --lavender:#B7ADCA;
+    --lavender-soft:#332F3A;
+    --sand:#CBB89E;
+    --sand-soft:#38322A;
+    --terracotta:#C68A72;
+    --sage-deep:#9BAF92;
+    --accent:#9BAF92;
+    --accent-soft:#2E342B;
+    --on-accent:#23261F;
+    --risk:#C68A72;
+    --risk-soft:#3A2E28;
+    --focus:#9BAF92;
+    --shadow:0 1px 2px rgba(0,0,0,.18), 0 10px 28px -16px rgba(0,0,0,.5);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.2);
+    --ch-bg:#332F2A; --ch-body:#A2988A; --ch-body2:#7E7568;
+    --ch-ink:#241F1B; --ch-accent:#C79A96;
   }
 }
 :root[data-theme="dark"]{
-    --bg:#16171a;
-    --surface:#1e2024;
-    --surface-2:#25282d;
-    --text:#e9e7e3;
-    --text-sub:#b3afa8;
-    --text-faint:#8a867f;
-    --line:#31353b;
-    --line-strong:#454a51;
-    --accent:#87b8a6;
-    --accent-soft:#22322d;
-    --risk:#d0a86f;
-    --risk-soft:#302921;
-    --focus:#87b8a6;
-    --on-accent:#12211d;
-  }
+  --bg:#221F1C; --surface:#2A2724; --surface-2:#33302C; --surface-3:#3B3733;
+  --text:#EFE9E1; --text-sub:#C2B9AE; --text-faint:#978D83;
+  --line:#3A3531; --line-strong:#4C4640;
+  --rose:#C79A96; --rose-soft:#3A302E; --sage:#9BAF92; --sage-soft:#2E342B;
+  --lavender:#B7ADCA; --lavender-soft:#332F3A; --sand:#CBB89E; --sand-soft:#38322A;
+  --terracotta:#C68A72; --sage-deep:#9BAF92; --accent:#9BAF92; --accent-soft:#2E342B; --on-accent:#23261F;
+  --risk:#C68A72; --risk-soft:#3A2E28; --focus:#9BAF92;
+  --shadow:0 1px 2px rgba(0,0,0,.18), 0 10px 28px -16px rgba(0,0,0,.5);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.2);
+  --ch-bg:#332F2A; --ch-body:#A2988A; --ch-body2:#7E7568; --ch-ink:#241F1B; --ch-accent:#C79A96;
+}
+
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
   background:var(--bg);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
-  font-size:17px;
-  line-height:1.75;
+  font-size:16.5px;
+  line-height:1.95;
+  letter-spacing:.02em;
   -webkit-text-size-adjust:100%;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px 64px;}
-h1{font-size:1.42rem;line-height:1.5;margin:0 0 12px;letter-spacing:.01em;}
-h2{font-size:1.12rem;margin:0 0 10px;letter-spacing:.01em;}
-h3{font-size:1rem;margin:0 0 8px;color:var(--text-sub);letter-spacing:.02em;}
-p{margin:0 0 14px;}
-small{font-size:.82rem;line-height:1.7;}
+.round{font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN","Hiragino Sans","Noto Sans JP",sans-serif;}
+.wrap{
+  max-width:var(--maxw);margin:0 auto;
+  padding:0 20px calc(72px + env(safe-area-inset-bottom));
+}
+h1{font-size:1.34rem;line-height:1.7;margin:0 0 14px;font-weight:700;letter-spacing:.01em;}
+h2{font-size:1.08rem;line-height:1.7;margin:0 0 12px;font-weight:700;letter-spacing:.01em;}
+h3{font-size:.98rem;margin:0 0 10px;color:var(--text-sub);font-weight:700;}
+p{margin:0 0 16px;}
+strong{font-weight:700;}
 .muted{color:var(--text-sub);}
 .faint{color:var(--text-faint);}
+.center{text-align:center;}
+
+/* ---------- cards ---------- */
 .card{
   background:var(--surface);
   border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:20px 18px;
-  margin:0 0 16px;
+  border-radius:var(--r-lg);
+  padding:26px 22px;
+  margin:0 0 18px;
+  box-shadow:var(--shadow-sm);
 }
+.card.inner{background:var(--surface-2);box-shadow:none;border-radius:var(--r-md);padding:20px 18px;margin-top:16px;}
 .note{
-  background:var(--surface-2);
+  background:var(--sand-soft);
   border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px 16px;
-  font-size:.86rem;
-  line-height:1.75;
+  border-radius:var(--r-md);
+  padding:16px 18px;
+  font-size:.85rem;line-height:1.9;
   color:var(--text-sub);
-  margin:0 0 16px;
+  margin:0 0 18px;
 }
-button{font-family:inherit;font-size:1rem;color:inherit;}
+.flag{
+  border:1px solid var(--line);border-radius:var(--r-md);
+  padding:15px 17px;font-size:.86rem;line-height:1.9;color:var(--text-sub);
+  margin:0 0 12px;background:var(--surface-2);
+}
+.disclaimer{font-size:.8rem;line-height:1.9;color:var(--text-sub);}
+hr.sep{border:none;border-top:1px solid var(--line);margin:26px 0;}
+.hidden{display:none !important;}
+.prose{font-size:.97rem;line-height:2.05;}
+.prose p{margin:0 0 16px;}
+.prose.long{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);}
+.sec-k{
+  font-size:.74rem;letter-spacing:.16em;color:var(--text-faint);
+  margin-bottom:12px;
+}
+.group-title{
+  font-size:.74rem;letter-spacing:.14em;color:var(--text-faint);
+  margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+
+/* ---------- buttons ---------- */
+button{font-family:inherit;font-size:1rem;color:inherit;letter-spacing:.02em;}
 .btn{
   display:block;width:100%;
-  padding:15px 18px;
-  background:var(--accent);
-  color:var(--on-accent);
-  border:none;border-radius:12px;
-  font-size:1.02rem;font-weight:600;
-  cursor:pointer;
-  transition:opacity .15s ease;
+  min-height:56px;padding:16px 20px;
+  background:var(--accent);color:var(--on-accent);
+  border:none;border-radius:var(--r-pill);
+  font-size:1rem;font-weight:700;cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:transform .2s ease-out, opacity .2s ease-out;
 }
+.btn:active{transform:translateY(1px);}
 .btn:disabled{opacity:.4;cursor:default;}
+.btn-alt{background:var(--risk);color:#FFFDFA;}
 .btn-sub{
   display:block;width:100%;
-  padding:13px 18px;
-  background:transparent;
-  color:var(--text-sub);
-  border:1px solid var(--line-strong);
-  border-radius:12px;
-  font-size:.94rem;
-  cursor:pointer;
-  margin-top:10px;
+  min-height:52px;padding:14px 20px;
+  background:transparent;color:var(--text-sub);
+  border:1px solid var(--line-strong);border-radius:var(--r-pill);
+  font-size:.92rem;cursor:pointer;margin-top:12px;
+  transition:background .2s ease-out;
 }
-.btn-row{display:flex;gap:10px;}
-.btn-row>*{flex:1;}
-:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+.btn-sub:active{background:var(--surface-2);}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px;}
 
-/* ---------- ヘッダー・進捗 ---------- */
+/* ---------- brand ---------- */
+.logo{
+  font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN","Hiragino Sans",sans-serif;
+  font-size:2.1rem;font-weight:700;letter-spacing:.01em;line-height:1;
+  color:var(--text);
+}
+.logo .c{color:var(--rose);padding:0 .02em;}
+.logo-sm{font-size:1.05rem;font-weight:700;letter-spacing:.02em;}
+.logo-sm .c{color:var(--rose);}
+.brand-lead{
+  font-size:1.22rem;line-height:1.85;font-weight:700;margin:22px 0 16px;
+  letter-spacing:.01em;
+}
+.brand-body{font-size:.95rem;line-height:2.1;color:var(--text-sub);margin:0 0 18px;}
+.hero-art{display:flex;justify-content:center;align-items:flex-end;gap:2px;margin:6px 0 2px;}
+.hero-art .fig{width:86px;opacity:.95;}
+.hero-art .fig:nth-child(2){width:104px;margin-bottom:-6px;}
+.hero-art .fig:nth-child(1),.hero-art .fig:nth-child(3){opacity:.7;}
+.meta-row{
+  display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;
+  font-size:.76rem;color:var(--text-faint);margin-top:16px;
+}
+.meta-row span{display:inline-flex;align-items:center;gap:6px;}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--line-strong);display:inline-block;}
+.lead-list{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.lead-i{display:flex;gap:12px;align-items:flex-start;font-size:.92rem;line-height:1.85;color:var(--text-sub);}
+.lead-i span{
+  flex:0 0 auto;width:22px;height:22px;border-radius:50%;
+  background:var(--lavender-soft);color:var(--lavender);
+  font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:6px;
+}
+
+/* ---------- progress ---------- */
 .topbar{
   position:sticky;top:0;z-index:20;
   background:var(--bg);
-  padding:10px 0 8px;
-  border-bottom:1px solid var(--line);
+  padding:calc(12px + env(safe-area-inset-top)) 0 10px;
 }
-.topbar-inner{max-width:var(--maxw);margin:0 auto;padding:0 16px;}
+.topbar-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
 .progress-meta{
   display:flex;justify-content:space-between;align-items:baseline;
-  font-size:.8rem;color:var(--text-faint);margin-bottom:7px;
+  font-size:.74rem;color:var(--text-faint);margin-bottom:8px;letter-spacing:.06em;
 }
-.progress-track{height:5px;background:var(--surface-2);border-radius:3px;overflow:hidden;}
-.progress-fill{height:100%;background:var(--accent);width:0;transition:width .25s ease;}
+.progress-track{height:2px;background:var(--line);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--accent);width:0;transition:width .34s ease-out;}
 
-/* ---------- 設問 ---------- */
+/* ---------- question ---------- */
 .section-tag{
-  display:inline-block;
-  font-size:.74rem;letter-spacing:.06em;
-  color:var(--accent);
-  background:var(--accent-soft);
-  border-radius:999px;
-  padding:3px 11px;
-  margin-bottom:14px;
+  display:inline-block;font-size:.72rem;letter-spacing:.12em;
+  color:var(--sage-deep);background:var(--sage-soft);
+  border-radius:var(--r-pill);padding:5px 14px;margin-bottom:20px;
 }
 .scenario{
   background:var(--surface-2);
-  border-left:3px solid var(--line-strong);
-  border-radius:0 10px 10px 0;
-  padding:13px 15px;
-  margin:0 0 16px;
-  font-size:.97rem;
-  line-height:1.8;
-  color:var(--text-sub);
+  border-radius:var(--r-md);
+  padding:18px 18px;
+  margin:0 0 22px;
+  font-size:.97rem;line-height:2;color:var(--text);
 }
-.qtext{font-size:1.1rem;line-height:1.7;margin:0 0 6px;font-weight:600;}
-.qhint{font-size:.84rem;color:var(--text-faint);margin:0 0 16px;}
-.opts{display:flex;flex-direction:column;gap:10px;}
+.qtext{font-size:1.06rem;line-height:1.85;margin:0 0 8px;font-weight:700;}
+.qhint{font-size:.85rem;line-height:1.85;color:var(--text-sub);margin:0 0 20px;}
+.opts{display:flex;flex-direction:column;gap:12px;}
 .opt{
   display:block;width:100%;text-align:left;
   background:var(--surface);
   border:1px solid var(--line-strong);
-  border-radius:12px;
-  padding:15px 16px;
-  font-size:1rem;line-height:1.65;
+  border-radius:var(--r-md);
+  padding:17px 18px;
+  font-size:.97rem;line-height:1.85;
   cursor:pointer;
-  transition:border-color .12s ease, background .12s ease;
+  transition:border-color .18s ease-out, background .18s ease-out, transform .18s ease-out;
 }
-.opt:active{background:var(--surface-2);}
-.opt.sel{border-color:var(--accent);background:var(--accent-soft);}
-.opt.sel-2{border-color:var(--risk);background:var(--risk-soft);}
-.scale{display:flex;flex-direction:column;gap:8px;}
-.scale .opt{padding:13px 16px;display:flex;align-items:center;gap:12px;}
+.opt:active{transform:translateY(2px);background:var(--surface-2);}
+.opt.sel{border-color:var(--sage);background:var(--sage-soft);}
+.opt.sel-2{border-color:var(--rose);background:var(--rose-soft);}
+.scale{display:flex;flex-direction:column;gap:9px;}
+.scale .opt{padding:14px 18px;display:flex;align-items:center;gap:14px;}
 .scale-num{
   flex:0 0 auto;width:26px;height:26px;border-radius:50%;
   border:1px solid var(--line-strong);
   display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;color:var(--text-faint);
+  font-size:.76rem;color:var(--text-faint);
 }
-.opt.sel .scale-num{border-color:var(--accent);color:var(--accent);}
-.subq{font-size:.95rem;font-weight:600;margin:18px 0 10px;}
-.subq.second{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);}
-.nav{display:flex;gap:10px;margin-top:22px;}
+.opt.sel .scale-num{border-color:var(--sage);color:var(--sage);}
+.subq{font-size:.94rem;font-weight:700;margin:22px 0 12px;}
+.subq.second{margin-top:30px;padding-top:24px;border-top:1px solid var(--line);}
+.nav{display:flex;gap:12px;margin-top:26px;}
 .nav button{
-  flex:1;padding:12px;border-radius:10px;
+  flex:1;min-height:50px;padding:13px;border-radius:var(--r-pill);
   border:1px solid var(--line-strong);background:transparent;color:var(--text-sub);
   font-size:.92rem;cursor:pointer;
 }
-.nav button:disabled{opacity:.35;cursor:default;}
-.nav .next{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600;}
+.nav button:disabled{opacity:.3;cursor:default;}
+.nav .next{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:700;}
 
-/* ---------- 結果 ---------- */
-.result-head{text-align:center;padding:8px 0 4px;}
-.type-label{
-  font-size:1.5rem;font-weight:700;line-height:1.45;margin:6px 0 4px;letter-spacing:.01em;
+/* ---------- chapter ---------- */
+.checkpoint{text-align:center;padding:44px 22px;background:var(--surface);}
+.cp-n{font-size:.72rem;letter-spacing:.2em;color:var(--text-faint);}
+.cp-t{font-size:1.6rem;font-weight:700;margin:10px 0 16px;line-height:1.6;}
+.cp-c{font-size:.95rem;line-height:2;color:var(--text-sub);}
+.cp-next{font-size:.95rem;font-weight:700;margin-bottom:8px;}
+.cp-fig{width:88px;margin:0 auto 18px;}
+
+/* ---------- analyzing ---------- */
+.analyzing{
+  min-height:70vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;gap:18px;
 }
-.type-kicker{font-size:.8rem;letter-spacing:.08em;color:var(--text-faint);}
-.bar-item{margin:0 0 14px;}
-.bar-top{display:flex;justify-content:space-between;align-items:baseline;font-size:.92rem;margin-bottom:5px;}
-.bar-val{font-variant-numeric:tabular-nums;color:var(--text-sub);font-size:.86rem;}
-.bar-track{height:9px;background:var(--surface-2);border-radius:5px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:5px;background:var(--accent);transition:width .5s ease;}
-.bar-fill.risk{background:var(--risk);}
-.bar-desc{font-size:.78rem;color:var(--text-faint);margin-top:4px;line-height:1.6;}
-.group-title{
-  font-size:.78rem;letter-spacing:.08em;color:var(--text-faint);
-  margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line);
+.an-line{font-size:1.05rem;line-height:1.9;color:var(--text-sub);min-height:2em;}
+.an-dots{display:flex;gap:7px;}
+.an-dots i{
+  width:6px;height:6px;border-radius:50%;background:var(--line-strong);
+  animation:pulse 1.4s ease-in-out infinite;
 }
-.gap-num{font-size:2.6rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;}
-.gap-scale{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-faint);margin-top:6px;}
-.rule{
-  display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line);
-  font-size:.97rem;line-height:1.75;
+.an-dots i:nth-child(2){animation-delay:.18s;}
+.an-dots i:nth-child(3){animation-delay:.36s;}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1;background:var(--sage)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fade{animation:fadeUp .34s ease-out both;}
+
+/* ---------- characters ---------- */
+svg{max-width:100%;height:auto;display:block;}
+.ch-bg{fill:var(--ch-bg);}
+.ch-body{fill:var(--ch-body);}
+.ch-body2{fill:var(--ch-body2);}
+.ch-ink{fill:var(--ch-ink);}
+.ch-accent{fill:var(--ch-accent);}
+.ch-line{fill:none;stroke:var(--ch-ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.ch-s2{fill:none;stroke:var(--ch-body2);stroke-linecap:round;stroke-linejoin:round;}
+.ch-s3{fill:none;stroke:var(--ch-body);stroke-linecap:round;stroke-linejoin:round;}
+
+/* ---------- result hero ---------- */
+.hero{padding:30px 22px 26px;text-align:center;background:var(--surface);}
+.hero-t{font-size:.74rem;letter-spacing:.16em;color:var(--text-faint);margin-bottom:6px;}
+.hero-art-lg{width:148px;margin:14px auto 10px;}
+.ch-name{
+  font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN","Hiragino Sans",sans-serif;
+  font-size:1.7rem;font-weight:700;line-height:1.4;margin:2px 0 10px;
 }
+.ch-tag{
+  display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.06em;
+  color:var(--text-sub);background:var(--surface-2);
+  border-radius:var(--r-pill);padding:4px 12px;margin-left:0;vertical-align:middle;
+}
+.hero-copy{
+  font-size:1.05rem;line-height:1.95;font-weight:700;
+  margin:14px auto 12px;max-width:22em;
+}
+.hero-line{font-size:.93rem;line-height:2;color:var(--text-sub);max-width:24em;margin:0 auto;}
+.hero-div{
+  display:flex;align-items:center;gap:14px;
+  margin:28px 0 24px;color:var(--text-faint);font-size:.76rem;letter-spacing:.1em;
+}
+.hero-div::before,.hero-div::after{content:"";flex:1;height:1px;background:var(--line);}
+.hero-sub{
+  display:flex;gap:14px;align-items:center;text-align:left;
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:.86rem;line-height:1.85;color:var(--text-sub);
+}
+.hero-sub svg{width:56px;flex:0 0 auto;margin-top:2px;}
+.hero-gap{
+  display:inline-flex;flex-direction:column;align-items:center;gap:2px;
+  margin-top:24px;padding:14px 26px;border-radius:var(--r-md);
+  background:var(--surface-2);font-size:.78rem;color:var(--text-sub);line-height:1.6;
+}
+.hero-gap strong{font-size:1.6rem;color:var(--text);font-weight:700;line-height:1.2;}
+.ch-block{display:flex;gap:16px;align-items:flex-start;text-align:left;}
+.ch-art{flex:0 0 auto;width:92px;}
+.ch-meta{flex:1 1 auto;min-width:0;}
+.ch-role{font-size:.72rem;letter-spacing:.1em;color:var(--text-faint);}
+.ch-line{font-size:.88rem;line-height:1.85;color:var(--text-sub);}
+
+/* ---------- contradiction ---------- */
+.contra{background:var(--lavender-soft);border-color:transparent;}
+.contra-t{
+  font-size:1.34rem;font-weight:700;line-height:1.75;margin:6px 0 16px;
+  letter-spacing:.01em;
+}
+.contra-t.small{font-size:1.06rem;}
+.contra-sub{padding-top:18px;margin-top:18px;border-top:1px solid var(--line);}
+.contra-sub:first-of-type{border-top:none;margin-top:0;padding-top:0;}
+.basis{font-size:.75rem;color:var(--text-faint);margin-top:8px;}
+.need{
+  margin:16px 0 0;padding:14px 16px;border-radius:var(--r-md);
+  background:var(--surface);font-size:.94rem;font-weight:700;line-height:1.9;
+}
+
+/* ---------- triggers ---------- */
+.trg{padding:16px 0;border-top:1px solid var(--line);}
+.trg:first-of-type{border-top:none;padding-top:4px;}
+.trg-h{display:flex;align-items:baseline;gap:9px;}
+.trg-n{font-size:.7rem;color:var(--text-faint);flex:0 0 auto;letter-spacing:.06em;}
+.trg-t{font-weight:700;font-size:1rem;flex:1 1 auto;line-height:1.6;}
+.trg-v{font-weight:700;color:var(--risk);font-variant-numeric:tabular-nums;}
+.trg-d{font-size:.72rem;color:var(--text-faint);margin-left:2px;}
+.trg-b{font-size:.88rem;line-height:1.9;color:var(--text-sub);margin-top:6px;}
+.trg-m{font-size:.73rem;color:var(--text-faint);margin-top:6px;}
+
+/* ---------- tools grid ---------- */
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.tool-b{
+  min-height:64px;padding:16px 12px;
+  border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--surface-2);font-size:.88rem;line-height:1.6;
+  cursor:pointer;text-align:center;transition:transform .18s ease-out;
+}
+.tool-b:active{transform:translateY(2px);}
+.tool-b.alt{grid-column:1 / -1;background:var(--risk-soft);border-color:transparent;color:var(--risk);font-weight:700;}
+.lv-btn{margin-bottom:18px;}
+.emergency-card{background:var(--sand-soft);border-color:transparent;}
+
+/* ---------- bars ---------- */
+.bar-item{margin:0 0 18px;}
+.bar-top{display:flex;justify-content:space-between;align-items:baseline;font-size:.94rem;margin-bottom:7px;}
+.bar-val{font-variant-numeric:tabular-nums;color:var(--text-sub);font-size:.84rem;}
+.bar-track{height:10px;background:var(--surface-2);border-radius:var(--r-pill);overflow:hidden;}
+.bar-fill{height:100%;border-radius:var(--r-pill);background:var(--sage);transition:width .6s ease-out;}
+.bar-fill.risk{background:var(--rose);}
+.bar-desc{font-size:.79rem;color:var(--text-sub);margin-top:6px;line-height:1.75;}
+.hotcold{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+.hc-col{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 12px;}
+.hc-col.hot{background:var(--rose-soft);border-color:transparent;}
+.hc-col.cold{background:var(--sage-soft);border-color:transparent;}
+.hc-k{font-size:.7rem;letter-spacing:.08em;color:var(--text-sub);margin-bottom:12px;text-align:center;line-height:1.6;}
+.mini{display:flex;align-items:center;gap:7px;margin-bottom:8px;font-size:.71rem;}
+.mini-l{flex:0 0 auto;width:52px;color:var(--text-sub);line-height:1.4;}
+.mini-t{flex:1 1 auto;height:6px;background:rgba(61,57,54,.09);border-radius:var(--r-pill);overflow:hidden;}
+.mini-f{display:block;height:100%;background:var(--sage);border-radius:var(--r-pill);}
+.mini-f.risk{background:var(--risk);}
+.mini-v{flex:0 0 auto;width:20px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-faint);}
+.plv{border-top:1px solid var(--line);padding:18px 0;}
+.plv-h{font-size:.88rem;font-weight:700;margin-bottom:12px;}
+.gap-num{font-size:2.8rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;}
+.gap-scale{display:flex;justify-content:space-between;font-size:.73rem;color:var(--text-faint);margin-top:8px;}
+
+/* ---------- detail blocks ---------- */
+.det{font-size:.93rem;line-height:2;margin-bottom:16px;}
+.det-l{display:block;font-size:.74rem;letter-spacing:.1em;color:var(--text-sub);margin-bottom:3px;opacity:.85;}
+.motto{
+  margin-top:16px;padding:14px 16px;border-radius:var(--r-md);
+  background:var(--sage-soft);color:var(--text);
+  font-weight:700;font-size:.98rem;text-align:center;line-height:1.8;
+}
+.motto.small{font-size:.86rem;padding:10px 12px;margin-top:12px;}
+.type-inline{font-size:1.18rem;font-weight:700;margin:0 0 10px;}
+.narr-b{padding:18px 0;border-top:1px solid var(--line);font-size:.97rem;line-height:2.05;}
+.narr-b:first-child{border-top:none;padding-top:0;}
+.narr-k{display:block;font-size:.68rem;letter-spacing:.16em;color:var(--text-faint);margin-bottom:6px;}
+.narr-b.rule{font-weight:700;}
+.why{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 17px;margin-bottom:12px;background:var(--surface-2);}
+.why-t{font-size:.76rem;color:var(--text-faint);margin-bottom:10px;line-height:1.7;}
+.why-r{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;padding:4px 0;line-height:1.7;}
+.why-v{font-variant-numeric:tabular-nums;font-weight:700;}
+.tl{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line);font-size:.94rem;line-height:1.95;}
+.tl:first-of-type{border-top:none;padding-top:0;}
+.tl-k{flex:0 0 auto;width:38px;font-size:.76rem;color:var(--text-faint);padding-top:6px;}
+.hist{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:.91rem;}
+.hist-v{font-variant-numeric:tabular-nums;color:var(--text-sub);}
+
+/* ---------- rules (memo風) ---------- */
+.rule{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line);font-size:.96rem;line-height:1.95;}
 .rule:first-of-type{border-top:none;padding-top:4px;}
 .rule-n{
   flex:0 0 auto;width:24px;height:24px;border-radius:50%;
-  background:var(--accent-soft);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.78rem;font-weight:700;margin-top:3px;
+  background:var(--surface-2);color:var(--text-sub);
+  display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:700;margin-top:5px;
 }
-.rule.common .rule-n{background:var(--surface-2);color:var(--text-sub);}
-.prose{font-size:.99rem;line-height:1.9;}
-.prose p{margin:0 0 14px;}
-.flag{
-  border:1px solid var(--line-strong);border-radius:10px;
-  padding:12px 14px;font-size:.86rem;line-height:1.7;color:var(--text-sub);
-  margin:0 0 12px;background:var(--surface-2);
+.ifthen{
+  background:var(--sand-soft);border-radius:var(--r-md);
+  padding:18px 18px;margin-bottom:12px;position:relative;
 }
-.disclaimer{font-size:.78rem;line-height:1.8;color:var(--text-faint);}
-hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0;}
-.hidden{display:none !important;}
+.if-n{
+  position:absolute;top:14px;right:16px;
+  font-size:.7rem;color:var(--text-faint);letter-spacing:.1em;
+}
+.if-l{font-size:.95rem;line-height:1.9;}
+.if-l .k{
+  display:block;font-size:.66rem;letter-spacing:.18em;color:var(--text-faint);margin-bottom:2px;
+}
+.if-l.then{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line-strong);font-weight:700;}
+
+/* ---------- compass ---------- */
+.compass{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.cmp{border:1px solid var(--line);border-radius:var(--r-md);padding:16px 17px;background:var(--surface-2);}
+.cmp-k{font-size:.66rem;letter-spacing:.18em;color:var(--sage-deep);}
+.cmp-j{font-weight:700;font-size:.97rem;margin:3px 0 5px;}
+.cmp-q{font-size:.88rem;line-height:1.9;color:var(--text-sub);}
+.cmp-h{font-size:.77rem;color:var(--text-faint);margin-top:5px;}
+
+/* ---------- gallery ---------- */
+.gal{display:flex;flex-direction:column;gap:14px;margin-top:16px;}
+.gal-item{
+  display:flex;flex-direction:column;gap:12px;
+  background:var(--surface-2);border-radius:var(--r-md);padding:18px 16px;
+}
+.gal-head{display:flex;gap:14px;align-items:center;}
+.gal-art{flex:0 0 auto;width:66px;}
+.gal-body{min-width:0;}
+.gal-head .ch-name{font-size:1.14rem;margin:0 0 4px;}
+.gal-copy{font-size:.88rem;color:var(--text);font-weight:700;line-height:1.8;}
+.gal-txt{font-size:.85rem;line-height:1.9;color:var(--text-sub);margin-top:8px;}
+
+/* ---------- tools ---------- */
+.tool-h{font-size:1.24rem;line-height:1.7;}
+.memo-paper{
+  background:var(--sand-soft);
+  border-radius:var(--r-lg);
+  padding:24px 20px;
+  border:1px solid var(--line);
+}
+.memo-k{font-size:.72rem;letter-spacing:.22em;color:var(--text-faint);margin-bottom:6px;}
+.memo{
+  width:100%;border:none;border-radius:var(--r-sm);
+  padding:16px;font-family:inherit;font-size:.95rem;line-height:2.1;
+  background:rgba(255,253,250,.7);color:var(--text);resize:vertical;margin-bottom:14px;
+}
+:root[data-theme="dark"] .memo{background:rgba(0,0,0,.14);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .memo{background:rgba(0,0,0,.14);}}
+.memo-view{
+  border-radius:var(--r-md);padding:18px;background:var(--sand-soft);
+  font-size:.93rem;line-height:2.1;margin-bottom:18px;
+}
+/* 緊急モードは装飾を最小限に */
+.panic-q{font-size:1.16rem;font-weight:700;margin-bottom:20px;line-height:1.8;}
+.panic-row{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;}
+.panic-b{
+  min-height:50px;border:1px solid var(--line-strong);border-radius:var(--r-sm);
+  background:var(--surface);font-size:1rem;cursor:pointer;
+}
+.panic-b:active{background:var(--surface-2);}
+.panic-scale{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-faint);margin-top:10px;}
+.panic-msg{font-size:1rem;line-height:2.05;margin-bottom:20px;padding:18px;border-radius:var(--r-md);background:var(--surface-2);}
+.em-step{padding:8px 0 28px;}
+.em-n{font-size:.72rem;letter-spacing:.18em;color:var(--text-faint);}
+.em-t{font-size:1.42rem;font-weight:700;line-height:1.75;margin:12px 0 18px;}
+.em-b{font-size:1rem;line-height:2.1;color:var(--text-sub);}
+.sim-menu{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;}
+.sim-card{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  min-height:64px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--surface-2);cursor:pointer;text-align:left;transition:transform .18s ease-out;
+}
+.sim-card:active{transform:translateY(2px);}
+.sim-cat{font-size:.72rem;color:var(--text-faint);letter-spacing:.08em;}
+.sim-t{font-size:1.02rem;font-weight:700;}
+.sim-step{font-size:.72rem;letter-spacing:.16em;color:var(--text-faint);margin-bottom:10px;}
+.sim-end{font-size:1.02rem;line-height:2;font-weight:700;padding:18px;border-radius:var(--r-md);background:var(--surface-2);margin-bottom:20px;}
+.ex-list{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px;}
+.ex-b{
+  min-height:44px;padding:11px 16px;border:1px solid var(--line-strong);
+  border-radius:var(--r-pill);background:var(--surface);font-size:.87rem;cursor:pointer;
+}
+.ex-b.on{border-color:var(--rose);background:var(--rose-soft);}
+.ex-out{border-radius:var(--r-md);padding:20px 18px;background:var(--rose-soft);}
+.ex-q{font-size:1.14rem;font-weight:700;margin-bottom:14px;line-height:1.8;}
+.ex-fig{width:64px;margin:0 auto 10px;}
+.p-chip{
+  display:inline-block;padding:6px 13px;border-radius:var(--r-pill);
+  background:var(--surface);font-size:.82rem;margin:5px 7px 0 0;
+}
+.vals{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px;}
+.val-chip{
+  display:inline-block;padding:10px 16px;border-radius:var(--r-pill);
+  background:var(--lavender-soft);color:var(--text);font-size:.9rem;font-weight:700;
+}
+.val-chip.pick{background:var(--surface);border:1px solid var(--line-strong);cursor:pointer;font-weight:400;min-height:44px;}
+.val-chip.pick.on{background:var(--lavender-soft);border-color:var(--lavender);font-weight:700;}
+.vgap{padding:16px 0;border-top:1px solid var(--line);}
+.vgap-h{font-weight:700;font-size:.97rem;margin-bottom:6px;}
+.vgap-b{font-size:.9rem;line-height:1.95;color:var(--text-sub);}
+
+/* ---------- share card ---------- */
+.share-card{
+  border-radius:var(--r-lg);padding:30px 22px 22px;
+  background:linear-gradient(170deg, var(--sand-soft) 0%, var(--surface) 55%, var(--rose-soft) 100%);
+  text-align:center;box-shadow:var(--shadow);
+}
+.sh-brand{font-size:1.24rem;font-weight:700;letter-spacing:.02em;
+  font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN","Hiragino Sans",sans-serif;}
+.sh-brand .c{color:var(--rose);}
+.sh-k{font-size:.74rem;letter-spacing:.1em;color:var(--text-faint);margin-top:8px;}
+.sh-pair{display:flex;align-items:flex-start;justify-content:center;gap:8px;margin:18px 0 4px;}
+.sh-one{flex:1 1 0;min-width:0;}
+.sh-art{width:92px;margin:0 auto;}
+.sh-role{font-size:.68rem;letter-spacing:.1em;color:var(--text-faint);margin-top:8px;}
+.sh-nm{font-size:1.14rem;font-weight:700;line-height:1.5;
+  font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN","Hiragino Sans",sans-serif;}
+.sh-pair.single .sh-one{flex:0 0 auto;}
+.sh-pair.single .sh-art{width:118px;}
+.sh-arrow{flex:0 0 auto;color:var(--text-faint);font-size:.9rem;padding-top:42px;}
+.sh-copy{margin-top:16px;font-size:.94rem;line-height:2;font-weight:700;}
+.sh-gap{margin-top:14px;font-size:.8rem;color:var(--text-sub);}
+.sh-gap strong{font-size:1.06rem;color:var(--text);}
+.sh-detail{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.74rem;color:var(--text-sub);display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:center;}
+.sh-note{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.68rem;line-height:1.8;color:var(--text-faint);}
+.sh-toggle{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--text-sub);margin:18px 0;min-height:44px;}
+
+/* ---------- responsive / motion ---------- */
+@media (min-width:680px){
+  body{font-size:17px;}
+  .wrap{padding:0 24px 88px;}
+  .card{padding:32px 30px;}
+  .hero{padding:44px 30px 34px;}
+  .gal{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .gal-art{width:76px;}
+}
+@media (max-width:359px){
+  .ch-art{width:76px;}
+  .tool-grid{grid-template-columns:1fr;}
+  .hotcold{grid-template-columns:1fr;}
+  .hero-art .fig{width:70px;}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+
+
+/* ---------- v4: ホーム / 入口 ---------- */
+.tagline{font-size:.92rem;letter-spacing:.06em;color:var(--text-sub);margin-top:8px;}
+.today{background:var(--sage-soft);border-color:transparent;}
+.today-rule{font-size:1.22rem;font-weight:700;line-height:1.8;margin:4px 0 10px;}
+.link-btn{background:none;border:none;padding:6px 0;color:var(--text-sub);font-size:.84rem;text-decoration:underline;cursor:pointer;min-height:36px;}
+.entry-list{display:flex;flex-direction:column;gap:12px;margin-bottom:18px;}
+.entry{
+  width:100%;text-align:left;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--r-md);
+  padding:18px 20px;cursor:pointer;box-shadow:var(--shadow-sm);
+  transition:transform .18s ease-out;min-height:72px;
+}
+.entry:active{transform:translateY(2px);}
+.entry-t{font-size:1.06rem;font-weight:700;line-height:1.5;}
+.entry-s{font-size:.85rem;color:var(--text-sub);margin-top:3px;line-height:1.7;}
+.row-btn{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;min-height:56px;padding:16px 4px;background:none;border:none;
+  border-bottom:1px solid var(--line);font-size:.97rem;text-align:left;cursor:pointer;color:var(--text);
+}
+.row-btn:last-child{border-bottom:none;}
+.row-btn span{font-size:.8rem;color:var(--text-faint);}
+.pre-list{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+
+/* ---------- v4: 次に意識するひとつ ---------- */
+.pick-one{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
+.pick-b{
+  width:100%;text-align:left;background:var(--surface);
+  border:1px solid var(--line-strong);border-radius:var(--r-md);
+  padding:17px 18px;font-size:.97rem;line-height:1.85;cursor:pointer;min-height:60px;
+}
+.pick-b.on{border-color:var(--sage);background:var(--sage-soft);}
+.rec-input{width:100%;min-height:52px;padding:14px 16px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);color:var(--text);font-family:inherit;font-size:.94rem;margin:14px 0;}
+.tool-b b{display:block;font-size:.86rem;letter-spacing:.02em;margin-bottom:2px;}
+.tool-b{font-size:.8rem;color:var(--text-sub);}
+.tool-b b{color:var(--text);}
+.picked-note{margin-top:14px;font-size:.88rem;color:var(--text-sub);line-height:1.9;}
+
+/* ---------- v4: 両面表示 ---------- */
+.two-side{border-radius:var(--r-md);background:var(--surface-2);padding:16px 18px;margin-top:12px;}
+.two-side .s-l{font-size:.72rem;letter-spacing:.1em;color:var(--text-sub);opacity:.85;}
+.two-side .s-b{font-size:.9rem;line-height:1.9;margin:2px 0 12px;}
+.two-side .s-b:last-child{margin-bottom:0;}
+
+/* ---------- v4: re:cord ---------- */
+.rec-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:18px 18px;margin-bottom:12px;box-shadow:var(--shadow-sm);
+}
+.rec-date{font-size:.8rem;color:var(--text-sub);}
+.rec-ch{font-size:1.1rem;font-weight:700;margin:6px 0 8px;line-height:1.6;}
+.rec-q{font-size:.93rem;line-height:1.9;color:var(--text);}
+.rec-note{font-size:.84rem;color:var(--text-sub);margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-strong);line-height:1.8;}
+.rec-actions{display:flex;gap:10px;margin-top:14px;}
+.rec-actions button{flex:1;min-height:44px;border-radius:var(--r-pill);border:1px solid var(--line-strong);background:transparent;font-size:.86rem;cursor:pointer;color:var(--text-sub);}
+.rec-mini{display:flex;gap:10px;align-items:center;margin-bottom:10px;}
+.rec-mini svg{width:44px;}
+
+/* ---------- v4: re:share ---------- */
+.share-opts{display:flex;flex-direction:column;gap:10px;margin:16px 0 20px;}
+.share-opt{
+  display:flex;align-items:center;gap:12px;min-height:52px;padding:12px 16px;
+  border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--surface);
+  font-size:.92rem;cursor:pointer;text-align:left;color:var(--text);
+}
+.share-opt.on{border-color:var(--sage);background:var(--sage-soft);}
+.share-opt .box{
+  flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--on-accent);
+}
+.share-opt.on .box{background:var(--accent);border-color:var(--accent);}
+.share-preview{margin-top:8px;}
+.share-preview img{width:100%;border-radius:var(--r-md);box-shadow:var(--shadow);}
+
+/* ---------- v4: 今日の1問 ---------- */
+.daily-q{font-size:1.14rem;font-weight:700;line-height:1.9;margin:14px 0 20px;}
+.daily-r{
+  background:var(--sage-soft);border-radius:var(--r-md);padding:18px;
+  font-size:.95rem;line-height:2;margin-top:18px;
+}
+
+/* ---------- v4: re:mind ---------- */
+.feel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;}
+.feel-b{
+  min-height:56px;border:1px solid var(--line-strong);border-radius:var(--r-md);
+  background:var(--surface);font-size:.95rem;cursor:pointer;
+}
+.feel-b.on{border-color:var(--rose);background:var(--rose-soft);}
+
+/* ---------- 印刷（PDF保存用） ---------- */
+@media print{
+  .topbar,.nav,.btn,.btn-sub,.tool-grid,.lv-btn,.entry-list,.row-btn,
+  .rec-actions,.share-opts,.link-btn,.pick-b,#btnMore{display:none !important;}
+  body{background:#fff;color:#222;font-size:11pt;}
+  .wrap{max-width:none;padding:0;}
+  .card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid;margin-bottom:10pt;padding:14pt;}
+  #lv2,#lv3{display:block !important;}
+  .hidden{display:none !important;}
+  a[href]:after{content:"";}
+}
+
 </style>
 </head>
 <body>
@@ -285,6 +751,13 @@ const AXES = {
   H:{key:"H",name:"回避・隠蔽",group:"risk",desc:"黙る・遅らせる・距離を取るという形で先送りしやすいか"}
 };
 const AXIS_ORDER = ["A","B","C","D","E","F","G","H"];
+
+/* 表側は自然な言葉、詳細側は正式名称。専門用語を大きく出さないための対応表 */
+const SOFT = {
+  A:"事実を出せる力", B:"自分の分を認める力", C:"相手の側を見る力",
+  D:"直しにいく力",   E:"次を変える力",
+  F:"理由を探したくなる反応", G:"自分を守る言葉が先に出る反応", H:"少し距離を置きたくなる反応"
+};
 
 /* ================================================================
    SECTION 1 : もし実際に起きたら（36問・4択・SJT）
@@ -1084,7 +1557,7 @@ const CHARS = {
     recoveryLine:"時間が経ってからも、隠さず話すことで立て直そうとする傾向があります。",
     initialFit:{A:1.0,B:0.25,F:-0.15},
     recoveryFit:{A:1.0,B:0.3,H:-0.2},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="オオカミのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M34 52 L36 28 L52 42 Z" class="ch-body"/><path d="M86 52 L84 28 L68 42 Z" class="ch-body"/><path d="M34 50 q26 -14 52 0 q6 26 -8 38 q-18 12 -36 0 q-14 -12 -8 -38z" class="ch-body"/><path d="M44 74 q16 -8 32 0 q-2 16 -16 18 q-14 -2 -16 -18z" class="ch-body2"/><circle cx="48" cy="62" r="3.4" class="ch-ink"/><circle cx="72" cy="62" r="3.4" class="ch-ink"/><path d="M40 55 q7 -4 13 -1" class="ch-line"/><path d="M80 55 q-7 -4 -13 -1" class="ch-line"/><ellipse cx="60" cy="79" rx="4.6" ry="3.4" class="ch-ink"/><path d="M60 83 v5" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="オオカミのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M44 80 L40 50 L64 66 Z" class="ch-body"/><path d="M116 80 L120 50 L96 66 Z" class="ch-body"/><path d="M44 78 q36 -18 72 0 q10 30 -6 46 q-30 16 -60 0 q-16 -16 -6 -46z" class="ch-body"/><path d="M58 104 q22 -10 44 0 q-4 18 -22 21 q-18 -3 -22 -21z" class="ch-body2"/><circle cx="64" cy="92" r="3.4" class="ch-ink"/><circle cx="96" cy="92" r="3.4" class="ch-ink"/><path d="M54 83 q9 -5 15 -2" class="ch-line" stroke-width="2"/><path d="M106 83 q-9 -5 -15 -2" class="ch-line" stroke-width="2"/><ellipse cx="80" cy="110" rx="5" ry="3.6" class="ch-ink"/><path d="M80 115 v5 M80 120 q-6 5 -11 1 M80 120 q6 5 11 1" class="ch-line" stroke-width="1.9"/><path d="M52 128 q28 10 56 0 l-4 12 q-24 8 -48 0z" class="ch-body2"/></svg>' },
 
   elephant:{ id:"elephant", name:"ゾウ", tag:"責任受容型",
     meaning:"起きたことのうち、自分が選んだ部分を引き受けようとする反応です。",
@@ -1095,7 +1568,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後は、自分の責任範囲を言葉にして引き受けようとする傾向があります。",
     initialFit:{B:1.0,A:0.2,F:-0.2},
     recoveryFit:{B:1.0,A:0.2,F:-0.2},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="ゾウのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><ellipse cx="28" cy="60" rx="14" ry="19" class="ch-body2"/><ellipse cx="92" cy="60" rx="14" ry="19" class="ch-body2"/><path d="M38 44 q22 -12 44 0 q8 22 -3 34 q-19 12 -38 0 q-11 -12 -3 -34z" class="ch-body"/><path d="M60 72 q-7 12 -4 20 q3 8 11 5" class="ch-s2" stroke-width="11"/><circle cx="50" cy="58" r="3.4" class="ch-ink"/><circle cx="72" cy="58" r="3.4" class="ch-ink"/><path d="M44 51 q6 -3 11 -1" class="ch-line"/><path d="M78 51 q-6 -3 -11 -1" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="ゾウのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><ellipse cx="42" cy="88" rx="21" ry="25" class="ch-body2"/><ellipse cx="118" cy="88" rx="21" ry="25" class="ch-body2"/><path d="M50 74 q30 -18 60 0 q12 28 -2 44 q-28 14 -56 0 q-14 -16 -2 -44z" class="ch-body"/><path d="M71 108 q-5 18 1 27 q6 9 16 4 q-9 -1 -9 -9 q0 -12 6 -22z" class="ch-body"/><circle cx="66" cy="90" r="3.4" class="ch-ink"/><circle cx="96" cy="90" r="3.4" class="ch-ink"/><path d="M58 82 q8 -4 13 -2" class="ch-line" stroke-width="2"/><path d="M104 82 q-8 -4 -13 -2" class="ch-line" stroke-width="2"/><path d="M96 112 q8 4 14 1" class="ch-line" stroke-width="1.8" opacity=".6"/></svg>' },
 
   dolphin:{ id:"dolphin", name:"イルカ", tag:"相手視点型",
     meaning:"自分の意図より先に、相手に何が起きたのかを見ようとする反応です。",
@@ -1106,7 +1579,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後は、相手の感情に寄り添う形で関係を立て直そうとする傾向があります。",
     initialFit:{C:1.0,A:0.15,G:-0.2},
     recoveryFit:{C:1.0,D:0.25,F:-0.2},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="イルカのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M26 64 q6 -28 38 -28 q28 0 36 20 q6 15 -8 23 q-26 12 -50 3 q-14 -6 -16 -18z" class="ch-body"/><path d="M60 37 q5 -16 17 -17 q-8 9 -8 19z" class="ch-body2"/><path d="M96 82 q14 4 18 -6 q-11 -1 -18 -6z" class="ch-body2"/><path d="M22 60 q-12 3 -13 9 q10 4 16 1z" class="ch-body2"/><path d="M52 78 q5 12 17 13" class="ch-s2" stroke-width="8"/><circle cx="39" cy="55" r="3.3" class="ch-ink"/><path d="M25 66 q11 5 19 2" class="ch-line" stroke-width="2.2"/><path d="M32 48 q7 -3 11 0" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="イルカのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M22 132 q22 8 48 5 q40 -4 66 -13" class="ch-s2" stroke-width="6" opacity=".5"/><path d="M32 100 q10 -40 54 -40 q36 0 48 26 q9 20 -10 31 q-36 17 -70 4 q-19 -7 -22 -21z" class="ch-body"/><path d="M80 60 q6 -22 24 -24 q-12 13 -12 26z" class="ch-body2"/><path d="M130 118 q19 7 25 -8 q-15 -2 -25 -8z" class="ch-body2"/><path d="M30 96 q-19 3 -21 12 q15 7 25 1z" class="ch-body"/><path d="M12 108 q11 4 20 1" class="ch-line" stroke-width="2.2"/><path d="M68 118 q8 17 24 18" class="ch-s2" stroke-width="10"/><circle cx="47" cy="90" r="3.4" class="ch-ink"/><path d="M39 81 q8 -4 13 -1" class="ch-line" stroke-width="2"/></svg>' },
 
   beaver:{ id:"beaver", name:"ビーバー", tag:"修復行動型",
     meaning:"起きたことを「ではどう直すか」に切り替えて動く反応です。",
@@ -1117,7 +1590,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後は、具体的に戻す・直すという行動に進みやすい傾向があります。",
     initialFit:{D:0.9,E:0.25,H:-0.2},
     recoveryFit:{D:1.0,E:0.25,H:-0.2},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="ビーバーのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><ellipse cx="93" cy="88" rx="17" ry="9" class="ch-body2" transform="rotate(24 93 88)"/><circle cx="38" cy="40" r="8.5" class="ch-body"/><circle cx="82" cy="40" r="8.5" class="ch-body"/><path d="M32 54 q28 -18 56 0 q8 24 -6 36 q-22 12 -44 0 q-14 -12 -6 -36z" class="ch-body"/><ellipse cx="60" cy="72" rx="16" ry="12" class="ch-body2"/><ellipse cx="60" cy="66" rx="4.2" ry="3.2" class="ch-ink"/><rect x="53.8" y="76" width="5.6" height="11" rx="1.6" class="ch-bg"/><rect x="60.6" y="76" width="5.6" height="11" rx="1.6" class="ch-bg"/><circle cx="47" cy="58" r="3.4" class="ch-ink"/><circle cx="73" cy="58" r="3.4" class="ch-ink"/><path d="M41 51 q6 -3 11 -1" class="ch-line"/><path d="M79 51 q-6 -3 -11 -1" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="ビーバーのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><ellipse cx="128" cy="120" rx="20" ry="10" class="ch-body2" transform="rotate(26 128 120)"/><circle cx="54" cy="60" r="10" class="ch-body"/><circle cx="106" cy="60" r="10" class="ch-body"/><path d="M48 76 q32 -22 64 0 q10 28 -6 44 q-26 14 -52 0 q-16 -16 -6 -44z" class="ch-body"/><ellipse cx="80" cy="98" rx="19" ry="14" class="ch-body2"/><ellipse cx="80" cy="91" rx="4.4" ry="3.4" class="ch-ink"/><rect x="73.4" y="102" width="6" height="12" rx="2" class="ch-bg"/><rect x="80.6" y="102" width="6" height="12" rx="2" class="ch-bg"/><circle cx="66" cy="82" r="3.2" class="ch-ink"/><circle cx="94" cy="82" r="3.2" class="ch-ink"/><path d="M58 74 q7 -4 12 -2" class="ch-line" stroke-width="2"/><path d="M102 74 q-7 -4 -12 -2" class="ch-line" stroke-width="2"/><rect x="26" y="124" width="70" height="14" rx="7" class="ch-body2" transform="rotate(-8 61 131)"/><path d="M40 128 h36" class="ch-line" stroke-width="1.6" opacity=".4" transform="rotate(-8 61 131)"/><ellipse cx="38" cy="130" rx="10" ry="8.5" class="ch-body"/><ellipse cx="92" cy="124" rx="10" ry="8.5" class="ch-body"/></svg>' },
 
   owl:{ id:"owl", name:"フクロウ", tag:"分析先行型",
     meaning:"感情より先に、何が起きて誰に影響したのかを整理しようとする反応です。",
@@ -1128,7 +1601,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後は、原因を分析して仕組みを変える方向に進みやすい傾向があります。",
     initialFit:{E:0.7,B:0.3,C:-0.15},
     recoveryFit:{E:1.0,B:0.25,C:-0.2},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="フクロウのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M32 44 q28 -18 56 0 q10 26 -2 42 q-26 14 -52 0 q-12 -16 -2 -42z" class="ch-body"/><path d="M34 40 l4 -14 l12 10z" class="ch-body"/><path d="M86 40 l-4 -14 l-12 10z" class="ch-body"/><circle cx="47" cy="58" r="11" class="ch-body2"/><circle cx="73" cy="58" r="11" class="ch-body2"/><circle cx="47" cy="58" r="4.4" class="ch-ink"/><circle cx="73" cy="58" r="4.4" class="ch-ink"/><path d="M60 66 l-5 6 h10z" class="ch-ink"/><path d="M38 44 q9 -5 17 -2" class="ch-line"/><path d="M82 44 q-9 -5 -17 -2" class="ch-line"/><path d="M42 80 q18 9 36 0" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="フクロウのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M42 74 q38 -26 76 0 q14 34 -4 54 q-34 18 -68 0 q-18 -20 -4 -54z" class="ch-body"/><path d="M44 68 l4 -18 l16 12z" class="ch-body"/><path d="M116 68 l-4 -18 l-16 12z" class="ch-body"/><circle cx="65" cy="88" r="14" class="ch-body2"/><circle cx="95" cy="88" r="14" class="ch-body2"/><circle cx="65" cy="88" r="4.6" class="ch-ink"/><circle cx="95" cy="88" r="4.6" class="ch-ink"/><path d="M80 96 l-6 8 h12z" class="ch-accent"/><path d="M54 74 q11 -7 20 -3" class="ch-line" stroke-width="2"/><path d="M106 74 q-11 -7 -20 -3" class="ch-line" stroke-width="2"/><path d="M54 116 q26 12 52 0" class="ch-line" stroke-width="2" opacity=".5"/><path d="M60 132 h16 M84 132 h16" class="ch-line" stroke-width="3"/></svg>' },
 
   fox:{ id:"fox", name:"キツネ", tag:"合理化型",
     meaning:"「なぜそうしたのか」を組み立てて、心理的な負担を軽くしようとする反応です。",
@@ -1139,7 +1612,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後も、経緯の説明で整理をつけようとする傾向があります。",
     initialFit:{F:1.0,G:0.2,B:-0.2},
     recoveryFit:{F:1.0,B:-0.25},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="キツネのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M86 88 q22 -6 18 -28 q-13 14 -28 14z" class="ch-body2"/><path d="M32 48 L30 22 L52 38 Z" class="ch-body"/><path d="M88 48 L90 22 L68 38 Z" class="ch-body"/><path d="M32 46 q28 -12 56 0 q4 24 -12 34 q-16 10 -32 0 q-16 -10 -12 -34z" class="ch-body"/><path d="M44 70 q16 -6 32 0 q-6 14 -16 16 q-10 -2 -16 -16z" class="ch-body2"/><path d="M42 60 q7 -3 12 0" class="ch-line" stroke-width="3"/><path d="M78 60 q-7 -3 -12 0" class="ch-line" stroke-width="3"/><ellipse cx="60" cy="76" rx="4.4" ry="3.2" class="ch-ink"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="キツネのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M40 118 q-22 2 -26 -14 q-4 -16 8 -22 q0 16 10 22 q6 4 12 4z" class="ch-body2"/><path d="M44 76 L34 44 L64 62 Z" class="ch-body"/><path d="M116 76 L126 44 L96 62 Z" class="ch-body"/><path d="M44 74 q36 -16 72 0 q8 26 -10 40 q-26 14 -52 0 q-18 -14 -10 -40z" class="ch-body"/><path d="M62 96 q18 -8 36 0 q-6 16 -18 18 q-12 -2 -18 -18z" class="ch-body2"/><path d="M60 88 q8 5 13 0" class="ch-line" stroke-width="2.4"/><path d="M100 88 q-8 5 -13 0" class="ch-line" stroke-width="2.4"/><path d="M80 102 l-4.5 5 h9z" class="ch-ink"/><rect x="98" y="120" width="46" height="30" rx="5" class="ch-body2" transform="rotate(-10 121 135)"/><path d="M105 130 h30 M104 138 h22" class="ch-line" stroke-width="1.7" opacity=".5" transform="rotate(-10 121 135)"/><ellipse cx="97" cy="124" rx="9" ry="7.5" class="ch-body"/></svg>' },
 
   hedgehog:{ id:"hedgehog", name:"ハリネズミ", tag:"防衛反応型",
     meaning:"責任を問われた瞬間に、自分を守るための説明や反論が出る反応です。",
@@ -1150,7 +1623,7 @@ const CHARS = {
     recoveryLine:"時間が経っても、指摘への構えが残りやすい傾向があります。",
     initialFit:{G:1.0,F:0.25,H:-0.3},
     recoveryFit:{G:0.9,F:0.2,D:-0.25},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="ハリネズミのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M26 74 l-9 -6 l10 -3z M29 60 l-9 -9 l11 -2z M36 48 l-5 -12 l11 5z M48 41 l-1 -13 l10 8z M63 40 l5 -12 l6 10z M76 45 l10 -8 l1 11z M86 56 l12 -4 l-4 11z M92 70 l12 0 l-8 9z" class="ch-body"/><path d="M24 86 q0 -40 36 -40 q36 0 36 40z" class="ch-body"/><ellipse cx="60" cy="77" rx="25" ry="18" class="ch-body2"/><circle cx="50" cy="64" r="3.2" class="ch-ink"/><circle cx="70" cy="64" r="3.2" class="ch-ink"/><path d="M43 57 q7 -4 12 -1" class="ch-line"/><path d="M77 57 q-7 -4 -12 -1" class="ch-line"/><ellipse cx="60" cy="73" rx="4.4" ry="3.2" class="ch-ink"/><path d="M60 77 v4 M60 81 q-5 4 -9 1 M60 81 q5 4 9 1" class="ch-line" stroke-width="2"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="ハリネズミのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M31 120 C27 98 32 80 42 70 L49 54 L57 70 L65 50 L74 68 L84 47 L94 68 L103 52 L112 70 C124 80 132 98 129 120 Z" class="ch-body" stroke="var(--ch-body)" stroke-width="5" stroke-linejoin="round"/><ellipse cx="80" cy="116" rx="33" ry="22" class="ch-body2"/><circle cx="68" cy="108" r="3.2" class="ch-ink"/><circle cx="92" cy="108" r="3.2" class="ch-ink"/><path d="M60 100 q8 -4 14 -1" class="ch-line" stroke-width="2"/><path d="M100 100 q-8 -4 -14 -1" class="ch-line" stroke-width="2"/><ellipse cx="80" cy="120" rx="4.6" ry="3.4" class="ch-ink"/><path d="M80 125 q-6 5 -11 1 M80 125 q6 5 11 1" class="ch-line" stroke-width="1.8"/><ellipse cx="112" cy="128" rx="10" ry="8" class="ch-body2"/><ellipse cx="48" cy="130" rx="10" ry="8" class="ch-body2"/></svg>' },
 
   mole:{ id:"mole", name:"モグラ", tag:"回避型",
     meaning:"問題からいったん距離を取り、様子を見ようとする反応です。",
@@ -1161,7 +1634,7 @@ const CHARS = {
     recoveryLine:"時間が経つほど、その問題に触れにくくなる傾向があります。",
     initialFit:{H:1.0,S:0.2,G:-0.3},
     recoveryFit:{H:1.0,D:-0.25},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="モグラのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M40 78 q0 -28 20 -28 q20 0 20 28z" class="ch-body"/><path d="M34 82 q4 -10 11 -9 q-3 7 -1 11z" class="ch-body"/><path d="M86 82 q-4 -10 -11 -9 q3 7 1 11z" class="ch-body"/><path d="M16 96 q12 -24 44 -24 q32 0 44 24z" class="ch-body2"/><ellipse cx="60" cy="70" rx="9" ry="7" class="ch-body"/><ellipse cx="60" cy="68" rx="4" ry="3" class="ch-ink"/><circle cx="50" cy="60" r="2.8" class="ch-ink"/><circle cx="70" cy="60" r="2.8" class="ch-ink"/><path d="M44 54 q6 -3 10 -1" class="ch-line"/><path d="M76 54 q-6 -3 -10 -1" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="モグラのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M18 132 q14 -30 62 -30 q48 0 62 30z" class="ch-body2"/><path d="M56 106 q0 -30 24 -30 q24 0 24 30z" class="ch-body"/><ellipse cx="80" cy="99" rx="11" ry="9" class="ch-body2"/><ellipse cx="80" cy="96" rx="4" ry="3" class="ch-ink"/><circle cx="69" cy="87" r="2.7" class="ch-ink"/><circle cx="91" cy="87" r="2.7" class="ch-ink"/><path d="M62 80 q7 -4 12 -2" class="ch-line" stroke-width="2"/><path d="M98 80 q-7 -4 -12 -2" class="ch-line" stroke-width="2"/><path d="M50 110 q6 -11 14 -9 q-4 8 -1 13z" class="ch-body"/><path d="M110 110 q-6 -11 -14 -9 q4 8 1 13z" class="ch-body"/><rect x="116" y="104" width="20" height="30" rx="5" class="ch-body"/><rect x="120" y="109" width="12" height="18" rx="2" class="ch-bg"/><circle cx="136" cy="103" r="5" class="ch-accent"/></svg>' },
 
   deer:{ id:"deer", name:"シカ", tag:"自責・すくみ型",
     meaning:"自分の行動ではなく自分自身を責めてしまい、その場で動けなくなる反応です。",
@@ -1172,7 +1645,7 @@ const CHARS = {
     recoveryLine:"時間が経ってからも、自己否定のほうが先に立ちやすい傾向があります。",
     initialFit:{S:1.0,B:0.15,G:-0.2},
     recoveryFit:{S:1.0,D:-0.3,B:0.15},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="シカのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M44 34 q-4 -14 -14 -18 M44 34 q-10 -4 -16 -2 M34 22 q-8 0 -12 -6" class="ch-line" stroke-width="3"/><path d="M76 34 q4 -14 14 -18 M76 34 q10 -4 16 -2 M86 22 q8 0 12 -6" class="ch-line" stroke-width="3"/><ellipse cx="34" cy="48" rx="7" ry="10" class="ch-body2" transform="rotate(-20 34 48)"/><ellipse cx="86" cy="48" rx="7" ry="10" class="ch-body2" transform="rotate(20 86 48)"/><path d="M40 46 q20 -8 40 0 q6 22 -6 34 q-14 10 -28 0 q-12 -12 -6 -34z" class="ch-body"/><ellipse cx="60" cy="78" rx="10" ry="9" class="ch-body2"/><ellipse cx="60" cy="76" rx="4" ry="3" class="ch-ink"/><circle cx="50" cy="58" r="4" class="ch-ink"/><circle cx="70" cy="58" r="4" class="ch-ink"/><path d="M44 50 q6 -2 10 0" class="ch-line"/><path d="M76 50 q-6 -2 -10 0" class="ch-line"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="シカのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M58 56 q-6 -16 -18 -22 M58 56 q-13 -6 -21 -3 M45 40 q-10 -1 -15 -8" class="ch-line" stroke-width="3.2"/><path d="M102 56 q6 -16 18 -22 M102 56 q13 -6 21 -3 M115 40 q10 -1 15 -8" class="ch-line" stroke-width="3.2"/><ellipse cx="46" cy="76" rx="9" ry="13" class="ch-body2" transform="rotate(-22 46 76)"/><ellipse cx="114" cy="76" rx="9" ry="13" class="ch-body2" transform="rotate(22 114 76)"/><path d="M52 76 q28 -12 56 0 q10 28 -6 44 q-24 14 -44 0 q-16 -16 -6 -44z" class="ch-body"/><ellipse cx="80" cy="112" rx="13" ry="12" class="ch-body2"/><ellipse cx="80" cy="109" rx="4.4" ry="3.2" class="ch-ink"/><circle cx="67" cy="90" r="3.8" class="ch-ink"/><circle cx="93" cy="90" r="3.8" class="ch-ink"/><path d="M59 82 q8 -3 13 -1" class="ch-line" stroke-width="2"/><path d="M101 82 q-8 -3 -13 -1" class="ch-line" stroke-width="2"/><path d="M74 120 q6 3 12 0" class="ch-line" stroke-width="1.8"/></svg>' },
 
   otter:{ id:"otter", name:"カワウソ", tag:"謝罪先行型",
     meaning:"まず謝ってその場を収め、関係を保とうとする反応です。",
@@ -1183,7 +1656,7 @@ const CHARS = {
     recoveryLine:"落ち着いた後も、謝罪と関係の維持を優先しやすい傾向があります。",
     initialFit:{C:0.7,A:0.2,E:-0.45,D:-0.35},
     recoveryFit:{C:0.7,A:0.2,E:-0.5,D:-0.4},
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="カワウソのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><ellipse cx="60" cy="66" rx="30" ry="28" class="ch-body"/><circle cx="38" cy="44" r="6" class="ch-body"/><circle cx="82" cy="44" r="6" class="ch-body"/><ellipse cx="60" cy="74" rx="16" ry="12" class="ch-body2"/><ellipse cx="60" cy="70" rx="4.4" ry="3.2" class="ch-ink"/><path d="M60 74 v4 M60 78 q-5 4 -9 1 M60 78 q5 4 9 1" class="ch-line" stroke-width="2"/><path d="M46 58 q5 -4 10 -1" class="ch-line"/><path d="M74 58 q-5 -4 -10 -1" class="ch-line"/><path d="M44 72 h-9 M44 77 h-8 M76 72 h9 M76 77 h8" class="ch-line" stroke-width="1.6"/><circle cx="50" cy="61" r="3" class="ch-ink"/><circle cx="70" cy="61" r="3" class="ch-ink"/><ellipse cx="42" cy="92" rx="10" ry="7" class="ch-body2"/><ellipse cx="78" cy="92" rx="10" ry="7" class="ch-body2"/></svg>' },
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="カワウソのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><g transform="rotate(-7 80 104)"><ellipse cx="80" cy="100" rx="37" ry="35" class="ch-body"/><circle cx="53" cy="70" r="8" class="ch-body"/><circle cx="107" cy="70" r="8" class="ch-body"/><ellipse cx="80" cy="110" rx="20" ry="15" class="ch-body2"/><ellipse cx="80" cy="104" rx="4.6" ry="3.4" class="ch-ink"/><path d="M80 109 v4 M80 113 q-6 5 -10 1 M80 113 q6 5 10 1" class="ch-line" stroke-width="1.9"/><path d="M58 90 q7 -5 13 -2" class="ch-line" stroke-width="2"/><path d="M102 90 q-7 -5 -13 -2" class="ch-line" stroke-width="2"/><path d="M62 96 q4 3 8 0" class="ch-line" stroke-width="2.2"/><path d="M98 96 q-4 3 -8 0" class="ch-line" stroke-width="2.2"/><path d="M60 110 h-12 M60 116 h-11 M100 110 h12 M100 116 h11" class="ch-line" stroke-width="1.5" opacity=".55"/></g><ellipse cx="72" cy="134" rx="13" ry="9" class="ch-body2"/><ellipse cx="90" cy="136" rx="13" ry="9" class="ch-body2"/></svg>' },
 
   cat:{ id:"cat", name:"ネコ", tag:"間合い型",
     meaning:"状況や相手によって反応が変わり、すぐには態度を決めない構えです。",
@@ -1193,7 +1666,7 @@ const CHARS = {
     initialLine:"問題が起きた直後の反応は、状況によって変わりやすいようです。",
     recoveryLine:"落ち着いた後の動き方も、相手との関係によって変わりやすい傾向があります。",
     initialFit:null, recoveryFit:null, neutral:true,
-    svg:'<svg viewBox="0 0 120 120" role="img" aria-label="ネコのイラスト"><circle cx="60" cy="60" r="56" class="ch-bg"/><path d="M34 46 L32 24 L52 36 Z" class="ch-body"/><path d="M86 46 L88 24 L68 36 Z" class="ch-body"/><path d="M32 48 q28 -12 56 0 q6 24 -8 34 q-20 12 -40 0 q-14 -10 -8 -34z" class="ch-body"/><path d="M92 84 q16 0 14 -16 q-8 8 -18 8z" class="ch-body2"/><path d="M42 62 q7 4 12 0" class="ch-line" stroke-width="3"/><path d="M78 62 q-7 4 -12 0" class="ch-line" stroke-width="3"/><path d="M60 72 l-4.5 4.5 h9z" class="ch-ink"/><path d="M60 76 q-4 5 -9 2 M60 76 q4 5 9 2" class="ch-line" stroke-width="2"/><path d="M44 70 h-11 M44 76 h-10 M76 70 h11 M76 76 h10" class="ch-line" stroke-width="1.7"/></svg>' }
+    svg:'<svg viewBox="0 0 160 160" role="img" aria-label="ネコのイラスト"><ellipse cx="80" cy="143" rx="44" ry="6" class="ch-bg"/><path d="M46 78 L42 52 L66 66 Z" class="ch-body"/><path d="M114 78 L118 52 L94 66 Z" class="ch-body"/><path d="M46 76 q34 -16 68 0 q10 28 -6 42 q-28 16 -56 0 q-16 -14 -6 -42z" class="ch-body"/><path d="M120 130 q22 -2 20 -22 q-10 12 -24 12z" class="ch-body2"/><path d="M58 92 q9 5 15 0" class="ch-line" stroke-width="2.4"/><path d="M102 92 q-9 5 -15 0" class="ch-line" stroke-width="2.4"/><path d="M80 104 l-5 5 h10z" class="ch-ink"/><path d="M80 109 q-5 6 -11 2 M80 109 q5 6 11 2" class="ch-line" stroke-width="1.9"/><path d="M60 100 h-13 M60 107 h-12 M100 100 h13 M100 107 h12" class="ch-line" stroke-width="1.5" opacity=".6"/><path d="M50 126 q30 10 60 0 l-4 10 q-26 8 -52 0z" class="ch-body2"/></svg>' }
 };
 
 const CHAR_ORDER = ["wolf","elephant","dolphin","beaver","owl","fox","hedgehog","mole","deer","otter","cat"];
@@ -1374,28 +1847,190 @@ S1.forEach(function(it){ const m = S1_META[it.id] || {p:2,tg:[]}; it.p = m.p; it
 
 /* キャラクターのコピー（本質を一言で。ほめ言葉だけにしない） */
 const CHAR_COPY = {
-  wolf:"怖くても、事実から逃げない。だから、時々そのまま刺さる。",
+  wolf:"怖くても、事実から逃げない。",
   elephant:"背負える。でも、背負いすぎる。",
-  dolphin:"自分より先に、相手を見る。自分の話が、後に残る。",
-  beaver:"壊したなら、直す方を見る。気持ちの話は、少し飛ばす。",
-  owl:"感情より先に、状況を整理する。冷たく見えることがある。",
+  dolphin:"自分より先に、相手を見る。",
+  beaver:"壊したなら、直すほうを見る。",
+  owl:"感情より先に、状況を整理する。",
   fox:"理由を見つけるのが、少し上手すぎる。",
-  hedgehog:"逃げない。でも、刺してしまう。",
-  mole:"消えたい。でも本当は、終わらせたい。",
-  deer:"深く反省する。でも、そこから動けなくなる。",
+  hedgehog:"守りたい気持ちが、少し先に出る。",
+  mole:"消えたい。でも、本当は終わらせたい。",
+  deer:"深く反省する。そこから動けなくなる。",
   otter:"すぐ謝れる。謝るだけで終わることもある。",
-  cat:"決めない強さがある。決めないまま流れることもある。"
+  cat:"決めない強さと、決めないままの弱さ。"
 };
 CHAR_ORDER.forEach(function(id){ CHARS[id].copy = CHAR_COPY[id]; });
 
 /* チャプター構成（60問を12問×5に分割して体感を軽くする） */
 const CHAPTERS = [
-  {n:1, title:"小さな違和感", end:12, note:"まだ誰も気づいていない、小さな場面から始めます。"},
-  {n:2, title:"守りたいもの", end:24, note:"失うものが少しずつ大きくなります。"},
-  {n:3, title:"逃げ道",      end:36, note:"言わない、という選択肢が見えてくる場面です。"},
-  {n:4, title:"向き合う瞬間", end:48, note:"ここからは、場面ではなく普段の自分について。"},
-  {n:5, title:"そのあと",    end:60, note:"最後に、「わかっていること」と「やりそうなこと」を並べます。"}
+  {n:1, title:"小さな違和感", end:12, note:"まだ誰も知らない時、自分はどう動くだろう。"},
+  {n:2, title:"守りたいもの", end:24, note:"失うものが大きくなると、人の判断は少し変わる。"},
+  {n:3, title:"責められた瞬間", end:36, note:"問題を見るか、自分を守るか。"},
+  {n:4, title:"向き合う時間", end:48, note:"ここからは場面ではなく、普段の自分について。"},
+  {n:5, title:"そのあと", end:60, note:"失敗した後に何をするかも、その人の反応のひとつ。"}
 ];
+/* ================================================================
+   v4 追加データ
+   ================================================================ */
+
+/* 診断前の「今の自分」（スコアには影響しない） */
+const PRE_STATES = [
+  {k:"usual", label:"いつも通り"},
+  {k:"tired", label:"少し疲れている"},
+  {k:"hurry", label:"少し焦っている"},
+  {k:"irrit", label:"少しイライラしている"},
+  {k:"down",  label:"気持ちが落ちている"}
+];
+function preStateLabel(k){
+  const f = PRE_STATES.filter(function(p){ return p.k === k; })[0];
+  return f ? f.label : null;
+}
+
+/* ---------------- 今日の1問 ----------------
+   本診断とは別。点数はつけず、選んだことを軽く振り返るだけ */
+const DAILY = [
+ {id:"d01", q:"自分のミスに、まだ誰も気づいていません。今日のあなたなら？",
+  a:[{t:"気づいた時点で伝える", r:"今日は「先に伝える」を選びました。伝えるのが早いほど、説明はいつも簡単になります。"},
+     {t:"直せるか試してから伝える", r:"今日は「まず自分で対応する」を選びました。直せるかどうかと、知らせるかどうかは別に決められます。"},
+     {t:"様子を見る", r:"今日は「様子を見る」を選びました。待っている間、相手の側では時間だけが進みます。"}]},
+ {id:"d02", q:"返信しづらい連絡が、3日たまっています。",
+  a:[{t:"内容が薄くても今日返す", r:"今日は「短くても返す」を選びました。返事の質より、返ってきた事実のほうが効くことがあります。"},
+     {t:"ちゃんと書ける日に返す", r:"今日は「整えてから返す」を選びました。整えている時間も、相手には沈黙として届きます。"},
+     {t:"もう少し置く", r:"今日は「もう少し置く」を選びました。置くほど書き出しが難しくなる、という構造だけ覚えておくと役に立ちます。"}]},
+ {id:"d03", q:"人前で、あなたのミスを強めの言い方で指摘されました。",
+  a:[{t:"その場で認めて、対応を話す", r:"今日は「その場で認める」を選びました。最初の一言は、あとから訂正しにくい重さがあります。"},
+     {t:"言い方が気になって、少し言い返す", r:"今日は「言い返す」を選びました。守りたくなるのは自然な反応です。10分置くだけで言葉は変わります。"},
+     {t:"その場は黙って、あとで話す", r:"今日は「あとで話す」を選びました。場を荒らさない選択でもあり、間があくほど言いにくくもなります。"}]},
+ {id:"d04", q:"あなたのせいではない部分もある問題で、あなたが責められています。",
+  a:[{t:"自分の部分だけ先に認める", r:"今日は「自分の分を先に」を選びました。分けて話すと、あとの説明が通りやすくなります。"},
+     {t:"事実関係をきちんと整理して伝える", r:"今日は「整理して伝える」を選びました。正確さは強みです。順番だけ気をつけたいところです。"},
+     {t:"納得できないので、その場では受け流す", r:"今日は「受け流す」を選びました。飲み込んだ分がどこへ行くかも、少し見ておくといいかもしれません。"}]},
+ {id:"d05", q:"謝ったのに、相手の機嫌が戻りません。",
+  a:[{t:"何が足りないか聞く", r:"今日は「聞く」を選びました。足りない部分は、たいてい本人が知っています。"},
+     {t:"これからやることを具体的に伝える", r:"今日は「行動で示す」を選びました。謝罪に行動が1つ付くと、意味が変わります。"},
+     {t:"時間を置く", r:"今日は「時間を置く」を選びました。時間が効くこともあれば、待っただけになることもあります。"}]},
+ {id:"d06", q:"小さな嘘の辻褄が、少し合わなくなってきました。",
+  a:[{t:"最初の分もまとめて訂正する", r:"今日は「訂正する」を選びました。増やさないと決めた時点で、たいてい一番大変な部分は終わります。"},
+     {t:"聞かれた分だけ正直に答える", r:"今日は「聞かれた分だけ」を選びました。小出しは、内容より印象に効きます。"},
+     {t:"つじつまの合う説明を考える", r:"今日は「説明を作る」を選びました。うまくいくほど、あとで戻すのが難しくなります。"}]},
+ {id:"d07", q:"あなたの発言で、誰かが傷ついたと人づてに聞きました。",
+  a:[{t:"本人に連絡して確かめる", r:"今日は「確かめる」を選びました。人づての情報は、たいてい形が変わっています。"},
+     {t:"次に会ったときに謝る", r:"今日は「次に会ったとき」を選びました。タイミングを待つ間も、相手の中では続いています。"},
+     {t:"直接言われていないので、そのままにする", r:"今日は「そのまま」を選びました。言わない人ほど、長く持っていることがあります。"}]},
+ {id:"d08", q:"締切に間に合わないことが、今わかりました。",
+  a:[{t:"確定していなくても今日伝える", r:"今日は「早めに伝える」を選びました。未確定のまま出す練習は、あとで効いてきます。"},
+     {t:"代替案を作ってから伝える", r:"今日は「案を持って」を選びました。準備は誠実さですが、遅れの理由にもなります。"},
+     {t:"ぎりぎりまで巻き返す", r:"今日は「巻き返す」を選びました。間に合えば最善、間に合わなければ最悪、という賭けでもあります。"}]},
+ {id:"d09", q:"多めに渡されたお釣りに、店を出てから気づきました。",
+  a:[{t:"戻って返す", r:"今日は「返す」を選びました。誰も見ていない場面の選択は、意外と自分の基準になります。"},
+     {t:"次に行ったときに伝える", r:"今日は「次の機会に」を選びました。予定は、意外と忘れます。"},
+     {t:"そのままにする", r:"今日は「そのまま」を選びました。小さい金額ほど、判断は速く終わります。"}]},
+ {id:"d10", q:"あなたのミスの責任を、別の人がかぶりそうです。",
+  a:[{t:"その場で自分から言う", r:"今日は「その場で」を選びました。流れを止めるのは、たいてい一番エネルギーが要ります。"},
+     {t:"あとで責任者に個別に伝える", r:"今日は「あとで個別に」を選びました。伝わる範囲と、間に合うかどうかは別です。"},
+     {t:"様子を見る", r:"今日は「様子を見る」を選びました。誰かが代わりに負っている時間が続きます。"}]},
+ {id:"d11", q:"「本当に分かってる？」と言われました。",
+  a:[{t:"何が伝わっていないか聞く", r:"今日は「聞く」を選びました。この一言は、たいてい説明ではなく確認を求めています。"},
+     {t:"分かっていることを説明する", r:"今日は「説明する」を選びました。説明の量が増えるほど、伝わらなくなることもあります。"},
+     {t:"これ以上言っても無駄だと感じる", r:"今日は「距離を取る」を選びました。疲れているサインかもしれません。"}]},
+ {id:"d12", q:"同じミスを、短い間に2回してしまいました。",
+  a:[{t:"やり方を1つ変える", r:"今日は「変える」を選びました。気をつける、は変更ではない、というのがここのポイントです。"},
+     {t:"あらためて謝る", r:"今日は「謝る」を選びました。2回目の謝罪は、行動が1つ付くと重さが戻ります。"},
+     {t:"自分は向いていないと感じる", r:"今日は「落ち込む」を選びました。落ち込みの深さは、相手の損害を戻しません。"}]},
+ {id:"d13", q:"言っていないことがあります。相手はまだ知りません。",
+  a:[{t:"聞かれる前に話す", r:"今日は「自分から」を選びました。自分から出した情報と、見つかった情報は、別の意味になります。"},
+     {t:"聞かれたら正直に答える", r:"今日は「聞かれたら」を選びました。待っている間も、選んでいることに変わりはありません。"},
+     {t:"話す必要はないと考える", r:"今日は「話さない」を選びました。必要かどうかを決めているのが自分だけ、という点だけ見ておくと役に立ちます。"}]},
+ {id:"d14", q:"約束していたことを、すっかり忘れていました。",
+  a:[{t:"忘れていたと伝える", r:"今日は「正直に」を選びました。理由より、いつまでにやるかのほうが相手には届きます。"},
+     {t:"急いでやってから連絡する", r:"今日は「終わらせてから」を選びました。速さは誠実さの一種でもあります。"},
+     {t:"別件で忙しかったと説明する", r:"今日は「事情を説明する」を選びました。事情は本当でも、責任の話とは別枠です。"}]},
+ {id:"d15", q:"手順を省略しました。今のところ問題は出ていません。",
+  a:[{t:"申告して確認を通す", r:"今日は「申告する」を選びました。問題が出ていないうちのほうが、話は軽く済みます。"},
+     {t:"自分で入念に見直す", r:"今日は「自分で見る」を選びました。見直せる力があるほど、共有が後回しになりやすくなります。"},
+     {t:"問題が出ていないので言わない", r:"今日は「言わない」を選びました。次も同じ判断をするかどうか、だけ覚えておくと役に立ちます。"}]},
+ {id:"d16", q:"相手が明らかに怒っています。あなたにも言い分があります。",
+  a:[{t:"言い分は後回しにして、まず聞く", r:"今日は「まず聞く」を選びました。順番を変えるだけで、同じ内容の届き方が変わります。"},
+     {t:"落ち着いてから話し合いを提案する", r:"今日は「間を置く」を選びました。冷却は有効ですが、放置と見分けがつきにくいこともあります。"},
+     {t:"その場で自分の見方も伝える", r:"今日は「その場で伝える」を選びました。伝える力は強みです。タイミングが全部を決めます。"}]},
+ {id:"d17", q:"あなただけが得をしていることに、気づきました。",
+  a:[{t:"自分から申し出る", r:"今日は「申し出る」を選びました。誰も損していない場面ほど、判断は自分だけのものになります。"},
+     {t:"次の機会に調整する", r:"今日は「次に調整」を選びました。調整の予定は、記録しないと消えます。"},
+     {t:"その場の合意なので、何もしない", r:"今日は「何もしない」を選びました。合意と納得は、少しずれることがあります。"}]},
+ {id:"d18", q:"「あの件どうなってる？」と急に聞かれました。手つかずです。",
+  a:[{t:"手つかずだと言って期日を約束する", r:"今日は「正直に」を選びました。その場の気まずさと、あとの気まずさを交換した形です。"},
+     {t:"確認して折り返すと答える", r:"今日は「折り返す」を選びました。折り返す時間が、そのまま信頼の期限になります。"},
+     {t:"進めていると答えて急いで着手する", r:"今日は「進めていると答える」を選びました。追いつけば消える嘘と、残る嘘があります。"}]},
+ {id:"d19", q:"誰にも知られていない失敗を、思い出しました。",
+  a:[{t:"今からでも伝える", r:"今日は「今から伝える」を選びました。時間が経った分の説明が要りますが、そこまでが一続きです。"},
+     {t:"もう終わったことにする", r:"今日は「終わったことに」を選びました。忘れることと、片づけることは違います。"},
+     {t:"同じことをしない方法だけ決める", r:"今日は「次を変える」を選びました。伝えないぶん、変更だけは残ります。"}]},
+ {id:"d20", q:"落ち込みが強くて、必要な連絡ができていません。",
+  a:[{t:"内容より先に、連絡する時間だけ決める", r:"今日は「時間を決める」を選びました。決めるものを減らすほど、動きやすくなります。"},
+     {t:"落ち着いてから連絡する", r:"今日は「落ち着いてから」を選びました。落ち着く条件が来ないことも、ときどきあります。"},
+     {t:"今日は休む", r:"今日は「休む」を選びました。休むのも判断です。明日の自分に1つだけ渡しておくと楽になります。"}]}
+];
+function dailyForToday(){
+  const key = todayKey();
+  /* 日付から決まる。同じ日は何度開いても同じ問い */
+  let h = 0;
+  for(let i=0;i<key.length;i++){ h = (h * 31 + key.charCodeAt(i)) % 100000; }
+  return {key:key, item: DAILY[h % DAILY.length]};
+}
+
+/* ---------------- re:view : 相手からはどう見える？ ---------------- */
+const VIEWS = [
+ {k:"fixable", act:"自分で直してから報告する",
+  me:"迷惑を減らしてから話したい、と思っている。",
+  you:"報告までの時間が空くため、状況によっては「隠していた」と感じられる可能性があります。",
+  tip:"直すことと知らせることは、同時にできる場面が多くあります。"},
+ {k:"H", act:"落ち着いてから連絡しようと、少し置く",
+  me:"感情のまま話して悪化させたくない。",
+  you:"相手の側では「返事が来ない時間」として積み上がり、軽く見られていると感じる可能性があります。",
+  tip:"内容が決まっていなくても、いつ連絡するかだけ先に伝える手があります。"},
+ {k:"G", act:"言い方が気になって、その点を指摘する",
+  me:"人格まで否定されたようで、自分を守りたい。",
+  you:"問題の話から論点がずれたように見え、反省していないと受け取られる可能性があります。",
+  tip:"言い方の話は、事実と責任の話が終わってからでも遅くありません。"},
+ {k:"F", act:"経緯をていねいに説明する",
+  me:"誤解されたまま終わりたくない。",
+  you:"説明が長いほど、言い訳として聞こえる可能性があります。",
+  tip:"説明の前に、自分が選んだ部分をひとつだけ先に言うと、同じ説明が通りやすくなります。"},
+ {k:"other", act:"相手にも落ち度があることを伝える",
+  me:"公平に見てほしい。",
+  you:"責任を分け合おうとしているように見え、謝罪の意味が薄まる可能性があります。",
+  tip:"相手の落ち度の話は、別の日・別の場でも成立します。"},
+ {k:"D", act:"すぐに具体的な対応を始める",
+  me:"言葉より、実際に直したい。",
+  you:"気持ちの部分が飛ばされたと感じられ、事務的に見える可能性があります。",
+  tip:"最初の30秒だけ、相手の状態を聞く時間にすると印象が変わります。"},
+ {k:"S", act:"強く落ち込んで、何度も謝る",
+  me:"本当に申し訳ないと思っている。",
+  you:"相手が慰める側に回ることになり、負担が増えたと感じられる可能性があります。",
+  tip:"落ち込みは自分の側の作業として、相手には行動を渡すほうが軽くなります。"},
+ {k:"A", act:"分かっていることを全部、その場で話す",
+  me:"隠さず伝えたい。",
+  you:"情報量が多く、何が結論か分からないと感じられる可能性があります。",
+  tip:"事実 → 影響 → 自分の責任 → これからすること、の順に置くと届きやすくなります。"},
+ {k:"E", act:"再発防止の仕組みを説明する",
+  me:"同じことを繰り返したくない。",
+  you:"まだ気持ちが済んでいない段階だと、話をすり替えられたと感じられる可能性があります。",
+  tip:"改善案は、謝罪の代わりではなく、あとに置くものとして扱うと機能します。"},
+ {k:"C", act:"相手の気持ちを優先して、事実の説明を控える",
+  me:"これ以上、負担をかけたくない。",
+  you:"必要な情報が出てこないため、後から知って二度傷つく可能性があります。",
+  tip:"配慮と省略は別のものとして分けておくと安全です。"}
+];
+
+/* ---------------- re:pair : 関係をどう直す？ ---------------- */
+const REPAIR_STEPS = [
+ {k:"fact",   en:"FACT",           ja:"事実",     q:"何が起きた？",             hint:"評価や理由を混ぜずに1〜2文で。「〜だったので」は入れない。"},
+ {k:"resp",   en:"RESPONSIBILITY", ja:"責任",     q:"自分が選んだ部分は？",     hint:"全部でもゼロでもなく、ひとつだけ具体的に。"},
+ {k:"impact", en:"IMPACT",         ja:"影響",     q:"相手や周囲に何が起きた？", hint:"自分の意図ではなく、相手の側で起きたこと。"},
+ {k:"repair", en:"REPAIR",         ja:"修復",     q:"今できることは？",         hint:"謝罪以外で。3日以内にできることを1つ。"},
+ {k:"prev",   en:"PREVENTION",     ja:"再発防止", q:"次に何を変える？",         hint:"気をつける、は変更ではない。手順・環境・確認方法のどれかを。"}
+];
+
 function chapterOf(idx){
   for(let i=0;i<CHAPTERS.length;i++){ if(idx < CHAPTERS[i].end) return CHAPTERS[i]; }
   return CHAPTERS[CHAPTERS.length-1];
@@ -2143,26 +2778,37 @@ const SIM = [
 /* --- 言い訳翻訳機：その言葉、何を守ろうとしてる？ --- */
 const EXCUSES = [
  {t:"そんなつもりじゃなかった", p:["「自分は悪い人ではない」という自己像","自尊心"],
+  inner:"悪い人だと思われたくない。", alt:"そういう意図ではなかったけれど、結果としてこうなったことについては自分の責任だと思っている。",
   r:"意図の話と、相手に起きた結果の話は別々に存在します。意図が善良でも、影響は残ります。先に影響の話を終わらせてから、意図の説明をすると届き方が変わります。"},
  {t:"相手にも原因はある", p:["自尊心","立場"],
+  inner:"自分だけが悪いことにされたくない。", alt:"相手側のことは一度置いておくと、この部分は自分が選んだことだった。",
   r:"事実として正しい場合もあります。ただ、相手の落ち度と、自分が選んだ行動は別の話です。同時に出すと、片方が消えます。"},
  {t:"みんなやっている", p:["「自分は悪い人ではない」という自己像","罰からの回避"],
+  inner:"自分だけが責められるのは不公平だと感じている。", alt:"周りがどうかは別として、自分がやったことについてはこう考えている。",
   r:"比較は基準を作りますが、相手の損害は減りません。周囲の話をいったん外して、自分の行動だけを見るとどうなるかを考えてみてください。"},
  {t:"言ったら余計傷つくと思った", p:["相手との関係","罰からの回避"],
+  inner:"これ以上、相手との関係を悪くしたくない。", alt:"伝えないほうがいいと自分だけで判断してしまった。判断ごと、あなたに預けるべきだった。",
   r:"相手を思う気持ちが含まれている場合もあります。同時に、自分が言いにくい状況を避けたい気持ちも混ざりやすい言葉です。相手に選ばせる、という選択肢もあります。"},
  {t:"自分だけが悪いわけではない", p:["自尊心","立場"],
+  inner:"全部を背負わされるのが怖い。", alt:"全体の事情はあるけれど、その中で自分が選んだのはここだった。",
   r:"責任は全部かゼロかではありません。分けられるなら、自分の部分だけを具体的に取り出して言葉にするほうが、結果的に伝わります。"},
  {t:"大したことではない", p:["安全","「自分は悪い人ではない」という自己像"],
+  inner:"重く受け止めると、自分が持たない気がする。", alt:"自分にとっては小さく見えていたけれど、あなたにとってどうだったかを聞かせてほしい。",
   r:"大きさを決めるのは、多くの場合こちら側ではありません。相手にとっての大きさを一度聞いてから、判断してもよさそうです。"},
  {t:"今言う必要はないと思った", p:["自分の評価","相手との関係"],
+  inner:"今の関係や評価を、まだ手放したくない。", alt:"伝える必要がないと自分で決めてしまった。今わかっていることを、まとめて話したい。",
   r:"タイミングの判断であることも、先送りであることもあります。判断基準が「相手にとって必要か」なのか「自分にとって都合がよいか」なのかを、分けて考えてみてください。"},
  {t:"自分で直せると思った", p:["自分の評価","立場"],
+  inner:"できない人だと思われたくない。", alt:"直せると思って先に手を動かしたけれど、知らせるのが遅れたことは別の問題だった。",
   r:"実際に直せることもあります。ただ、直せるかどうかと、知らせるべきかどうかは別の判断です。両方できる場面が多くあります。"},
  {t:"怒られると思って言えなかった", p:["安全","罰からの回避"],
+  inner:"責められる場面を避けたい。", alt:"怖くて言えなかった。遅くなったこと自体も含めて、いま話したい。",
   r:"率直な言葉です。恐れは行動を止めますが、時間が経つほど、伝える難易度は上がっていきます。今日出せる最小の一報を考えてみてください。"},
  {t:"関係を壊したくなかった", p:["相手との関係","相手からの好意"],
+  inner:"この人を失いたくない。", alt:"関係を守りたくて黙っていた。でも、黙ったままの関係を守っても意味がないと思った。",
   r:"守りたいものがはっきりしている言葉です。ただ、隠したまま続く関係と、話したうえで続く関係は別のものです。どちらを守りたいのかを分けて考えてみてください。"},
  {t:"本当のことを言うタイミングを逃した", p:["自分の評価","相手との関係"],
+  inner:"どこかで区切りをつけるのが怖かった。", alt:"言うタイミングを何度も見送った。そのこと自体も含めて、いま伝えたい。",
   r:"多くの人が経験する状態です。タイミングは待つほど悪くなります。「遅くなったこと自体」も含めて伝える、という方法があります。"}
 ];
 
@@ -2184,8 +2830,6 @@ const ITEMS = []
   .concat(S2.map(function(it){ return {type:"s2", item:it, section:2}; }))
   .concat(S3.map(function(it){ return {type:"s3", item:it, section:3}; }));
 
-const STORE_KEY = "self_reaction_check_v2";
-const state = {answers:{}, idx:0, finished:false, values:[], memo:null, history:[], level:1, perm:{}};
 
 const el = {
   topbar: document.getElementById("topbar"),
@@ -2198,34 +2842,134 @@ const el = {
   tool: document.getElementById("screen-tool")
 };
 
-let RESULT = null;   // 直近の計算結果をキャッシュ
+let RESULT = null;          // 直近の計算結果をキャッシュ
+let VIEWING_RECORD = null;  // 過去の記録を表示中かどうか
 
-/* ---------------- 保存（この端末のブラウザ内だけ） ---------------- */
+/* ================================================================
+   保存層（この端末のブラウザ内だけ）
+   v3: 診断結果を「スナップショット」として保存する
+   旧バージョン(v1/v2)のデータは読み込み時に移行する
+   ================================================================ */
+const STORE_KEY = "react_v3";
+const OLD_KEYS = ["self_reaction_check_v2", "self_reaction_check_v1"];
+
+const state = {
+  answers:{}, idx:0, finished:false, perm:{},
+  values:[], memo:null, level:1,
+  preState:null,        // 回答時の状態（任意）
+  records:[],           // re:cord ＝ 結果のスナップショット
+  todayRule:null,       // 「次に意識するひとつ」
+  daily:{},             // 今日の1問の回答  {"2026-08-26":{q:"d03", a:1}}
+  repair:null,          // re:pair の下書き
+  legacyHistory:[]      // 旧履歴（数値のみ）。比較に使う
+};
+
+/* ---- 日付表記は日本語で ---- */
+function ymd(d){
+  const x = d instanceof Date ? d : new Date(d);
+  return x.getFullYear() + "年" + (x.getMonth()+1) + "月" + x.getDate() + "日";
+}
+function mdOnly(d){
+  const x = d instanceof Date ? d : new Date(d);
+  return (x.getMonth()+1) + "月" + x.getDate() + "日";
+}
+function ymdhm(d){
+  const x = d instanceof Date ? d : new Date(d);
+  const hh = ("0"+x.getHours()).slice(-2), mm = ("0"+x.getMinutes()).slice(-2);
+  return ymd(x) + " " + hh + ":" + mm;
+}
+function todayKey(){
+  const d = new Date();
+  return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2);
+}
+
 function save(){
-  try{ localStorage.setItem(STORE_KEY, JSON.stringify({
-    answers:state.answers, idx:state.idx, finished:state.finished,
-    values:state.values, memo:state.memo, history:state.history, perm:state.perm
-  })); }catch(e){}
-}
-function load(){
   try{
-    const d = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-    if(!d) return false;
-    state.answers = d.answers || {};
-    state.idx = d.idx || 0;
-    state.finished = !!d.finished;
-    state.values = d.values || [];
-    state.memo = typeof d.memo === "string" ? d.memo : null;
-    state.history = d.history || [];
-    state.perm = d.perm || {};
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      v:3,
+      answers:state.answers, idx:state.idx, finished:state.finished, perm:state.perm,
+      values:state.values, memo:state.memo, level:state.level, preState:state.preState,
+      records:state.records, todayRule:state.todayRule, daily:state.daily,
+      repair:state.repair, legacyHistory:state.legacyHistory
+    }));
+  }catch(e){ /* 保存できない環境でも利用は続けられる */ }
+}
+
+function load(){
+  let d = null;
+  try{ d = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); }catch(e){}
+  if(d){
+    Object.keys(state).forEach(function(k){ if(d[k] !== undefined) state[k] = d[k]; });
     return true;
-  }catch(e){ return false; }
+  }
+  /* --- 旧バージョンからの移行（消さずに引き継ぐ） --- */
+  for(let i=0;i<OLD_KEYS.length;i++){
+    let old = null;
+    try{ old = JSON.parse(localStorage.getItem(OLD_KEYS[i]) || "null"); }catch(e){}
+    if(!old) continue;
+    state.answers = old.answers || {};
+    state.idx = old.idx || 0;
+    state.finished = !!old.finished;
+    state.perm = old.perm || {};
+    state.values = old.values || [];
+    state.memo = typeof old.memo === "string" ? old.memo : null;
+    state.legacyHistory = old.history || [];
+    save();
+    return true;
+  }
+  return false;
 }
+
 function wipeAll(){
-  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
-  state.answers = {}; state.idx = 0; state.finished = false;
-  state.values = []; state.memo = null; state.history = []; state.perm = {}; RESULT = null;
+  try{ localStorage.removeItem(STORE_KEY); OLD_KEYS.forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
+  state.answers = {}; state.idx = 0; state.finished = false; state.perm = {};
+  state.values = []; state.memo = null; state.level = 1; state.preState = null;
+  state.records = []; state.todayRule = null; state.daily = {}; state.repair = null;
+  state.legacyHistory = []; RESULT = null;
 }
+function wipePart(kind){
+  if(kind === "records"){ state.records = []; state.legacyHistory = []; }
+  if(kind === "memo"){ state.memo = null; }
+  if(kind === "daily"){ state.daily = {}; }
+  if(kind === "repair"){ state.repair = null; }
+  if(kind === "answers"){ state.answers = {}; state.idx = 0; state.finished = false; state.perm = {}; RESULT = null; }
+  save();
+}
+
+/* ---- re:cord ---- */
+function makeSnapshot(){
+  const R = RESULT;
+  return {
+    id: "rec_" + Date.now(),
+    t: new Date().toISOString(),
+    preState: state.preState,
+    note: "",
+    next: state.todayRule,
+    values: (state.values || []).slice(),
+    snap: {
+      r: JSON.parse(JSON.stringify(R.r)),
+      a2: JSON.parse(JSON.stringify(R.a2)),
+      ch: JSON.parse(JSON.stringify(R.ch)),
+      nar: JSON.parse(JSON.stringify(R.nar)),
+      ift: JSON.parse(JSON.stringify(R.ift))
+    }
+  };
+}
+function saveRecord(note){
+  const rec = makeSnapshot();
+  if(note) rec.note = note;
+  state.records.push(rec);
+  if(state.records.length > 20) state.records = state.records.slice(-20);
+  save();
+  return rec;
+}
+function lastRecord(){ return state.records.length ? state.records[state.records.length-1] : null; }
+function prevRecordFor(rec){
+  const i = state.records.indexOf(rec);
+  if(i > 0) return state.records[i-1];
+  return null;
+}
+
 function isAnswered(entry){
   const v = state.answers[entry.item.id];
   if(entry.type === "s3") return !!v && typeof v.ideal === "number" && typeof v.actual === "number";
@@ -2242,25 +2986,28 @@ function show(which){
 }
 function bind(id, fn){ const b = document.getElementById(id); if(b) b.onclick = fn; }
 
-/* 埋め込み表示（iframe など）ではブラウザの確認ダイアログが無効化されることがあるため、
-   「もう一度押す」方式で確認する。取り消しは6秒で自動的に戻る。 */
+/* 埋め込み表示（iframe など）では、ブラウザが confirm / alert / prompt を
+   無効化することがある。その場合ボタンが無反応になってしまうため、
+   確認も入力も画面の中だけで完結させる。
+   確認は「もう一度押す」方式。6秒たつと自動で元に戻る。 */
 let confirmKey = null, confirmTimer = null;
-function confirmTwice(key, btnId, prompt){
-  const b = document.getElementById(btnId);
+function confirmTwice(key, target, label){
+  const b = (typeof target === "string") ? document.getElementById(target) : target;
   if(confirmKey === key){ confirmKey = null; clearTimeout(confirmTimer); return true; }
   if(!b) return true;
   confirmKey = key;
-  b.dataset.label = b.dataset.label || b.textContent;
-  b.textContent = prompt;
+  if(!b.dataset.label) b.dataset.label = b.textContent;
+  b.textContent = label;
   clearTimeout(confirmTimer);
   confirmTimer = setTimeout(function(){
     if(confirmKey !== key) return;
     confirmKey = null;
-    const cur = document.getElementById(btnId);
-    if(cur && cur.dataset.label) cur.textContent = cur.dataset.label;
+    if(b.dataset.label && b.parentNode) b.textContent = b.dataset.label;
   }, 6000);
   return false;
 }
+/* 公開ページ（claude.ai のビューア）で動いているか */
+function isHosted(){ return !!(window.claude && typeof window.claude.use === "function"); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 /* 結果の計算（キャッシュ付き） */
@@ -2271,42 +3018,124 @@ function computeAll(){
             nar:TEXT2.narrative(r, a2), ift:TEXT2.ifThen(r, a2)};
   return RESULT;
 }
+/* 前回と今回を比べるための組（記録が2件以上あればそこから、無ければ旧履歴から） */
+function comparePair(){
+  const rs = state.records || [];
+  if(rs.length >= 2){
+    const a = rs[rs.length-2], b = rs[rs.length-1];
+    return {prev:a.snap.r.norm, now:b.snap.r.norm, prevT:a.t, nowT:b.t, prevCh:a.snap.ch};
+  }
+  if(rs.length === 1 && RESULT && state.finished){
+    const a = rs[rs.length-1];
+    if(a.snap.r.norm !== RESULT.r.norm){
+      return {prev:a.snap.r.norm, now:RESULT.r.norm, prevT:a.t, nowT:new Date().toISOString(), prevCh:a.snap.ch};
+    }
+  }
+  const lh = state.legacyHistory || [];
+  if(lh.length >= 2){
+    const a = lh[lh.length-2], b = lh[lh.length-1];
+    return {prev:a.norm, now:b.norm, prevT:a.t, nowT:b.t, prevCh:{initial:a.initial}};
+  }
+  return null;
+}
+
 function haveResult(){ return state.finished && answeredCount() >= ITEMS.length; }
 
 /* ================= イントロ ================= */
 function renderIntro(){
   const resume = answeredCount() > 0 && !state.finished;
-  el.intro.innerHTML =
-   '<div class="card" style="margin-top:22px">'
-   + '<h1>失敗したときの自分</h1>'
-   + '<p class="muted">性格の良し悪しを判定するものではありません。自分の失敗・過失・嘘・ルール違反・人を傷つけた行動をしてしまったとき、あるいはそれが発覚したときに、自分の中でどんな反応が出やすいのかを整理するためのものです。</p>'
-   + '<p class="muted">誰にでも、自己防衛・自己正当化・逃避・責任転嫁は起こり得ます。知りたいのは「追い詰められたとき、自分はどこで判断を間違えやすいのか」「どこなら踏みとどまれるのか」です。ラベルを付けるためではなく、自分の取扱説明書を作るために使ってください。</p>'
-   + '<div class="lead-list">'
-     + '<div class="lead-i"><span>1</span>問題が起きた直後、自分の中に何が出てくるか</div>'
-     + '<div class="lead-i"><span>2</span>どういう条件でそれが強まるか</div>'
-     + '<div class="lead-i"><span>3</span>その時、自分に必要なルールは何か</div>'
-     + '</div>'
-   + '<div class="note">全60問（12問 × 5チャプター）／目安12〜15分<br>途中で閉じても、同じ端末の同じブラウザなら続きから再開できます。結果に良い・悪いの順位はつきません。</div>'
-   + (haveResult() ? '<button class="btn" id="btnResult">前回の結果を見る</button>' : '')
-   + '<button class="' + (haveResult() ? 'btn-sub' : 'btn') + '" id="btnStart">' + (resume ? ('続きから再開する（' + answeredCount() + ' / 60）') : (haveResult() ? 'もう一度、最初から診断する' : '診断を始める')) + '</button>'
-   + '<button class="btn-sub" id="btnGallery">キャラクター一覧を見る</button>'
-   + '</div>'
-   + '<div class="card emergency-card">'
-   + '<h2>今まさに、何かやらかして焦っている</h2>'
-   + '<p class="muted" style="font-size:.92rem;margin-bottom:12px">診断ではありません。これ以上問題を大きくしないための手順を、1ステップずつ表示します。</p>'
-   + '<button class="btn btn-alt" id="btnEmergency">緊急モードを開く</button></div>'
-   + '<div class="note"><strong>プライバシー</strong><br>回答・診断履歴・メモは外部に送信されません。すべてこの端末のブラウザ内だけで処理・保存されています。いつでも完全に削除できます。</div>'
-   + '<div class="card"><p class="disclaimer">本診断は心理学研究の知見を参考にした自己理解ツールであり、臨床心理検査・医学的診断・科学的に妥当性が検証済みの心理尺度ではありません。将来の不倫・犯罪・裏切り等を予測するものではありません。</p>'
-   + '<button class="btn-sub" id="btnWipe">保存されたデータを全部削除する</button></div>';
+  const done = haveResult();
+  const figs = ["hedgehog","owl","fox"];
+  const d = dailyForToday();
+  const dailyDone = !!(state.daily && state.daily[d.key]);
+  let h = "";
 
-  bind("btnStart", function(){ startQuiz("btnStart"); });
-  bind("btnResult", function(){ computeAll(); renderResult(); show("result"); });
+  /* ---- 診断済みの人には「今日のあなたへ」を最初に ---- */
+  if(state.todayRule){
+    h += '<div class="card today fade" style="margin-top:26px">'
+       + '<div class="sec-k">今日のあなたへ</div>'
+       + '<div class="today-rule round">「' + state.todayRule + '」</div>'
+       + '<button class="link-btn" data-go="pickone">この一言を変える</button>'
+       + '</div>';
+  }
+
+  /* ---- ブランド ---- */
+  h += '<div class="card fade" style="' + (state.todayRule ? '' : 'margin-top:26px;') + 'text-align:center">'
+     + '<div class="logo">re<span class="c">:</span>act</div>'
+     + '<div class="tagline">そのときの自分を知る。</div>'
+     + (state.todayRule ? '' : '<div class="hero-art">' + figs.map(function(id){ return '<div class="fig">' + CHARS[id].svg + '</div>'; }).join("") + '</div>')
+     + (state.todayRule
+        ? ''
+        : '<div class="brand-lead round">間違えたとき、<br>あなたはどんな自分になる？</div>'
+          + '<p class="brand-body">「ちゃんとしたい」と思っていても、焦ったとき。怒られたとき。失うのが怖いとき。人は、いつも同じようには動けません。</p>'
+          + '<p class="brand-body">60の場面から、あなたの&#8220;とっさの反応&#8221;を見てみます。</p>')
+     + (done
+        ? '<button class="btn" id="btnResult">前回の結果を見る</button><button class="btn-sub" id="btnStart">もう一度、自分を見てみる</button>'
+        : '<button class="btn" id="btnStart">' + (resume ? ('続きから再開する　' + answeredCount() + ' / 60') : '自分を見てみる') + '</button>')
+     + '<div class="meta-row"><span>全60問</span><span class="dot"></span><span>約10〜15分</span><span class="dot"></span><span>途中保存できます</span></div>'
+     + '<div class="meta-row" style="margin-top:6px"><span>回答はこの端末の中だけに保存されます</span></div>'
+     + '</div>';
+
+  /* ---- 入口は最大3つまで ---- */
+  h += '<div class="entry-list">';
+  h += '<button class="entry" data-go="daily"><div class="entry-t">今日の1問</div>'
+     + '<div class="entry-s">' + (dailyDone ? '今日はもう答えました。見返せます。' : '少しだけ、自分を見てみる') + '</div></button>';
+  h += '<button class="entry" data-go="mind"><div class="entry-t">re:mind</div>'
+     + '<div class="entry-s">今ちょっと困っているとき</div></button>';
+  if(done || (state.records && state.records.length)){
+    h += '<button class="entry" data-go="record"><div class="entry-t">re:cord</div>'
+       + '<div class="entry-s">自分の記録' + (state.records && state.records.length ? '　' + state.records.length + '件' : '') + '</div></button>';
+  }
+  h += '</div>';
+
+  /* ---- それ以外は「もっと見る」に畳む ---- */
+  h += '<button class="btn-sub" id="btnMore">もっと見る</button>'
+     + '<div id="moreBox" class="hidden">'
+     + '<div class="card" style="margin-top:16px">'
+       + '<button class="row-btn" id="btnGallery">キャラクターを見る<span>11</span></button>'
+       + '<button class="row-btn" data-go="memo">未来の自分へのメモ</button>'
+       + '<button class="row-btn" data-go="values">大事にしたいこと</button>'
+       + '<button class="row-btn" data-go="settings">保存とデータの削除</button>'
+     + '</div>'
+     + '<div class="card"><p class="disclaimer">re:actは心理学研究の知見を参考にした自己理解ツールです。臨床心理検査や医学的診断ではありません。将来の行動を予測するものでもありません。</p></div>'
+     + '</div>';
+
+  el.intro.innerHTML = h;
+
+  bind("btnStart", function(){ done ? startQuiz("btnStart") : renderPreState(); });
+  bind("btnResult", function(){ computeAll(); state.justFinished = false; renderResult(); show("result"); });
   bind("btnGallery", function(){ renderGallery(haveResult()); });
-  bind("btnEmergency", function(){ renderEmergency(); });
-  bind("btnWipe", function(){
-    if(!confirmTwice("wipe1", "btnWipe", "もう一度押すと、保存データを全部削除します")) return;
-    wipeAll(); save(); renderIntro(); show("intro");
+  bind("btnMore", function(){
+    const box = document.getElementById("moreBox");
+    box.classList.toggle("hidden");
+    document.getElementById("btnMore").textContent = box.classList.contains("hidden") ? "もっと見る" : "とじる";
   });
+  Array.prototype.forEach.call(el.intro.querySelectorAll("[data-go]"), function(b){
+    b.onclick = function(){ nav(b.dataset.go); };
+  });
+}
+
+/* 診断前の「今の自分」（任意・スコアには影響しない） */
+function renderPreState(){
+  el.tool.innerHTML = '<div class="card fade" style="margin-top:36px">'
+    + '<div class="sec-k">はじめる前に</div>'
+    + '<h1 class="tool-h round">今日は、いつもの自分に近いですか？</h1>'
+    + '<p class="muted" style="font-size:.92rem">答えなくても始められます。結果の点数には影響しません。あとで結果を読むときの手がかりになります。</p>'
+    + '<div class="pre-list">' + PRE_STATES.map(function(p){
+        return '<button class="opt' + (state.preState === p.k ? ' sel' : '') + '" data-k="' + p.k + '">' + p.label + '</button>';
+      }).join("") + '</div>'
+    + '<button class="btn" id="preGo" style="margin-top:22px">はじめる</button>'
+    + '<button class="btn-sub" id="preSkip">答えずに始める</button></div>';
+  show("tool");
+  Array.prototype.forEach.call(el.tool.querySelectorAll(".opt"), function(b){
+    b.onclick = function(){
+      state.preState = b.dataset.k; save();
+      Array.prototype.forEach.call(el.tool.querySelectorAll(".opt"), function(x){ x.classList.remove("sel"); });
+      b.classList.add("sel");
+    };
+  });
+  bind("preGo", function(){ startQuiz(); });
+  bind("preSkip", function(){ state.preState = null; save(); startQuiz(); });
 }
 
 function startQuiz(btnId){
@@ -2341,21 +3170,21 @@ function optOrder(id, len){
 function renderQuestion(){
   const entry = ITEMS[state.idx];
   const it = entry.item;
-  let h = '<div class="card" style="margin-top:18px">';
+  let h = '<div class="card fade" style="margin-top:20px">';
 
   if(entry.type === "s1"){
-    h += '<span class="section-tag">もし実際に起きたら</span>';
+    h += '<span class="section-tag">もし、実際に起きたら</span>';
     h += '<div class="scenario">' + it.sc + '</div>';
-    h += '<div class="qtext">この場面で、たぶん本当にその場にいた自分がやりそうなのはどれですか。</div>';
-    h += '<div class="qhint">正しい方ではなく、実際にやりそうな方を。迷ったら、少し嫌な自分も含めて考えてみてください。</div>';
+    h += '<div class="qtext">この場面で、たぶん自分がやりそうなのはどれですか。</div>';
+    h += '<div class="qhint">正しいと思う方ではなく、実際にやりそうな方を選んでください。迷ったら、少し嫌な自分も含めて考えてみてください。</div>';
     h += '<div class="opts">' + optOrder(it.id, it.a.length).map(function(i){
       return '<button class="opt' + (state.answers[it.id]===i?" sel":"") + '" data-i="'+i+'">' + it.a[i].t + '</button>';
     }).join("") + '</div>';
   }
   if(entry.type === "s2"){
-    h += '<span class="section-tag">普段の自分</span>';
+    h += '<span class="section-tag">普段のあなた</span>';
     h += '<div class="qtext">' + it.t + '</div>';
-    h += '<div class="qhint">深く考えすぎず、近いほうを選んでください。</div>';
+    h += '<div class="qhint">深く考えすぎず、近いほうで大丈夫です。</div>';
     h += '<div class="scale">' + SCALE_LABELS.map(function(lab,i){
       const v = i+1;
       return '<button class="opt' + (state.answers[it.id]===v?" sel":"") + '" data-v="'+v+'"><span class="scale-num">'+v+'</span><span>'+lab+'</span></button>';
@@ -2429,35 +3258,52 @@ function goNext(){
 /* チャプターの区切り（スコアやタイプのヒントは出さない） */
 function renderCheckpoint(done){
   const next = chapterOf(state.idx);
-  el.quiz.innerHTML = '<div class="card checkpoint" style="margin-top:40px">'
-    + '<div class="cp-n">CHAPTER ' + done.n + " 終了</div>"
-    + '<div class="cp-t">' + done.title + '</div>'
-    + '<div class="cp-c">' + done.end + ' / ' + ITEMS.length + ' 問が終わりました。</div>'
-    + '<hr class="sep">'
-    + '<div class="cp-next">次は CHAPTER ' + next.n + '　' + next.title + '</div>'
-    + '<p class="muted" style="font-size:.9rem">' + next.note + '</p>'
-    + '<button class="btn" id="cpNext">続ける</button>'
-    + '<button class="btn-sub" id="cpStop">ここでいったんやめる（続きは保存されます）</button></div>';
+  const fig = ["hedgehog","fox","owl","deer","beaver"][next.n - 1] || "owl";
+  el.quiz.innerHTML = '<div class="card checkpoint fade" style="margin-top:36px">'
+    + '<div class="cp-fig">' + CHARS[fig].svg + '</div>'
+    + '<div class="cp-n">CHAPTER ' + next.n + '</div>'
+    + '<div class="cp-t round">' + next.title + '</div>'
+    + '<div class="cp-c">' + next.note + '</div>'
+    + '<div class="cp-c faint" style="font-size:.8rem;margin-top:14px">' + done.end + ' / ' + ITEMS.length + ' 問がおわりました</div>'
+    + '<button class="btn" id="cpNext" style="margin-top:26px">続ける</button>'
+    + '<button class="btn-sub" id="cpStop">今日はここまでにする</button></div>';
   updateProgress();
   bind("cpNext", renderQuestion);
   bind("cpStop", function(){ renderIntro(); show("intro"); });
 }
 
+/* 結果の前に、短い間を置く（過剰な疑似AI演出にはしない） */
+function renderAnalyzing(done){
+  const lines = ["あなたの反応を整理しています", "守ろうとする瞬間", "向き合える瞬間", "その差を見ています"];
+  el.tool.innerHTML = '<div class="analyzing">'
+    + '<div class="logo-sm round">re<span class="c">:</span>act</div>'
+    + '<div class="an-line" id="anLine"></div>'
+    + '<div class="an-dots"><i></i><i></i><i></i></div></div>';
+  show("tool");
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const step = reduce ? 160 : 620;
+  let i = 0;
+  const line = document.getElementById("anLine");
+  function tick(){
+    if(i >= lines.length){ done(); return; }
+    line.textContent = lines[i];
+    line.classList.remove("fade");
+    void line.offsetWidth;
+    line.classList.add("fade");
+    i++;
+    setTimeout(tick, step);
+  }
+  tick();
+}
+
 function finish(){
   state.finished = true;
   const res = computeAll();
-  // 履歴（端末内のみ）
-  state.history = state.history || [];
-  state.history.push({
-    t: new Date().toISOString(),
-    norm: res.r.norm, gap: res.r.gap.value,
-    initial: res.ch.initial, recovery: res.ch.recovery
-  });
-  if(state.history.length > 12) state.history = state.history.slice(-12);
   if(!state.memo) state.memo = TEXT2.futureMemo(res.r, res.a2, res.ch, res.a2.contradictions[0] && res.a2.contradictions[0].title);
   state.level = 1;
+  state.justFinished = true;   // 「この結果を記録する」を出すため
   save();
-  renderResult(); show("result");
+  renderAnalyzing(function(){ renderResult(); show("result"); });
 }
 
 /* ================= キャラクター表示の部品 ================= */
@@ -2465,27 +3311,72 @@ function charBlock(id, role, line){
   const c = CHARS[id];
   return '<div class="ch-block"><div class="ch-art">' + c.svg + '</div>'
     + '<div class="ch-meta"><div class="ch-role">' + role + '</div>'
-    + '<div class="ch-name">' + c.name + '<span class="ch-tag">' + c.tag + '</span></div>'
+    + '<div class="ch-name round" style="font-size:1.3rem;margin:2px 0 6px">' + c.name + '</div>'
     + '<div class="ch-line">' + line + '</div></div></div>';
 }
 function charDetail(id, heading){
   const c = CHARS[id];
-  return '<div class="card"><h3>' + heading + '　' + c.name + '（' + c.tag + '）</h3>'
+  return '<div class="card"><div class="sec-k">' + heading + '</div>'
+    + '<div class="ch-block" style="margin-bottom:18px"><div class="ch-art">' + c.svg + '</div>'
+    + '<div class="ch-meta"><div class="ch-name round" style="font-size:1.24rem;margin:0 0 6px">' + c.name + '</div>'
+    + '<span class="ch-tag">' + c.tag + '</span></div></div>'
     + '<div class="det"><span class="det-l">このキャラクターが表すもの</span>' + c.meaning + '</div>'
     + '<div class="det"><span class="det-l">この反応の強み</span>' + c.strength + '</div>'
-    + '<div class="det"><span class="det-l">注意ポイント</span>' + c.caution + '</div>'
+    + '<div class="det"><span class="det-l">行き過ぎた時</span>' + c.caution + '</div>'
     + '<div class="motto">「' + c.motto + '」</div></div>';
 }
+/* 表側はやわらかい呼び名、補足に正式名称 */
+/* 守りに入る反応にも、役に立つ側面がある */
+const RISK_USEFUL = {
+  F:{bad:"理由づけが十分にできてしまうと、責任の話が理由の話にすり替わりやすくなります。",
+     good:"混乱した状況に筋道をつけ、その場を荒らさずに話を進められる力でもあります。"},
+  G:{bad:"最初の数分の言い返しが、問題そのものより長く相手に残ることがあります。",
+     good:"理不尽な要求から、自分の立場や境界線を守る力でもあります。"},
+  H:{bad:"時間が空くほど説明は難しくなり、様子見が放置に近づいていきます。",
+     good:"感情のまま動かず、その場で壊さずに済ませる力でもあります。"}
+};
+
 function barHTML(k, v, risk){
   const a = AXES[k];
-  return '<div class="bar-item"><div class="bar-top"><span>' + a.name + '</span><span class="bar-val">' + v + '</span></div>'
+  return '<div class="bar-item"><div class="bar-top"><span>' + SOFT[k] + '</span><span class="bar-val">' + v + '</span></div>'
     + '<div class="bar-track"><div class="bar-fill' + (risk?" risk":"") + '" data-w="' + v + '" style="width:0"></div></div>'
-    + '<div class="bar-desc">' + a.desc + '</div></div>';
+    + '<div class="bar-desc">' + a.name + '　' + a.desc + '</div>'
+    + (risk && RISK_USEFUL[k] ? '<div class="two-side" style="margin-top:10px">'
+        + '<div class="s-l">行き過ぎると</div><div class="s-b">' + RISK_USEFUL[k].bad + '</div>'
+        + '<div class="s-l">一方で</div><div class="s-b">' + RISK_USEFUL[k].good + '</div></div>' : '')
+    + '</div>';
 }
 function miniBar(label, v, risk){
   return '<div class="mini"><span class="mini-l">' + label + '</span>'
     + '<span class="mini-t"><span class="mini-f' + (risk?" risk":"") + '" style="width:' + v + '%"></span></span>'
     + '<span class="mini-v">' + v + '</span></div>';
+}
+
+/* 内部の計算式ではなく、言葉で結果の理由を説明する */
+function whyText(R){
+  const ch = R.ch, a2 = R.a2;
+  const out = [];
+  const ir = ch.initialReasons[0];
+  if(ir && ir.value !== undefined){
+    out.push("問題が起きた直後の場面では、" + ir.name + "の出方が" + ir.value + "でした。"
+      + (ir.value >= 55 ? "平均的な選び方より高めです。" : (ir.value <= 45 ? "平均的な選び方より低めです。" : "ちょうど真ん中あたりです。")));
+  }
+  const ti = a2.triggerInfo;
+  if(ti && ti.found && ti.list[0]){
+    out.push("特に「" + ti.list[0].name + "」を含む場面では、問題を大きくしやすい選択に寄っていました（普段より+" + ti.list[0].delta + "）。");
+  }else{
+    out.push("特定の場面だけ大きく崩れる、という偏りは見えませんでした。");
+  }
+  const rr = ch.recoveryReasons[0];
+  if(rr && rr.value !== undefined){
+    out.push("一方で、時間が経ってからの" + rr.name + "は" + rr.value + "。"
+      + (rr.value >= 55 ? "こちらは比較的高く出ています。" : (rr.value <= 45 ? "こちらは控えめでした。" : "こちらは真ん中あたりでした。")));
+  }
+  out.push("その組み合わせから、最初に顔を出しやすいのは" + CHARS[ch.initial].name
+    + (ch.same ? "、時間が経っても同じ反応が続きやすい" : "、落ち着いた後は" + CHARS[ch.recovery].name)
+    + "、という結果になりました。");
+  out.push("わかっていることと、やりそうなことの差は" + R.r.gap.value + "。8問中" + R.r.gap.matched + "問では、適切だと思う案と実際に取りそうな案が一致していました。");
+  return out;
 }
 
 /* ================= 結果画面 ================= */
@@ -2495,149 +3386,209 @@ function renderResult(){
   const cN = CHARS[ch.initial], cR = CHARS[ch.recovery];
   let h = "";
 
-  /* ---------- LEVEL 1 : 30秒で分かる結果 ---------- */
-  h += '<div class="card hero">'
-     + '<div class="hero-t">問題が起きた時のあなた</div>'
-     + charBlock(ch.initial, "問題が起きた直後", "あなたの中の" + cN.name + "が出やすいようです。" + cN.initialLine)
-     + '<div class="hero-arrow">時間が経つと</div>'
-     + charBlock(ch.recovery, "落ち着いた後", (ch.same ? "落ち着いた後も、同じ" + cR.name + "の反応が続きやすいようです。" : "ここでは" + cR.name + "が前に出てきます。") + cR.recoveryLine)
-     + '<div class="hero-copy">「' + cN.copy + '」<br>' + (ch.same ? '' : '「' + cR.copy + '」') + '</div>'
-     + (ch.sub ? '<div class="hero-sub">' + CHARS[ch.sub].svg + '<div><span class="ch-role">サブ傾向</span><strong>' + CHARS[ch.sub].name + '</strong>（' + CHARS[ch.sub].tag + '）の面も混じっています。</div></div>' : '')
-     + '<div class="hero-gap"><span>理解―実行ギャップ</span><strong>' + r.gap.value + '</strong><span class="faint">/ 100</span></div>'
-     + '<p class="disclaimer" style="margin:10px 0 0">キャラクターは人格ではなく、その場面で出やすい反応を表しています。人には状況によって複数の反応があります。</p>'
+  /* ---------- まず見る ---------- */
+  h += '<div class="card hero fade">'
+     + '<div class="hero-t">あなたの中に出やすいのは</div>'
+     + '<div class="hero-art-lg">' + cN.svg + '</div>'
+     + '<div class="ch-name round">' + cN.name + '</div>'
+     + '<div class="hero-copy">「' + cN.copy + '」</div>'
+     + '<div class="hero-line">' + cN.initialLine + 'でも、それだけがあなたではありません。</div>'
+     + '<div class="hero-div">' + (ch.same ? '時間が経っても' : '落ち着いた後に出やすいのは') + '</div>'
+     + (ch.same
+         ? '<div class="hero-line">同じ' + cR.name + 'の反応が続きやすいようです。' + cR.recoveryLine + '</div>'
+         : charBlock(ch.recovery, "立て直しのとき", '「' + cR.copy + '」<br>' + cR.recoveryLine))
+     + (ch.sub ? '<div class="hero-sub">' + CHARS[ch.sub].svg
+         + '<div><div class="ch-role">ときどき顔を出す</div>'
+         + '<div class="round" style="font-size:1.02rem;font-weight:700;margin:2px 0 4px">' + CHARS[ch.sub].name + '</div>'
+         + '「' + CHARS[ch.sub].copy + '」</div></div>' : '')
+     + '<div class="hero-gap"><span>わかっていることと、やりそうなことの差</span><strong>' + r.gap.value + '</strong></div>'
+     + (state.preState && !VIEWING_RECORD ? '<div class="picked-note">今回は「' + preStateLabel(state.preState) + '」状態で回答しました。その日の状態と、いつもの自分は少し違うことがあります。</div>' : '')
+     + '<p class="disclaimer" style="margin:18px 0 0">キャラクターは人格ではなく、その場面で出やすい反応を表しています。人には状況によって、いくつもの反応があります。</p>'
      + '</div>';
 
-  // 最大の矛盾
+  // あなたの中にある矛盾
   const c0 = a2.contradictions[0];
-  h += '<div class="card contra"><div class="sec-k">あなたの中にある矛盾</div>'
-     + '<div class="contra-t">' + c0.title + '</div>'
+  h += '<div class="card contra fade"><div class="sec-k">あなたの中にある矛盾</div>'
+     + '<div class="contra-t round">' + c0.title + '</div>'
      + '<p class="prose">' + c0.body + '</p>'
      + (ANALYSIS2.NEED[c0.id] ? '<div class="need">' + ANALYSIS2.NEED[c0.id] + '</div>' : '')
-     + '<div class="basis">根拠：' + c0.basis.join("／") + '</div></div>';
+     + '<div class="basis">もとになった数値：' + c0.basis.join("／") + '</div></div>';
 
-  // 危険トリガー（ベースラインとの差で判定。条件を満たすものがなければ順位を出さない）
+  // 心が守りに入りやすいとき
   const ti = a2.triggerInfo;
-  h += '<div class="card"><div class="sec-k">あなたの防衛反応が出やすい瞬間</div>';
+  h += '<div class="card fade"><div class="sec-k">心が守りに入りやすいとき</div>';
   if(ti.found){
-    h += '<p class="muted" style="font-size:.88rem">あなたの普段の傾向（' + ti.baseline + '）と比べて、その条件を含む場面だけ悪化させやすい選択に寄っていたものです。順位は差の大きさ順です。</p>';
+    h += '<p class="muted" style="font-size:.88rem;margin-bottom:16px">普段のあなた（' + ti.baseline + '）と比べて、その条件があるときだけ、問題を大きくしやすい選び方に寄っていた場面です。</p>';
     ti.list.forEach(function(t,i){
-      h += '<div class="trg"><div class="trg-h"><span class="trg-n">' + (i+1) + '位</span><span class="trg-t">' + t.name + '</span>'
-         + '<span class="trg-v">' + t.score + '<span class="trg-d">（+' + t.delta + '）</span></span></div>'
+      h += '<div class="trg"><div class="trg-h"><span class="trg-n">0' + (i+1) + '</span><span class="trg-t">' + t.name + '</span>'
+         + '<span class="trg-v">' + t.score + '<span class="trg-d">(+' + t.delta + ')</span></span></div>'
          + '<div class="trg-b">' + t.line + '</div>'
-         + '<div class="trg-m">参考度：' + t.conf + '（この判定に使った設問 ' + t.n + '問）</div></div>';
+         + '<div class="trg-m">参考度 ' + t.conf + '／この判定に使った設問 ' + t.n + '問</div></div>';
     });
   }else{
     h += '<div class="flag">' + (ti.baseline >= 60
-      ? ('特定の条件に限らず、全体として問題を悪化させやすい側の選択が多く選ばれていました（全体 ' + ti.baseline + '）。この場合は「どの場面が危ないか」より、場面を選ばず出る反応のほうを見たほうが役に立ちます。')
-      : '今回の回答では、特定の状況だけで防衛反応が大きく上昇する傾向は、はっきりとは見つかりませんでした。')
-       + '<br><span class="faint">' + (ti.baseline >= 60 ? '' : '全体の悪化傾向は' + ti.baseline + 'です。') + '状況によって反応は変わるので、「引き金が存在しない」という意味ではありません。'
-       + '参考として、相対的にわずかに高かったのは「' + (ti.all[0] ? ti.all[0].name + '」（' + ti.all[0].score + '、差 ' + (ti.all[0].delta>=0?"+":"") + ti.all[0].delta + '）' : '該当なし') + 'でした。</span></div>';
+      ? ('特定の条件というより、場面を選ばず、問題を大きくしやすい側の選択が多く選ばれていました（全体 ' + ti.baseline + '）。この場合は「どの場面が危ないか」より、いつも出ている反応のほうを見たほうが役に立ちます。')
+      : '今回の回答では、特定の状況だけで守りに入りやすくなる傾向は、はっきりとは見えませんでした。')
+       + '<br><span class="faint">' + (ti.baseline >= 60 ? '' : '全体の傾向は' + ti.baseline + 'です。') + '状況によって反応は変わるので、「引き金がない」という意味ではありません。'
+       + (ti.all[0] ? '参考までに、わずかに高かったのは「' + ti.all[0].name + '」（' + ti.all[0].score + '）でした。' : '') + '</span></div>';
   }
-  h += '<p class="disclaimer" style="margin-top:10px">数値は該当場面での選択傾向を0〜100に置き換えた推定値です。性格や将来の行動を判定するものではありません。</p></div>';
+  h += '<p class="disclaimer" style="margin-top:12px">数値はその場面での選び方を0〜100に置き換えた推定です。性格や将来の行動を判定するものではありません。</p></div>';
 
-  // 使い方ボタン
-  h += '<div class="card"><h2>結果をどう使う？</h2><div class="tool-grid">'
-     + '<button class="tool-b" data-go="sim">やらかしシミュレーターをやる</button>'
-     + '<button class="tool-b" data-go="rules">自分の5ルールを見る</button>'
-     + '<button class="tool-b" data-go="memo">未来の自分へメモを書く</button>'
-     + '<button class="tool-b" data-go="event">実際の出来事を整理する</button>'
-     + '<button class="tool-b" data-go="excuse">言い訳翻訳機を試す</button>'
-     + '<button class="tool-b" data-go="share">共有用カードを見る</button>'
-     + '<button class="tool-b" data-go="gallery">キャラクター図鑑を見る</button>'
-     + '<button class="tool-b alt" data-go="emergency">今まさにやらかした</button>'
+  // 次に意識するなら、ひとつ
+  const oneOpts = nextOneOptions();
+  h += '<div class="card fade"><div class="sec-k">次に意識するなら</div>'
+     + '<h2>ひとつだけ、持って帰るとしたら？</h2>'
+     + '<p class="muted" style="font-size:.9rem">選ぶとホームに小さく表示されます。あとから変えられます。</p>'
+     + '<div class="pick-one" id="pickOneBox">' + oneOpts.map(function(t,i){
+         return '<button class="pick-b' + (state.todayRule === t ? ' on' : '') + '" data-one="' + i + '">' + t + '</button>';
+       }).join("") + '</div>'
+     + '<div class="picked-note" id="pickNote2">' + (state.todayRule ? '「' + state.todayRule + '」をホームに表示しています。' : '') + '</div></div>';
+
+  // re:cord に残す
+  if(VIEWING_RECORD){
+    h += '<div class="card fade"><div class="sec-k">re:cord</div>'
+       + '<h2>' + ymd(VIEWING_RECORD.t) + 'の記録</h2>'
+       + '<p class="muted" style="font-size:.9rem">保存された結果を表示しています。'
+       + (VIEWING_RECORD.preState ? '回答したときの状態は「' + preStateLabel(VIEWING_RECORD.preState) + '」でした。' : '')
+       + (VIEWING_RECORD.note ? '<br>メモ：' + esc(VIEWING_RECORD.note) : '') + '</p>'
+       + '<button class="btn-sub" data-go="record">記録の一覧にもどる</button>'
+       + '<button class="btn-sub" id="backToNow">いまの結果にもどる</button></div>';
+  }else{
+    const already = (state.records || []).length ? state.records[state.records.length-1] : null;
+    h += '<div class="card fade"><div class="sec-k">re:cord</div>'
+       + '<h2>この結果を記録する</h2>'
+       + '<p class="muted" style="font-size:.9rem">そのときの自分として残しておくと、あとから見返せます。次に受けたときの比較にも使えます。'
+       + (state.preState ? '<br>今回は「' + preStateLabel(state.preState) + '」状態で回答しました。' : '') + '</p>'
+       + '<input id="recNote" class="rec-input" maxlength="120" placeholder="一言メモ（任意）　例：仕事で余裕がなかった時期">'
+       + '<button class="btn" id="recSave">この結果を記録する</button>'
+       + (already ? '<div class="picked-note">前回の記録：' + ymd(already.t) + '</div>' : '') + '</div>';
+  }
+
+  // この結果を使う
+  h += '<div class="card fade"><div class="sec-k">この結果を使う</div><div class="tool-grid">'
+     + '<button class="tool-b" data-go="view"><b>re:view</b>相手からはどう見える？</button>'
+     + '<button class="tool-b" data-go="pair"><b>re:pair</b>関係をどう直す？</button>'
+     + '<button class="tool-b" data-go="play"><b>re:play</b>あの場面をもう一度</button>'
+     + '<button class="tool-b" data-go="phrase"><b>re:phrase</b>言葉を整理する</button>'
+     + '<button class="tool-b" data-go="record"><b>re:cord</b>自分の記録</button>'
+     + '<button class="tool-b" data-go="share"><b>re:share</b>結果をシェアする</button>'
+     + '<button class="tool-b alt" data-go="mind"><b>re:mind</b>今ちょっと困っている</button>'
      + '</div></div>';
 
-  h += '<button class="btn-sub lv-btn' + (state.level >= 2 ? ' hidden' : '') + '" id="btnLv2">もう少し詳しく見る（8軸・プレッシャー比較・価値観）</button>';
+  h += '<button class="btn-sub lv-btn' + (state.level >= 2 ? ' hidden' : '') + '" id="btnLv2">もう少し見る</button>';
 
-  /* ---------- LEVEL 2 ---------- */
+  /* ---------- もう少し見る ---------- */
   h += '<div id="lv2" class="' + (state.level >= 2 ? '' : 'hidden') + '">';
 
-  h += '<div class="card"><h2>8軸プロフィール</h2>'
-     + '<p class="muted" style="font-size:.88rem">上の5つは高いほどその行動が出やすいこと、下の3つは良し悪しではなく「その反応の出やすさ」を表します。</p>'
-     + '<div class="group-title">STRENGTH　向き合うための反応</div>';
+  h += '<div class="card"><h2>あなたの反応バランス</h2>'
+     + '<p class="muted" style="font-size:.88rem;margin-bottom:20px">上の5つは高いほどその行動が出やすいこと、下の3つは良し悪しではなく「その反応の出やすさ」を表します。数字は目安で、主役は言葉のほうです。</p>'
+     + '<div class="group-title">向き合うための反応</div>';
   ["A","B","C","D","E"].forEach(function(k){ h += barHTML(k, n[k], false); });
-  h += '<div class="group-title" style="margin-top:22px">RISK REACTION　問題を悪化させやすい反応</div>';
+  h += '<div class="group-title" style="margin-top:26px">守りに入るときの反応</div>';
   ["F","G","H"].forEach(function(k){ h += barHTML(k, n[k], true); });
-  h += '<div class="why" style="margin-top:18px"><div class="why-t">' + cN.name + '型（初動）に効いた項目</div>'
+  h += '<div class="why" style="margin-top:22px"><div class="why-t">' + cN.name + 'になった理由（初動）</div>'
      + ch.initialReasons.map(function(x){ return '<div class="why-r"><span>' + x.name + '</span><span class="why-v">' + (x.value===undefined?"—":x.value) + '</span></div>'; }).join("")
      + '</div>'
-     + (ch.same ? "" : '<div class="why"><div class="why-t">' + cR.name + '型（立て直し）に効いた項目</div>'
+     + (ch.same ? "" : '<div class="why"><div class="why-t">' + cR.name + 'になった理由（立て直し）</div>'
         + ch.recoveryReasons.map(function(x){ return '<div class="why-r"><span>' + x.name + '</span><span class="why-v">' + (x.value===undefined?"—":x.value) + '</span></div>'; }).join("") + '</div>')
      + '</div>';
 
-  // 低プレッシャー / 高プレッシャー（同一テーマのペア設問で比較）
+  // プレッシャー比較
   const hc = a2.hotCold;
   const dOrder = AXIS_ORDER.slice().sort(function(a,b){ return Math.abs(hc.delta[b]) - Math.abs(hc.delta[a]); });
   const dTop = dOrder[0];
   const dAbs = Math.abs(hc.delta[dTop]);
   h += '<div class="card"><h2>失うものが小さい場面と、大きい場面</h2>'
-     + '<p class="muted" style="font-size:.9rem">「約束を忘れた」「人を傷つけた」など<strong>同じ心理テーマで、失うものの大きさだけが違う' + hc.pairs + '組</strong>の設問を比べています（回答済み ' + hc.answeredPairs + '組）。便宜的にCOLD／HOTと呼びますが、実際の心理状態を測ったものではなく、回答の寄り方の違いです。</p>'
-     + '<div class="hotcold"><div class="hc-col cold"><div class="hc-k">COLD　失うものが小さい場面</div>'
-     + ["A","B","C","D"].map(function(k){ return miniBar(AXES[k].name, hc.cold[k], false); }).join("")
+     + '<p class="muted" style="font-size:.9rem">「約束を忘れた」「人を傷つけた」など、<strong>同じテーマで失うものの大きさだけが違う' + hc.pairs + '組</strong>の場面を比べています（回答済み ' + hc.answeredPairs + '組）。実際の心理状態を測ったものではなく、選び方の違いです。</p>'
+     + '<div class="hotcold"><div class="hc-col cold"><div class="hc-k">失うものが<br>小さい場面</div>'
+     + ["A","B","C","D"].map(function(k){ return miniBar(SOFT[k].replace(/力$|反応$/,""), hc.cold[k], false); }).join("")
      + ["F","G","H"].map(function(k){ return miniBar(AXES[k].name, hc.cold[k], true); }).join("")
-     + '</div><div class="hc-col hot"><div class="hc-k">HOT　失うものが大きい場面</div>'
-     + ["A","B","C","D"].map(function(k){ return miniBar(AXES[k].name, hc.hot[k], false); }).join("")
+     + '</div><div class="hc-col hot"><div class="hc-k">失うものが<br>大きい場面</div>'
+     + ["A","B","C","D"].map(function(k){ return miniBar(SOFT[k].replace(/力$|反応$/,""), hc.hot[k], false); }).join("")
      + ["F","G","H"].map(function(k){ return miniBar(AXES[k].name, hc.hot[k], true); }).join("")
      + '</div></div>';
   if(dAbs >= 8){
-    h += '<p class="prose" style="margin-top:14px">最も差が出たのは<strong>' + AXES[dTop].name + '</strong>で、' + hc.cold[dTop] + ' から ' + hc.hot[dTop] + ' への変化でした。'
+    h += '<p class="prose" style="margin-top:16px">いちばん差が出たのは<strong>' + AXES[dTop].name + '</strong>で、' + hc.cold[dTop] + ' から ' + hc.hot[dTop] + ' へ。'
        + (["F","G","H"].indexOf(dTop) >= 0
           ? (hc.delta[dTop] > 0 ? "失うものが大きくなるほど、この反応が強まる可能性があります。" : "失うものが大きい場面のほうが、この反応は抑えられているようです。")
           : (hc.delta[dTop] > 0 ? "失うものが大きい場面のほうが、この力は出やすいようです。" : "失うものが大きくなるほど、この力が出にくくなる可能性があります。"))
        + '</p>';
   }else{
-    h += '<p class="prose" style="margin-top:14px">どの軸も差は小さめでした（最大でも' + dAbs + '）。失うものの大きさによって選び方が大きく変わる、という傾向は今回の回答からは見えていません。</p>';
+    h += '<p class="prose" style="margin-top:16px">どの軸も差は小さめでした（最大でも' + dAbs + '）。失うものの大きさで選び方が大きく変わる、という傾向は今回は見えていません。</p>';
   }
   if(hc.themes.length){
     const t0 = hc.themes[0];
-    h += '<div class="why"><div class="why-t">テーマ別の変化（大きい順に3つ）</div>'
+    h += '<div class="why"><div class="why-t">テーマ別の変化（大きい順に3つ／数値が高いほど問題を大きくしやすい選択）</div>'
        + hc.themes.slice(0,3).map(function(t){
            return '<div class="why-r"><span>' + t.theme + '</span><span class="why-v">' + t.low + ' → ' + t.high + '</span></div>';
          }).join("")
-       + '<div class="why-r faint" style="margin-top:6px">数値が大きいほど、問題を悪化させやすい側の選択です。'
-       + (t0.diff >= 25 ? ('「' + t0.theme + '」で最も動いています。') : '大きく動いたテーマはありません。') + '</div></div>';
+       + (t0.diff >= 25 ? '<div class="why-r faint" style="margin-top:8px">「' + t0.theme + '」で最も動いています。</div>' : '') + '</div>';
   }
-  h += '<div class="note" style="margin-top:12px">これは「理解―実行ギャップ」とは別の指標です。ギャップは<strong>わかっている行動と、やりそうな行動の差</strong>。こちらは<strong>失うものの大きさによる選び方の差</strong>です。</div></div>';
+  h += '</div>';
 
-  // プレッシャー倍率
-  h += '<div class="card"><h2>プレッシャーが強くなるとどう変わる？</h2>'
-     + '<p class="muted" style="font-size:.88rem">推定傾向です。科学的な精度を示すものではありません。</p>';
-  const pLabels = ["小さな失敗（失うものが少ない）","関係・評価に影響する失敗","人生への影響が大きい失敗"];
+  // プレッシャー3段階
+  h += '<div class="card"><h2>プレッシャーが強くなると</h2>'
+     + '<p class="muted" style="font-size:.88rem">推定される傾向です。精密な測定ではありません。</p>';
+  const pLabels = ["小さな失敗（失うものが少ない）","関係や評価に響く失敗","影響が大きい失敗"];
   a2.pressure.forEach(function(p,i){
     h += '<div class="plv"><div class="plv-h">LEVEL ' + p.level + '　' + pLabels[i] + '</div>'
-       + miniBar("真実開示", p.prof.A, false)
-       + miniBar("自己正当化", p.prof.F, true)
-       + miniBar("防衛的反発", p.prof.G, true)
-       + miniBar("回避・隠蔽", p.prof.H, true)
+       + miniBar("事実を出す", p.prof.A, false)
+       + miniBar("理由を探す", p.prof.F, true)
+       + miniBar("守る言葉", p.prof.G, true)
+       + miniBar("距離を置く", p.prof.H, true)
        + '</div>';
   });
   const dA = a2.pressure[2].prof.A - a2.pressure[0].prof.A;
   const dH = a2.pressure[2].prof.H - a2.pressure[0].prof.H;
-  h += '<p class="prose" style="margin-top:12px">失うものが大きい場面では、真実開示が' + (dA<0?"下がり":"上がり") + '（' + a2.pressure[0].prof.A + '→' + a2.pressure[2].prof.A + '）、回避・隠蔽が' + (dH>0?"上がり":"下がり") + 'やすい（' + a2.pressure[0].prof.H + '→' + a2.pressure[2].prof.H + '）という結果でした。'
-     + (Math.abs(dA) >= 12 || Math.abs(dH) >= 12 ? "差が比較的はっきりしているので、賭け金が上がる場面ほど事前のルールが効きます。" : "差は大きくありません。プレッシャーによる揺れは比較的小さいほうかもしれません。") + '</p></div>';
+  h += '<p class="prose" style="margin-top:14px">失うものが大きい場面では、事実を出す力が' + (dA<0?"下がり":"上がり") + '（' + a2.pressure[0].prof.A + '→' + a2.pressure[2].prof.A + '）、距離を置きたくなる反応が' + (dH>0?"上がり":"下がり") + 'やすい（' + a2.pressure[0].prof.H + '→' + a2.pressure[2].prof.H + '）という結果でした。'
+     + (Math.abs(dA) >= 12 || Math.abs(dH) >= 12 ? "差がはっきりしているので、賭け金が上がる場面ほど、事前に決めておいたルールが効きます。" : "差は大きくありません。プレッシャーによる揺れは比較的小さいほうかもしれません。") + '</p></div>';
 
-  // 理解―実行ギャップ（内訳も出す）
-  h += '<div class="card"><h2>理解―実行ギャップ</h2><div class="gap-num">' + r.gap.value + '</div>'
-     + '<div class="bar-track" style="margin-top:10px"><div class="bar-fill risk" data-w="' + r.gap.value + '" style="width:0"></div></div>'
-     + '<div class="gap-scale"><span>0　理解と行動が近い</span><span>離れている　100</span></div>'
-     + '<p class="prose" style="margin-top:14px">' + TEXT.gapText(r.gap.value) + '</p>'
+  // ギャップ詳細
+  h += '<div class="card"><h2>わかっていることと、やりそうなことの差</h2>'
+     + '<p class="muted" style="font-size:.86rem">正式には「理解―実行ギャップ」と呼んでいる指標です。</p>'
+     + '<div class="gap-num">' + r.gap.value + '</div>'
+     + '<div class="bar-track" style="margin-top:12px"><div class="bar-fill risk" data-w="' + r.gap.value + '" style="width:0"></div></div>'
+     + '<div class="gap-scale"><span>0　近い</span><span>離れている　100</span></div>'
+     + '<p class="prose" style="margin-top:16px">' + TEXT.gapText(r.gap.value) + '</p>'
      + '<div class="why"><div class="why-t">内訳（8問中 ' + r.gap.matched + '問は、適切だと思う案と実際に取りそうな案が一致）</div>'
-     + '<div class="why-r"><span>適切さの差（どれだけ下の案に降りたか）</span><span class="why-v">' + r.gap.rankPart + '</span></div>'
-     + '<div class="why-r"><span>心理的な向きの差（8軸上の距離）</span><span class="why-v">' + r.gap.distPart + '</span></div>'
-     + '<div class="why-r faint" style="margin-top:6px">この2つを半々で合成しています。適切だと思う案の質そのものは ' + r.gap.understanding + ' でした。</div></div>'
-     + '<div class="note" style="margin-top:12px">これは<strong>わかっている行動と、やりそうな行動の差</strong>です。上の「失うものが小さい場面と大きい場面」（プレッシャーによる差）とは別の指標として読んでください。</div></div>';
+     + '<div class="why-r"><span>適切さの差</span><span class="why-v">' + r.gap.rankPart + '</span></div>'
+     + '<div class="why-r"><span>心理的な向きの差</span><span class="why-v">' + r.gap.distPart + '</span></div>'
+     + '<div class="why-r faint" style="margin-top:8px">2つを半々で合成しています。適切だと思う案の質そのものは ' + r.gap.understanding + ' でした。</div></div>'
+     + '<div class="note" style="margin-top:14px">これは<strong>わかっている行動と、やりそうな行動の差</strong>です。ひとつ上の「失うものの大きさによる差」とは別の指標です。</div></div>';
+
+  // 責任と自己否定
+  h += '<div class="card"><h2>「責任を取る」と「自分を責める」は別</h2>'
+     + '<p class="type-inline round">' + a2.responsibility.label + '</p>'
+     + '<p class="prose">' + a2.responsibility.body + '</p>'
+     + '<div class="note" style="margin:16px 0 0">自分を責め続けるほど誠実、という考え方はここでは採りません。責任は、相手の側で起きたことを戻すための作業です。自己否定はその作業を早めません。</div></div>';
+
+  // 詳しく読む
+  h += '<div class="card"><h2>もう少し詳しく</h2><div class="narr">'
+     + '<div class="narr-b"><span class="narr-k">ふだんは</span>' + R.nar.pattern + '</div>'
+     + '<div class="narr-b"><span class="narr-k">ただし</span>' + R.nar.but + '</div>'
+     + '<div class="narr-b"><span class="narr-k">それは</span>' + R.nar.why + '</div>'
+     + '<div class="narr-b"><span class="narr-k">行き過ぎると</span>' + R.nar.risk + '</div>'
+     + '<div class="narr-b rule"><span class="narr-k">だから</span>' + R.nar.rule + '</div>'
+     + '</div><div class="prose long">'
+     + TEXT.profileText(r).map(function(p){ return '<p>' + p + '</p>'; }).join("")
+     + '</div></div>';
+
+  h += '<div class="card"><h2>なぜこの結果になった？</h2>'
+     + '<div class="prose">' + whyText(R).map(function(t){ return '<p>' + t + '</p>'; }).join("") + '</div>'
+     + '<button class="btn-sub" id="btnWhy">使った数値も見る</button>'
+     + '<div id="whyBox" class="hidden"></div></div>';
 
   // 価値観
   h += '<div class="card"><h2>あなたが大事にしたい自分</h2>';
   if(state.values && state.values.length){
     h += '<div class="vals">' + state.values.map(function(v){ return '<span class="val-chip">' + v + '</span>'; }).join("") + '</div>';
     TEXT2.valueGap(state.values, n).forEach(function(g){
-      h += '<div class="vgap"><div class="vgap-h">' + g.v + '<span class="faint">　' + g.axis + ' ' + g.value + '</span></div><div class="vgap-b">' + g.line + '</div></div>';
+      h += '<div class="vgap"><div class="vgap-h">' + g.v + '<span class="faint" style="font-weight:400">　' + g.axis + ' ' + g.value + '</span></div><div class="vgap-b">' + g.line + '</div></div>';
     });
     h += '<button class="btn-sub" data-go="values">選び直す</button>';
   }else{
-    h += '<p class="muted" style="font-size:.92rem">「自分は何を大事にして生きたいか」を3つ選ぶと、大事にしたい自分と実際の反応の距離を表示します。診断スコアには影響しません。</p>'
-       + '<button class="btn-sub" data-go="values">価値観を選ぶ</button>';
+    h += '<p class="muted" style="font-size:.92rem">「自分は何を大事にして生きたいか」を3つ選ぶと、大事にしたい自分と実際の反応の距離を表示します。診断のスコアには影響しません。</p>'
+       + '<button class="btn-sub" data-go="values">3つ選ぶ</button>';
   }
   h += '</div>';
 
@@ -2646,7 +3597,7 @@ function renderResult(){
   const cs = r.consistency;
   flags.push('回答の一貫性：' + cs.level + '<br><span class="faint">'
     + (cs.level === "やや揺れあり"
-        ? '似た意味の設問や、「普段の自分」と「場面での選択」の間に幅がありました。場面によって反応が変わりやすい可能性があります。どちらかが誤りという意味ではありません。'
+        ? '似た意味の設問や、「普段の自分」と「場面での選択」の間に幅がありました。場面によって反応が変わりやすいのかもしれません。どちらかが誤りという意味ではありません。'
         : (cs.level === "高い"
             ? '形式の違う設問どうしでも、選び方の方向がおおむねそろっていました。'
             : '大きな食い違いは見られませんでした。'))
@@ -2655,113 +3606,87 @@ function renderResult(){
   if(crossBig && Math.abs(crossBig.diff) > 28){
     flags.push(AXES[crossBig.axis].name + 'は、自己評価（' + crossBig.s2 + '）と場面での選択（' + crossBig.s1 + '）で差がありました。<br><span class="faint">自分でそう思っていることと、具体的な場面で選ぶことがずれやすい領域かもしれません。</span>');
   }
-  if(r.idealization.high) flags.push('今回の回答では、問題を悪化させにくい選択が非常に多く選ばれています<br><span class="faint">実際の行動傾向というより、「こうありたい自分」が一部反映されている可能性もあります。結果は少し幅を持って読んでください。</span>');
-  if(r.initial.flat) flags.push('特定の反応が突出しているというより、状況によって反応が変わりやすいタイプでした<br><span class="faint">8軸のどれも中央から10以内です。この場合、結果は「弱点の指摘」ではなく「決まった逃げ道がない」という読み方のほうが近くなります。</span>');
+  if(r.idealization.high) flags.push('今回は、問題を大きくしにくい選択がとても多く選ばれています<br><span class="faint">実際の行動というより「こうありたい自分」が一部反映されている可能性もあります。結果は少し幅を持って読んでください。</span>');
+  if(r.initial.flat) flags.push('特定の反応が突出しているというより、状況によって反応が変わりやすいタイプでした<br><span class="faint">8つのどれも中央から10以内です。この場合は「弱点の指摘」ではなく「決まった逃げ道がない」という読み方のほうが近くなります。</span>');
   h += '<div class="card"><h2>回答の読み方について</h2>' + flags.map(function(f){ return '<div class="flag">' + f + '</div>'; }).join("") + '</div>';
 
-  h += '<button class="btn-sub lv-btn' + (state.level >= 3 ? ' hidden' : '') + '" id="btnLv3">さらに深く読む（心理分析・IF→THEN・修復コンパス）</button>';
+  h += '<button class="btn-sub lv-btn' + (state.level >= 3 ? ' hidden' : '') + '" id="btnLv3">この先に使う</button>';
   h += '</div>'; // /lv2
 
-  /* ---------- LEVEL 3 ---------- */
+  /* ---------- この先に使う ---------- */
   h += '<div id="lv3" class="' + (state.level >= 3 ? '' : 'hidden') + '">';
 
-  // PATTERN → BUT → WHY → RISK → RULE
-  h += '<div class="card"><h2>あなたの特徴</h2><div class="narr">'
-     + '<div class="narr-b"><span class="narr-k">PATTERN</span>' + R.nar.pattern + '</div>'
-     + '<div class="narr-b"><span class="narr-k">BUT</span>' + R.nar.but + '</div>'
-     + '<div class="narr-b"><span class="narr-k">WHY</span>' + R.nar.why + '</div>'
-     + '<div class="narr-b"><span class="narr-k">RISK</span>' + R.nar.risk + '</div>'
-     + '<div class="narr-b rule"><span class="narr-k">RULE</span>' + R.nar.rule + '</div>'
-     + '</div><div class="prose long">'
-     + TEXT.profileText(r).map(function(p){ return '<p>' + p + '</p>'; }).join("")
-     + '</div><button class="btn-sub" id="btnWhy">なぜこの結果になった？</button>'
-     + '<div id="whyBox" class="hidden"></div></div>';
-
-  // 残りの矛盾
-  if(a2.contradictions.length > 1){
-    h += '<div class="card"><h2>ほかにも見えた組み合わせ</h2>';
-    a2.contradictions.slice(1).forEach(function(c){
-      h += '<div class="contra-sub"><div class="contra-t small">' + c.title + '</div><p class="prose">' + c.body + '</p>'
-         + (ANALYSIS2.NEED[c.id] ? '<div class="need">' + ANALYSIS2.NEED[c.id] + '</div>' : '')
-         + '<div class="basis">根拠：' + c.basis.join("／") + '</div></div>';
-    });
-    h += '</div>';
-  }
-
-  // 責任と自己否定
-  h += '<div class="card"><h2>「責任を取る」と「自分を責める」は別</h2>'
-     + '<p class="type-inline">' + a2.responsibility.label + '</p>'
-     + '<p class="prose">' + a2.responsibility.body + '</p>'
-     + '<div class="note" style="margin:14px 0 0">自分を責め続けるほど誠実、という考え方はここでは採りません。責任は、相手の側で起きたことを戻すための作業です。自己否定はその作業を早めません。</div></div>';
-
-  // 初動／立て直しのテキストタイプ
-  h += '<div class="card"><h2>あなたの初動反応</h2><p class="type-inline">' + r.initial.label + '</p>'
-     + '<p class="prose">' + TEXT.INITIAL_DESC[r.initial.key] + '</p><hr class="sep">'
-     + '<h2>あなたの立て直し方</h2><p class="type-inline">' + r.recovery.label + '</p>'
-     + '<p class="prose">' + TEXT.RECOVERY_DESC[r.recovery.key] + '</p></div>';
-
-  // IF → THEN
-  h += '<div class="card" id="rulesCard"><h2>もし自分がやらかした時の、5つのルール</h2>'
-     + '<p class="muted" style="font-size:.9rem">スコアの組み合わせから作られた、あなた向けの IF → THEN です。</p>';
+  h += '<div class="card" id="rulesCard"><div class="sec-k">future me memo</div><h2>もし、やらかしたときのルール</h2>'
+     + '<p class="muted" style="font-size:.9rem;margin-bottom:20px">あなたの回答の組み合わせから作った、あなた向けの5つです。</p>';
   R.ift.forEach(function(x,i){
-    h += '<div class="ifthen"><div class="if-n">' + (i+1) + '</div><div class="if-body">'
+    h += '<div class="ifthen"><div class="if-n">0' + (i+1) + '</div>'
        + '<div class="if-l"><span class="k">IF</span>' + x.i + '</div>'
-       + '<div class="if-l then"><span class="k">THEN</span>' + x.t + '</div></div></div>';
+       + '<div class="if-l then"><span class="k">THEN</span>' + x.t + '</div></div>';
   });
   h += '</div>';
 
-  // 共通ルール
-  h += '<div class="card"><h2>やらかした直後の、全員共通ルール</h2>';
-  TEXT.COMMON_RULES.forEach(function(t,i){ h += '<div class="rule common"><div class="rule-n">' + (i+1) + '</div><div>' + t + '</div></div>'; });
+  h += '<div class="card"><h2>誰にでも効く、5つ</h2>';
+  TEXT.COMMON_RULES.forEach(function(t,i){ h += '<div class="rule"><div class="rule-n">' + (i+1) + '</div><div>' + t + '</div></div>'; });
   h += '</div>';
 
-  // 過去・現在・未来
-  const trg = a2.triggers.length ? a2.triggers[0] : null;
-  h += '<div class="card"><h2>過去・現在・未来</h2>'
-     + '<div class="tl"><div class="tl-k">過去</div><div>' + (trg ? "あなたが崩れやすいのは、" + trg.name + "でした。" : "特定の条件に偏った崩れ方は見られませんでした。") + '</div></div>'
-     + '<div class="tl"><div class="tl-k">現在</div><div>' + (function(){
-         const rk = ["F","G","H"].slice().sort(function(a,b){ return n[b]-n[a]; })[0];
-         return n[rk] >= 45
-           ? ('その瞬間には、' + AXES[rk].name + 'の反応（' + n[rk] + '）が最初に出やすいようです。')
-           : ('その瞬間に決まって出る反応は、はっきりしていません（最も高い' + AXES[rk].name + 'でも' + n[rk] + '）。そのぶん、場面ごとの差が出やすいと考えられます。');
-       })() + '</div></div>'
-     + '<div class="tl"><div class="tl-k">未来</div><div>' + R.ift[0].i + 'とき、' + R.ift[0].t + '　これを持っておくと踏みとどまりやすくなります。</div></div></div>';
-
-  // 修復コンパス
-  h += '<div class="card"><h2>修復コンパス</h2>'
+  h += '<div class="card"><h2>問題のあとの、5つの方向</h2>'
      + '<p class="muted" style="font-size:.9rem">実際に何かあったとき、この5方向で整理すると抜けが減ります。</p><div class="compass">';
   TEXT2.COMPASS.forEach(function(c){
     h += '<div class="cmp"><div class="cmp-k">' + c.k + '</div><div class="cmp-j">' + c.ja + '</div><div class="cmp-q">' + c.q + '</div><div class="cmp-h">' + c.hint + '</div></div>';
   });
   h += '</div></div>';
 
-  // 履歴
-  if(state.history && state.history.length > 1){
-    const prev = state.history[state.history.length-2], now = state.history[state.history.length-1];
-    const diffs = AXIS_ORDER.map(function(k){ return {k:k, d:(now.norm[k]-prev.norm[k])}; })
-      .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); }).slice(0,3);
-    h += '<div class="card"><h2>前回との比較</h2>'
-       + '<p class="muted" style="font-size:.88rem">前回：' + new Date(prev.t).toLocaleString("ja-JP") + '<br>今回：' + new Date(now.t).toLocaleString("ja-JP") + '</p>'
-       + '<p class="muted" style="font-size:.88rem">性格が良くなった・悪くなったという見方はしません。回答の傾向がどう動いたかだけを表示します。</p>';
-    diffs.forEach(function(x){
-      h += '<div class="hist"><span>' + AXES[x.k].name + '</span><span class="hist-v">' + prev.norm[x.k] + ' → ' + now.norm[x.k] + '（' + (x.d>0?"+":"") + x.d + '）</span></div>';
+  const trg = a2.triggers.length ? a2.triggers[0] : null;
+  h += '<div class="card"><h2>過去・いま・これから</h2>'
+     + '<div class="tl"><div class="tl-k">過去</div><div>' + (trg ? "あなたが崩れやすかったのは、" + trg.name + "でした。" : "特定の条件に偏った崩れ方は見られませんでした。") + '</div></div>'
+     + '<div class="tl"><div class="tl-k">いま</div><div>' + (function(){
+         const rk = ["F","G","H"].slice().sort(function(a,b){ return n[b]-n[a]; })[0];
+         return n[rk] >= 45
+           ? ('その瞬間には、' + SOFT[rk] + '（' + n[rk] + '）が最初に出やすいようです。')
+           : ('その瞬間に決まって出る反応は、はっきりしていません（最も高い' + AXES[rk].name + 'でも' + n[rk] + '）。そのぶん、場面ごとの差が出やすいと考えられます。');
+       })() + '</div></div>'
+     + '<div class="tl"><div class="tl-k">これから</div><div>' + R.ift[0].i + 'とき、' + R.ift[0].t + '</div></div></div>';
+
+  if(a2.contradictions.length > 1){
+    h += '<div class="card"><h2>ほかにも見えた組み合わせ</h2>';
+    a2.contradictions.slice(1).forEach(function(c){
+      h += '<div class="contra-sub"><div class="contra-t small round">' + c.title + '</div><p class="prose">' + c.body + '</p>'
+         + (ANALYSIS2.NEED[c.id] ? '<div class="need">' + ANALYSIS2.NEED[c.id] + '</div>' : '')
+         + '<div class="basis">もとになった数値：' + c.basis.join("／") + '</div></div>';
     });
     h += '</div>';
   }
 
-  if(!state.history || state.history.length < 2){
-    h += '<div class="note">30日ほど間を空けてもう一度診断すると、前回との回答傾向の差をこの端末内だけで比較できます。良くなった・悪くなったという判定はしません。</div>';
+  h += charDetail(ch.initial, "初動に出やすい");
+  if(!ch.same) h += charDetail(ch.recovery, "立て直しに出やすい");
+  if(ch.sub) h += charDetail(ch.sub, "ときどき顔を出す");
+
+  const cmp = comparePair();
+  if(cmp){
+    const diffs = AXIS_ORDER.map(function(k){ return {k:k, d:(cmp.now[k]-cmp.prev[k])}; })
+      .sort(function(a,b){ return Math.abs(b.d)-Math.abs(a.d); }).slice(0,3);
+    h += '<div class="card"><h2>前回との違い</h2>'
+       + '<p class="muted" style="font-size:.88rem">前回：' + ymd(cmp.prevT) + '　／　今回：' + ymd(cmp.nowT) + '</p>'
+       + '<p class="muted" style="font-size:.88rem">良くなった・悪くなったという見方はしません。回答の傾向がどう動いたかだけを見ます。</p>';
+    diffs.forEach(function(x){
+      const dir = x.d > 0 ? "少し高く出ています" : (x.d < 0 ? "少し低く出ています" : "ほぼ同じでした");
+      h += '<div class="hist"><span>' + SOFT[x.k] + '</span><span class="hist-v">' + cmp.prev[x.k] + ' → ' + cmp.now[x.k] + '　' + dir + '</span></div>';
+    });
+    if(cmp.prevCh && (cmp.prevCh.initial !== ch.initial)){
+      h += '<p class="prose" style="margin-top:14px">前回は' + CHARS[cmp.prevCh.initial].name + 'が最初に出ていました。性格が変わったということではなく、今回はこの反応が少し前に出た、という読み方をしてください。</p>';
+    }
+    h += '</div>';
+  }else{
+    h += '<div class="note">この結果を記録しておくと、次に受けたときに「前回との違い」を見られます。良くなった・悪くなったという判定はしません。</div>';
   }
 
-  // キャラクター詳細と図鑑
-  h += charDetail(ch.initial, "初動");
-  if(!ch.same) h += charDetail(ch.recovery, "立て直し");
-  if(ch.sub) h += charDetail(ch.sub, "サブ傾向");
-  h += '<div class="card"><h2>キャラクター一覧</h2><p class="muted" style="font-size:.9rem">どの反応にも、人間として合理的な理由があります。優劣はありません。</p>' + galleryHTML(true) + '</div>';
+  h += '<div class="card"><h2>re:act characters</h2><p class="muted" style="font-size:.9rem">どの反応にも、人としての理由があります。優劣はありません。</p>' + galleryHTML(true) + '</div>';
   h += '</div>'; // /lv3
 
-  h += '<div class="card"><p class="disclaimer">本診断は心理学研究の知見を参考にした自己理解ツールであり、臨床心理検査・医学的診断・科学的に妥当性が検証済みの心理尺度ではありません。将来の不倫・犯罪・裏切り等を予測するものではありません。回答・履歴・メモは外部に送信されず、この端末内だけに保存されています。</p>'
-     + '<button class="btn-sub" id="btnAgain">最初からやり直す</button>'
+  h += '<div class="card"><div class="logo-sm round" style="margin-bottom:12px">re<span class="c">:</span>act</div>'
+     + '<p class="disclaimer">re:actは心理学研究の知見を参考にした自己理解ツールであり、臨床心理検査・医学的診断・科学的に妥当性が検証済みの心理尺度ではありません。将来の不倫・犯罪・裏切り等を予測するものではありません。回答・履歴・メモは外部に送信されず、この端末内だけに保存されています。</p>'
+     + '<button class="btn-sub" data-go="print">結果を印刷・PDFで保存する</button>'
+     + '<button class="btn-sub" id="btnAgain">もう一度やってみる</button>'
      + '<button class="btn-sub" id="btnWipe2">保存されたデータを全部削除する</button></div>';
 
   el.result.innerHTML = h;
@@ -2777,12 +3702,28 @@ function renderResult(){
     const box = document.getElementById("whyBox");
     box.classList.toggle("hidden");
     if(!box.innerHTML){
-      box.innerHTML = '<div class="why" style="margin-top:12px"><div class="why-t">この文章が使った数値</div>'
+      box.innerHTML = '<div class="why" style="margin-top:14px"><div class="why-t">この文章が使った数値</div>'
         + R.nar.evidence.map(function(e){ return '<div class="why-r"><span>' + e + '</span></div>'; }).join("")
-        + '<div class="why-r faint" style="margin-top:8px">これらの組み合わせから文章の分岐を選んでいます。誰にでも当てはまる文章を並べているわけではありません。</div></div>';
+        + '<div class="why-r faint" style="margin-top:10px">これらの組み合わせで文章の分岐を選んでいます。誰にでも当てはまる文章を並べているわけではありません。</div></div>';
     }
   });
-  bind("btnAgain", function(){ startQuiz("btnAgain"); });
+  Array.prototype.forEach.call(el.result.querySelectorAll("[data-one]"), function(b){
+    b.onclick = function(){
+      state.todayRule = oneOpts[parseInt(b.dataset.one,10)]; save();
+      Array.prototype.forEach.call(el.result.querySelectorAll("[data-one]"), function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("pickNote2").textContent = '「' + state.todayRule + '」をホームに表示しています。';
+    };
+  });
+  bind("recSave", function(){
+    const note = (document.getElementById("recNote") || {}).value || "";
+    saveRecord(note);
+    state.justFinished = false;
+    const b = document.getElementById("recSave");
+    b.textContent = "記録しました"; b.disabled = true;
+  });
+  bind("backToNow", function(){ VIEWING_RECORD = null; computeAll(); renderResult(); show("result"); });
+  bind("btnAgain", function(){ VIEWING_RECORD = null; startQuiz("btnAgain"); });
   bind("btnWipe2", function(){
     if(!confirmTwice("wipe2", "btnWipe2", "もう一度押すと、保存データを全部削除します")) return;
     wipeAll(); save(); renderIntro(); show("intro");
@@ -2804,29 +3745,36 @@ function animateBars(){
 function galleryHTML(full){
   return '<div class="gal">' + CHAR_ORDER.map(function(id){
     const c = CHARS[id];
-    return '<div class="gal-item"><div class="gal-art">' + c.svg + '</div>'
-      + '<div class="gal-body"><div class="ch-name">' + c.name + '<span class="ch-tag">' + c.tag + '</span></div>'
-      + '<div class="gal-copy">「' + c.copy + '」</div>'
-      + '<div class="gal-txt">' + c.meaning + '</div>'
+    return '<div class="gal-item">'
+      + '<div class="gal-head"><div class="gal-art">' + c.svg + '</div>'
+      + '<div><div class="ch-name round">' + c.name + '</div>'
+      + '<div class="gal-copy">「' + c.copy + '」</div></div></div>'
+      + '<div class="gal-body"><div class="gal-txt">' + c.meaning + '</div>'
       + (full ? '<div class="gal-txt"><span class="det-l">強み</span>' + c.strength + '</div>'
-              + '<div class="gal-txt"><span class="det-l">注意点</span>' + c.caution + '</div>'
+              + '<div class="gal-txt"><span class="det-l">行き過ぎた時</span>' + c.caution + '</div>'
               + '<div class="motto small">「' + c.motto + '」</div>' : '')
       + '</div></div>';
   }).join("") + '</div>';
 }
 
 /* ================================================================
-   診断後の体験機能（診断本体とは分離）
+   re:シリーズ（診断後の機能）
    ================================================================ */
 function nav(name, arg){
-  if(name === "gallery") return renderGallery(haveResult());
-  if(name === "values") return renderValues();
-  if(name === "memo") return renderMemo();
-  if(name === "emergency") return renderEmergency();
-  if(name === "sim") return renderSimMenu();
-  if(name === "excuse") return renderExcuse();
-  if(name === "event") return renderEvent();
-  if(name === "share") return renderShare();
+  if(name === "gallery")  return renderGallery(haveResult());
+  if(name === "values")   return renderValues();
+  if(name === "memo")     return renderMemo();
+  if(name === "mind" || name === "emergency") return renderMind();
+  if(name === "play" || name === "sim")       return renderPlayMenu();
+  if(name === "phrase" || name === "excuse")  return renderPhrase();
+  if(name === "pair" || name === "event")     return renderPair();
+  if(name === "view")     return renderView();
+  if(name === "record")   return renderRecord();
+  if(name === "daily")    return renderDaily();
+  if(name === "share")    return renderShare();
+  if(name === "pickone")  return renderPickOne();
+  if(name === "settings") return renderSettings();
+  if(name === "print"){ window.print(); return; }
   if(name === "rules"){
     state.level = 3; save(); renderResult(); show("result");
     const c = document.getElementById("rulesCard");
@@ -2834,11 +3782,11 @@ function nav(name, arg){
     return;
   }
 }
-function backBtn(label){
-  return '<button class="btn-sub" id="toolBack">' + (label || "戻る") + '</button>';
-}
-function toolShell(title, body, lead){
-  el.tool.innerHTML = '<div class="card" style="margin-top:18px"><h1 class="tool-h">' + title + '</h1>'
+function backBtn(label){ return '<button class="btn-sub" id="toolBack">' + (label || "とじる") + '</button>'; }
+function toolShell(title, body, lead, sub){
+  el.tool.innerHTML = '<div class="card fade" style="margin-top:20px">'
+    + (sub ? '<div class="sec-k">' + sub + '</div>' : '')
+    + '<h1 class="tool-h round">' + title + '</h1>'
     + (lead ? '<p class="muted" style="font-size:.92rem">' + lead + '</p>' : '') + body
     + backBtn() + '</div>';
   bind("toolBack", function(){
@@ -2847,27 +3795,300 @@ function toolShell(title, body, lead){
   show("tool");
 }
 
-/* ---------- キャラクター図鑑 ---------- */
-function renderGallery(full){
-  toolShell("キャラクター一覧",
-    galleryHTML(full),
-    "失敗が起きたときに出やすい反応を11のキャラクターで表しています。良い反応・悪い反応という区別はありません。"
-    + (full ? "" : "判定のしくみは、回答への影響を避けるため診断後に表示します。"));
+/* ---------------- 次に意識するなら、ひとつ ---------------- */
+function nextOneOptions(){
+  if(!RESULT) computeAll();
+  const list = RESULT.ift.slice(0,3).map(function(x){ return x.t; });
+  const extra = ["悪い情報ほど、小出しにしない。", "消えたくなっても、連絡だけは止めない。", "反論はあと。まず事実。"];
+  extra.forEach(function(e){ if(list.length < 3 && list.indexOf(e) < 0) list.push(e); });
+  return list.slice(0,3);
+}
+function renderPickOne(){
+  const opts = nextOneOptions();
+  const body = '<div class="pick-one">' + opts.map(function(t,i){
+      return '<button class="pick-b' + (state.todayRule === t ? ' on' : '') + '" data-i="' + i + '">' + t + '</button>';
+    }).join("") + '</div>'
+    + '<div class="picked-note" id="pickNote">' + (state.todayRule ? '「' + state.todayRule + '」をホームに表示しています。' : 'ひとつ選ぶと、ホームに小さく表示されます。あとから変えられます。') + '</div>';
+  toolShell("次に意識するなら、どれにしますか？", body,
+    "全部やろうとしなくて大丈夫です。ひとつだけ持って帰るほうが、実際に思い出せます。", "re:act");
+  Array.prototype.forEach.call(el.tool.querySelectorAll(".pick-b"), function(b){
+    b.onclick = function(){
+      state.todayRule = opts[parseInt(b.dataset.i,10)]; save();
+      Array.prototype.forEach.call(el.tool.querySelectorAll(".pick-b"), function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("pickNote").textContent = '「' + state.todayRule + '」をホームに表示しています。';
+    };
+  });
 }
 
-/* ---------- 価値観コンパス ---------- */
+/* ---------------- 今日の1問 ---------------- */
+function renderDaily(){
+  const d = dailyForToday();
+  const saved = state.daily && state.daily[d.key];
+  function draw(){
+    const answered = state.daily && state.daily[d.key];
+    let body = '<div class="daily-q round">' + d.item.q + '</div>';
+    if(!answered){
+      body += '<div class="opts">' + d.item.a.map(function(o,i){
+        return '<button class="opt" data-i="' + i + '">' + o.t + '</button>';
+      }).join("") + '</div>'
+      + '<p class="disclaimer" style="margin-top:18px">点数はつきません。診断の結果にも影響しません。</p>';
+    }else{
+      body += '<div class="opts"><div class="opt sel">' + d.item.a[answered.a].t + '</div></div>'
+        + '<div class="daily-r">' + d.item.a[answered.a].r + '</div>'
+        + '<p class="disclaimer" style="margin-top:18px">明日には、別の問いになります。</p>'
+        + '<button class="btn-sub" id="dailyRedo">選び直す</button>';
+    }
+    toolShell("今日の1問", body, mdOnly(new Date()) + "の問いです。", "re:act");
+    Array.prototype.forEach.call(el.tool.querySelectorAll(".opt[data-i]"), function(b){
+      b.onclick = function(){
+        state.daily = state.daily || {};
+        state.daily[d.key] = {q:d.item.id, a:parseInt(b.dataset.i,10)};
+        save(); draw();
+      };
+    });
+    bind("dailyRedo", function(){ delete state.daily[d.key]; save(); draw(); });
+  }
+  draw();
+}
+
+/* ---------------- re:mind ---------------- */
+const FEELINGS = [
+  {k:"hurry", label:"焦り",     line:"焦っているときは、いちばん短時間で終わる選択が魅力的に見えます。それが後で一番高くつくこともあります。"},
+  {k:"anger", label:"怒り",     line:"怒りがあるときは、相手の落ち度のほうが大きく見えます。今日は送信ボタンを押さない、と決めるだけで十分です。"},
+  {k:"fear",  label:"怖さ",     line:"怖いときは、伝える範囲がだんだん小さくなります。全部でなくていいので、いちばん重い事実から先に出してください。"},
+  {k:"shame", label:"恥ずかしさ", line:"恥ずかしさが強いときは、損害の大きさより「どう見られるか」で判断しがちです。相手の側で起きたことを、先に書き出してみてください。"},
+  {k:"guilt", label:"罪悪感",   line:"罪悪感が強いときほど、謝ることで区切りをつけたくなります。相手が求めているのは、たいてい次の行動のほうです。"},
+  {k:"down",  label:"落ち込み", line:"落ち込みが深いときは、動けないこと自体が次の問題になります。今日は1つだけ、と決めてしまってください。"}
+];
+function renderMind(){
+  const hasR = haveResult();
+  if(hasR && !RESULT) computeAll();
+  let feel = null, level = null, stepI = -1;
+  const steps = TEXT2.emergencySteps(hasR ? RESULT.r : null, hasR ? RESULT.a2 : null);
+
+  function shell(inner){
+    el.tool.innerHTML = '<div style="margin-top:32px" class="fade">'
+      + '<div class="logo-sm round" style="margin-bottom:8px">re<span class="c">:</span>mind</div>'
+      + '<div class="sec-k" style="margin-bottom:26px">今の気持ちを確認する</div>'
+      + inner
+      + '<button class="btn-sub" id="toolBack" style="margin-top:30px">とじる</button></div>';
+    bind("toolBack", function(){
+      if(haveResult()){ renderResult(); show("result"); } else { renderIntro(); show("intro"); }
+    });
+    show("tool");
+  }
+  function draw(){
+    if(feel === null){
+      shell('<div class="panic-q round">今、いちばん近いのはどれですか。</div>'
+        + '<div class="feel-grid">' + FEELINGS.map(function(f){ return '<button class="feel-b" data-k="' + f.k + '">' + f.label + '</button>'; }).join("") + '</div>'
+        + '<button class="btn-sub" id="skipFeel" style="margin-top:16px">よく分からない</button>'
+        + '<p class="disclaimer" style="margin-top:22px">これは診断ではありません。医学的な判断もしません。今の状態を一度だけ言葉にして、判断を急がないための入口です。</p>');
+    }else if(level === null){
+      const f = FEELINGS.filter(function(x){ return x.k === feel; })[0];
+      shell('<div class="panic-q round">その強さは、どのくらいですか。</div>'
+        + '<div class="panic-row">' + Array.from({length:11}, function(_,i){ return '<button class="panic-b" data-p="' + i + '">' + i + '</button>'; }).join("") + '</div>'
+        + '<div class="panic-scale"><span>0 落ち着いている</span><span>10 いっぱいいっぱい</span></div>'
+        + (f ? '<div class="panic-msg" style="margin-top:26px">' + f.line + '</div>' : ''));
+    }else if(stepI === -1){
+      const high = level >= 7;
+      shell('<div class="panic-msg">' + (high
+        ? "今は、判断より防衛が先に出やすい状態かもしれません。正しい判断を出すより、悪手を1つ減らすほうが大事です。決めるのは後でいい。"
+        : "進められそうですね。順番に1つずつ確認していきましょう。") + '</div>'
+        + (state.memo ? '<div class="memo-paper" style="margin-bottom:20px"><div class="memo-k">future me</div><div style="font-size:.93rem;line-height:2.1">' + esc(state.memo).replace(/\n/g,"<br>") + '</div></div>' : '')
+        + '<button class="btn" id="emStart">1つずつ確認する</button>'
+        + '<button class="btn-sub" data-go="pair">先に、出来事を整理する</button>');
+    }else{
+      const st = steps[stepI];
+      shell('<div class="em-step"><div class="em-n">' + (stepI+1) + ' / ' + steps.length + '</div>'
+        + '<div class="em-t round">' + st.t + '</div><div class="em-b">' + st.b + '</div></div>'
+        + (stepI < steps.length-1
+            ? '<button class="btn" id="emNext">次へ</button>'
+            : '<div class="note">ここまでできれば、少なくとも今日、これ以上大きくすることは避けられます。残りは明日でいい。</div><button class="btn-sub" data-go="pair">出来事を整理する</button>')
+        + (stepI > 0 ? '<button class="btn-sub" id="emPrev">前にもどる</button>' : ''));
+    }
+    Array.prototype.forEach.call(el.tool.querySelectorAll(".feel-b"), function(b){
+      b.onclick = function(){ feel = b.dataset.k; draw(); };
+    });
+    Array.prototype.forEach.call(el.tool.querySelectorAll(".panic-b"), function(b){
+      b.onclick = function(){ level = parseInt(b.dataset.p,10); draw(); };
+    });
+    Array.prototype.forEach.call(el.tool.querySelectorAll("[data-go]"), function(b){
+      b.onclick = function(){ nav(b.dataset.go); };
+    });
+    bind("skipFeel", function(){ feel = "unknown"; level = 5; draw(); });
+    bind("emStart", function(){ stepI = 0; draw(); });
+    bind("emNext", function(){ stepI++; draw(); });
+    bind("emPrev", function(){ stepI--; draw(); });
+  }
+  draw();
+}
+
+/* ---------------- re:view ---------------- */
+function renderView(){
+  if(!RESULT && haveResult()) computeAll();
+  const n = RESULT ? RESULT.r.norm : null;
+  let list = VIEWS.slice();
+  if(n){
+    /* その人に起きやすい行動を上に */
+    list.sort(function(a,b){
+      const va = (n[a.k] !== undefined) ? n[a.k] : 50;
+      const vb = (n[b.k] !== undefined) ? n[b.k] : 50;
+      return vb - va;
+    });
+  }
+  const body = list.map(function(v){
+    return '<div class="card inner" style="margin-top:14px">'
+      + '<div class="det"><span class="det-l">行動</span><strong>' + v.act + '</strong></div>'
+      + '<div class="two-side">'
+        + '<div class="s-l">自分の側</div><div class="s-b">' + v.me + '</div>'
+        + '<div class="s-l">相手から見えること</div><div class="s-b">' + v.you + '</div>'
+      + '</div>'
+      + '<div class="det" style="margin:12px 0 0"><span class="det-l">ひとつ変えるなら</span>' + v.tip + '</div>'
+      + '</div>';
+  }).join("");
+  toolShell("相手からはどう見える？", body,
+    "同じ行動でも、自分の側の理由と、相手の側に見えることは別々に存在します。相手の気持ちを当てるものではありません。「そう見えることがある」という程度で読んでください。",
+    "re:view");
+}
+
+/* ---------------- re:pair ---------------- */
+function renderPair(){
+  const draft = state.repair || {};
+  const body = '<div class="compass">' + REPAIR_STEPS.map(function(c){
+      return '<div class="cmp">'
+        + '<div class="cmp-k">' + c.en + '</div>'
+        + '<div class="cmp-j">' + c.ja + '　<span class="faint" style="font-weight:400;font-size:.88rem">' + c.q + '</span></div>'
+        + '<div class="cmp-h" style="margin:0 0 10px">' + c.hint + '</div>'
+        + '<textarea class="memo pair-in" data-k="' + c.k + '" rows="3" placeholder="ここに書けます">' + esc(draft[c.k] || "") + '</textarea>'
+        + '</div>';
+    }).join("") + '</div>'
+    + '<button class="btn" id="pairSave" style="margin-top:18px">下書きを保存する</button>'
+    + '<button class="btn-sub" id="pairClear">消す</button>'
+    + '<div class="note" style="margin-top:16px">書いた内容はどこにも送信されません。この端末のブラウザ内にだけ残ります。</div>';
+  toolShell("関係をどう直す？", body,
+    "実際にあった出来事を、5つに分けて整理します。全部埋めなくて大丈夫です。埋まらない欄があること自体が手がかりになります。",
+    "re:pair");
+  bind("pairSave", function(){
+    const d = {};
+    Array.prototype.forEach.call(el.tool.querySelectorAll(".pair-in"), function(t){ d[t.dataset.k] = t.value; });
+    state.repair = d; save();
+    const b = document.getElementById("pairSave");
+    b.textContent = "保存しました"; setTimeout(function(){ b.textContent = "下書きを保存する"; }, 1600);
+  });
+  bind("pairClear", function(){
+    if(!confirmTwice("pairClear", "pairClear", "もう一度押すと、下書きを消します")) return;
+    wipePart("repair"); renderPair();
+  });
+}
+
+/* ---------------- re:phrase ---------------- */
+function renderPhrase(){
+  const body = '<div class="ex-fig">' + CHARS.fox.svg + '</div>'
+    + '<div class="ex-list">' + EXCUSES.map(function(e,i){
+      return '<button class="ex-b" data-i="' + i + '">' + e.t + '</button>';
+    }).join("") + '</div><div id="exOut"></div>';
+  toolShell("言葉を整理する", body,
+    "言ってしまったこと、言いたくなったことのある言葉を選んでください。責めるためのものではありません。その言葉が守ろうとしている可能性と、責任を回避しない言い換えを並べます。",
+    "re:phrase");
+  Array.prototype.forEach.call(el.tool.querySelectorAll(".ex-b"), function(b){
+    b.onclick = function(){
+      const e = EXCUSES[parseInt(b.dataset.i,10)];
+      Array.prototype.forEach.call(el.tool.querySelectorAll(".ex-b"), function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      document.getElementById("exOut").innerHTML =
+        '<div class="ex-out fade"><div class="ex-q round">「' + e.t + '」</div>'
+        + '<div class="two-side" style="background:var(--surface)">'
+          + '<div class="s-l">自分の中では</div><div class="s-b">' + e.inner + '</div>'
+          + '<div class="s-l">守ろうとしている可能性があるもの</div>'
+          + '<div class="s-b">' + e.p.map(function(p){ return '<span class="p-chip">' + p + '</span>'; }).join("") + '</div>'
+        + '</div>'
+        + '<div class="det" style="margin-top:16px"><span class="det-l">責任を回避しない言い換えの例</span>「' + e.alt + '」</div>'
+        + '<div class="det"><span class="det-l">理由と責任を分けてみる</span>' + e.r + '</div>'
+        + '<div class="disclaimer">これはあなたの本心を当てるものではありません。同じ言葉でも、状況によって意味は変わります。</div></div>';
+      document.getElementById("exOut").scrollIntoView({behavior:"smooth", block:"nearest"});
+    };
+  });
+}
+
+/* ---------------- re:play ---------------- */
+const MARK_VIEW = {
+  truth:  {keep:"関係の土台と、あとの説明のしやすさ", seen:"早めに言ってくれた、と受け取られやすい", then:"事態が小さいうちに終わりやすくなります。"},
+  repair: {keep:"相手の負担と、これからの信頼", seen:"実際に動いている、と伝わりやすい", then:"言葉だけのときより、回復が早くなりやすいです。"},
+  defense:{keep:"自分の立場と、尊厳", seen:"反省していないように見える可能性がある", then:"論点が問題の話から態度の話に移りやすくなります。"},
+  justify:{keep:"「自分は悪い人ではない」という感覚", seen:"言い訳に聞こえる可能性がある", then:"責任の話が後ろに下がり、修復が遅れやすくなります。"},
+  avoid:  {keep:"今この瞬間の気まずさ", seen:"軽く見られている、と感じられる可能性がある", then:"時間が経つほど、説明の難易度が上がります。"}
+};
+function renderPlayMenu(){
+  const body = '<div class="sim-menu">' + SIM.map(function(s){
+      return '<button class="sim-card" data-s="' + s.id + '"><span class="sim-cat">' + s.cat + '</span><span class="sim-t">' + s.title + '</span></button>';
+    }).join("") + '</div>'
+    + '<button class="btn-sub" id="simRandom">どれかひとつ、おまかせで</button>';
+  toolShell("あの場面をもう一度考える", body,
+    "正解・不正解はつけません。選ぶたびに「その選択が何を守ろうとしているか」「相手からはどう見える可能性があるか」を並べます。最初の失敗より、そのあとの行動で状況が変わることがあります。",
+    "re:play");
+  Array.prototype.forEach.call(el.tool.querySelectorAll(".sim-card"), function(b){
+    b.onclick = function(){ runSim(b.dataset.s); };
+  });
+  bind("simRandom", function(){ runSim(SIM[Math.floor(Math.random()*SIM.length)].id); });
+}
+function runSim(id){
+  const sc = SIM.filter(function(s){ return s.id === id; })[0];
+  const st = {sev:0, step:0, log:[]};
+  function drawStep(){
+    if(st.step >= sc.steps.length) return finishSim(sc, st);
+    const s = sc.steps[st.step];
+    const body = (st.step === 0 ? '<div class="scenario">' + sc.intro + '</div>' : '')
+      + '<div class="sim-step">' + (st.step+1) + ' / ' + sc.steps.length + '</div>'
+      + '<div class="qtext">' + s.text(st) + '</div>'
+      + '<div class="opts">' + s.ch.map(function(c,i){ return '<button class="opt" data-i="' + i + '">' + c.t + '</button>'; }).join("") + '</div>';
+    toolShell(sc.cat + "　" + sc.title, body, "", "re:play");
+    Array.prototype.forEach.call(el.tool.querySelectorAll(".opt"), function(b){
+      b.onclick = function(){
+        const c = s.ch[parseInt(b.dataset.i,10)];
+        st.log.push({step:st.step+1, t:c.t, mark:c.mark, sev:c.sev, pivot:c.pivot});
+        st.sev += c.sev; st.step++;
+        drawReflect(c);
+      };
+    });
+  }
+  function drawReflect(c){
+    const m = MARK_VIEW[c.mark] || MARK_VIEW.truth;
+    const body = '<div class="opt sel" style="margin-bottom:18px">' + c.t + '</div>'
+      + '<div class="two-side">'
+        + '<div class="s-l">この選択が守ろうとしているもの</div><div class="s-b">' + m.keep + '</div>'
+        + '<div class="s-l">相手からは</div><div class="s-b">' + m.seen + '</div>'
+        + '<div class="s-l">そのあと</div><div class="s-b">' + m.then + '</div>'
+      + '</div>'
+      + '<button class="btn" id="simGo" style="margin-top:20px">' + (st.step >= sc.steps.length ? '結果を見る' : '続ける') + '</button>';
+    toolShell("いま選んだこと", body, "", "re:play");
+    bind("simGo", drawStep);
+  }
+  drawStep();
+}
+
+
+/* ---------------- キャラクター図鑑 ---------------- */
+function renderGallery(full){
+  toolShell("心の中のキャラクターたち",
+    galleryHTML(full),
+    "失敗が起きたときに出やすい反応を、11のキャラクターで表しています。良い反応・悪い反応という区別はありません。"
+    + (full ? "" : "どれが出やすいかの仕組みは、回答への影響を避けるため診断の後に表示します。"),
+    "re:act characters");
+}
+
+/* ---------------- 大事にしたいこと ---------------- */
 function renderValues(){
   const chosen = (state.values || []).slice();
   const body = '<div class="vals pick">' + TEXT2.VALUES.map(function(v){
       return '<button class="val-chip pick' + (chosen.indexOf(v.v)>=0?" on":"") + '" data-v="' + v.v + '">' + v.v + '</button>';
     }).join("") + '</div>'
-    + '<div class="muted" id="valCount" style="font-size:.9rem;margin:12px 0">3つまで選べます。</div>'
+    + '<div class="muted" id="valCount" style="font-size:.9rem;margin:14px 0"></div>'
     + '<button class="btn" id="valSave">保存する</button>';
   toolShell("あなたが大事にしたい自分", body,
-    "「自分は何を大事にして生きたいか」を3つ選んでください。診断スコアには影響しません。端末内にだけ保存されます。");
-  function refresh(){
-    document.getElementById("valCount").textContent = chosen.length + " / 3 選択中";
-  }
+    "「自分は何を大事にして生きたいか」を3つまで選んでください。診断の点数には影響しません。この端末の中にだけ残ります。",
+    "re:act");
+  function refresh(){ document.getElementById("valCount").textContent = chosen.length + " / 3 選んでいます"; }
   Array.prototype.forEach.call(el.tool.querySelectorAll(".val-chip.pick"), function(b){
     b.onclick = function(){
       const v = b.dataset.v, i = chosen.indexOf(v);
@@ -2884,15 +4105,22 @@ function renderValues(){
   });
 }
 
-/* ---------- 未来の自分への緊急メモ ---------- */
+/* ---------------- 未来の自分へ ---------------- */
 function renderMemo(){
-  if(!state.memo && haveResult()){ state.memo = TEXT2.futureMemo(RESULT.r, RESULT.a2, RESULT.ch, RESULT.a2.contradictions[0] && RESULT.a2.contradictions[0].title); }
+  if(!state.memo && haveResult()){
+    if(!RESULT) computeAll();
+    state.memo = TEXT2.futureMemo(RESULT.r, RESULT.a2, RESULT.ch, RESULT.a2.contradictions[0] && RESULT.a2.contradictions[0].title);
+  }
   const val = state.memo || "未来の自分へ。\n\n今のお前はたぶん焦ってる。新しい嘘を足すな。分かっていることだけ、一度に伝えろ。";
   toolShell("未来の自分へ",
-    '<textarea id="memoBox" class="memo" rows="14">' + esc(val) + '</textarea>'
+    '<div class="memo-paper">'
+    + '<div class="memo-k">future me</div>'
+    + '<textarea id="memoBox" class="memo" rows="15">' + esc(val) + '</textarea>'
     + '<button class="btn" id="memoSave">この端末に保存する</button>'
-    + '<div class="note" style="margin-top:12px">緊急モードを開いたとき、最初にこのメモを表示できます。外部には送信されません。</div>',
-    "いま冷静な状態で、将来大きな失敗をした自分に向けて書いておく文章です。診断結果から下書きを作ってあります。自由に書き換えてください。");
+    + '</div>'
+    + '<div class="note" style="margin-top:16px">re:mind を開いたとき、最初にこのメモが出ます。外部には送信されません。</div>',
+    "いま落ち着いている状態で、将来やらかした自分に向けて書いておく文章です。結果から下書きを作ってあります。自由に書き換えてください。",
+    "re:act");
   bind("memoSave", function(){
     state.memo = document.getElementById("memoBox").value; save();
     const b = document.getElementById("memoSave");
@@ -2900,84 +4128,7 @@ function renderMemo(){
   });
 }
 
-/* ---------- 緊急モード ---------- */
-function renderEmergency(){
-  const hasR = haveResult();
-  if(hasR && !RESULT) computeAll();
-  let panic = null, stepI = -1;
-  const steps = TEXT2.emergencySteps(hasR ? RESULT.r : null, hasR ? RESULT.a2 : null);
-
-  function draw(){
-    let body;
-    if(panic === null){
-      body = '<div class="panic-q">今、どれくらい焦っていますか。</div><div class="panic-row">'
-        + Array.from({length:11}, function(_,i){ return '<button class="panic-b" data-p="' + i + '">' + i + '</button>'; }).join("")
-        + '</div><div class="panic-scale"><span>0 落ち着いている</span><span>10 頭が真っ白</span></div>';
-    }else if(stepI === -1){
-      const high = panic >= 7;
-      body = '<div class="panic-msg">' + (high
-        ? "今は、正しい判断を出すより、悪手を1つ減らすほうが大事。決めるのは後でいい。まず呼吸を整えて、下を1つずつ。"
-        : "進められそうですね。順番に1つずつ確認していきましょう。") + '</div>'
-        + (state.memo ? '<div class="memo-view"><div class="det-l">未来の自分へ（あなたが以前書いたもの）</div>' + esc(state.memo).replace(/\n/g,"<br>") + '</div>' : '')
-        + '<button class="btn" id="emStart">STEP 1 へ</button>';
-    }else{
-      const s = steps[stepI];
-      body = '<div class="em-step"><div class="em-n">STEP ' + (stepI+1) + ' / ' + steps.length + '</div>'
-        + '<div class="em-t">' + s.t + '</div><div class="em-b">' + s.b + '</div></div>'
-        + (stepI < steps.length-1
-            ? '<button class="btn" id="emNext">次へ</button>'
-            : '<div class="note">ここまでできれば、少なくとも今日、問題をこれ以上大きくすることは避けられます。残りは明日でいい。</div>')
-        + (stepI > 0 ? '<button class="btn-sub" id="emPrev">前のステップ</button>' : '');
-    }
-    toolShell("落ち着いて、順番に", body,
-      panic === null ? "これは診断ではありません。今この瞬間、問題をさらに悪化させないための手順です。" : "");
-    Array.prototype.forEach.call(el.tool.querySelectorAll(".panic-b"), function(b){
-      b.onclick = function(){ panic = parseInt(b.dataset.p,10); draw(); };
-    });
-    bind("emStart", function(){ stepI = 0; draw(); });
-    bind("emNext", function(){ stepI++; draw(); });
-    bind("emPrev", function(){ stepI--; draw(); });
-  }
-  draw();
-}
-
-/* ---------- やらかしシミュレーター ---------- */
-function renderSimMenu(){
-  const body = '<div class="sim-menu">' + SIM.map(function(s){
-      return '<button class="sim-card" data-s="' + s.id + '"><span class="sim-cat">' + s.cat + '</span><span class="sim-t">' + s.title + '</span></button>';
-    }).join("") + '</div>'
-    + '<button class="btn-sub" id="simRandom">ランダムで始める</button>';
-  toolShell("やらかしシミュレーター", body,
-    "正解・不正解のゲームではありません。選んだことの積み重ねで、状況がどう動くかを見るためのものです。最初の失敗より、そのあとの行動で問題が大きくなることがあります。");
-  Array.prototype.forEach.call(el.tool.querySelectorAll(".sim-card"), function(b){
-    b.onclick = function(){ runSim(b.dataset.s); };
-  });
-  bind("simRandom", function(){ runSim(SIM[Math.floor(Math.random()*SIM.length)].id); });
-}
-
-function runSim(id){
-  const sc = SIM.filter(function(s){ return s.id === id; })[0];
-  const st = {sev:0, step:0, log:[]};
-
-  function draw(){
-    if(st.step >= sc.steps.length) return finishSim(sc, st);
-    const s = sc.steps[st.step];
-    const body = (st.step === 0 ? '<div class="scenario">' + sc.intro + '</div>' : '')
-      + '<div class="sim-step">STEP ' + (st.step+1) + ' / ' + sc.steps.length + '</div>'
-      + '<div class="qtext">' + s.text(st) + '</div>'
-      + '<div class="opts">' + s.ch.map(function(c,i){ return '<button class="opt" data-i="' + i + '">' + c.t + '</button>'; }).join("") + '</div>';
-    toolShell(sc.cat + "　" + sc.title, body, "");
-    Array.prototype.forEach.call(el.tool.querySelectorAll(".opt"), function(b){
-      b.onclick = function(){
-        const c = s.ch[parseInt(b.dataset.i,10)];
-        st.log.push({step:st.step+1, t:c.t, mark:c.mark, sev:c.sev, pivot:c.pivot});
-        st.sev += c.sev; st.step++; draw();
-      };
-    });
-  }
-  draw();
-}
-
+/* ---------------- re:play のふりかえり ---------------- */
 function finishSim(sc, st){
   const marks = {truth:0, repair:0, defense:0, justify:0, avoid:0};
   st.log.forEach(function(l){ marks[l.mark]++; });
@@ -2988,11 +4139,12 @@ function finishSim(sc, st){
 
   let matchTxt = "";
   if(haveResult()){
+    if(!RESULT) computeAll();
     const n = RESULT.r.norm, total = st.log.length;
     const rows = [
-      {label:"防衛的な反論", rate:marks.defense/total, axis:n.G, name:"防衛的反発"},
+      {label:"守る言葉", rate:marks.defense/total, axis:n.G, name:"防衛的反発"},
       {label:"理由づけ", rate:marks.justify/total, axis:n.F, name:"自己正当化"},
-      {label:"先送り・沈黙", rate:marks.avoid/total, axis:n.H, name:"回避・隠蔽"}
+      {label:"先送り",   rate:marks.avoid/total,   axis:n.H, name:"回避・隠蔽"}
     ];
     const same = [], diff = [];
     rows.forEach(function(r){
@@ -3001,7 +4153,7 @@ function finishSim(sc, st){
       else if(high && r.axis < 45) diff.push(r.label + "は診断（" + r.name + " " + r.axis + "）より強く出ました");
       else if(!high && r.axis >= 58) diff.push(r.label + "は診断（" + r.name + " " + r.axis + "）ほどは出ませんでした");
     });
-    matchTxt = '<div class="det"><span class="det-l">診断と一致した部分</span>' + (same.length ? same.join("。") + "。" : "はっきり一致した項目はありませんでした。") + '</div>'
+    matchTxt = '<div class="det"><span class="det-l">診断と同じだった部分</span>' + (same.length ? same.join("。") + "。" : "はっきり一致した項目はありませんでした。") + '</div>'
       + '<div class="det"><span class="det-l">意外に違った部分</span>' + (diff.length ? diff.join("。") + "。" : "大きく外れた項目はありませんでした。") + '</div>';
   }
 
@@ -3010,147 +4162,404 @@ function finishSim(sc, st){
     : "元の失敗そのものより、そのあとの対応で状況が大きくなりました。");
 
   const body = '<div class="sim-end">' + endState + '</div>'
-    + '<div class="det"><span class="det-l">今回の分岐点</span>'
+    + '<div class="det"><span class="det-l">今回の分かれ目</span>'
       + (worst && worst.sev > 0
-          ? (worst.pivot || ("STEP " + worst.step + "「" + worst.t + "」を選んだところから、話の性質が変わりました。"))
+          ? (worst.pivot || (worst.step + "つ目の「" + worst.t + "」を選んだところから、話の性質が変わりました。"))
           : "大きく悪化させる選択はありませんでした。最初の判断で流れが決まっています。")
     + '</div>'
-    + '<div class="det"><span class="det-l">防衛反応が出たところ</span>' + (defensive.length ? defensive.map(function(l){ return "STEP " + l.step; }).join("、") + "（反論・理由づけ）" : "ありませんでした。") + '</div>'
-    + '<div class="det"><span class="det-l">先送りしたところ</span>' + (avoided.length ? avoided.map(function(l){ return "STEP " + l.step; }).join("、") : "ありませんでした。") + '</div>'
-    + '<div class="det"><span class="det-l">修復に向かったところ</span>' + (repaired.length ? repaired.map(function(l){ return "STEP " + l.step; }).join("、") : "ありませんでした。") + '</div>'
+    + '<div class="det"><span class="det-l">守る言葉が出たところ</span>' + (defensive.length ? defensive.map(function(l){ return l.step + "つ目"; }).join("、") : "ありませんでした。") + '</div>'
+    + '<div class="det"><span class="det-l">先送りしたところ</span>' + (avoided.length ? avoided.map(function(l){ return l.step + "つ目"; }).join("、") : "ありませんでした。") + '</div>'
+    + '<div class="det"><span class="det-l">向き合えたところ</span>' + (repaired.length ? repaired.map(function(l){ return l.step + "つ目"; }).join("、") : "ありませんでした。") + '</div>'
     + matchTxt
-    + '<div class="note">これは正解を測るものではありません。ただ、最初の失敗より「そのあとの2回目の選択」で状況が変わることは、実際によくあります。</div>'
-    + '<button class="btn" id="simAgain">別のシナリオをやる</button>';
-  toolShell("このシミュレーションで出たあなた", body, "");
-  bind("simAgain", renderSimMenu);
+    + '<div class="note">正解を測るものではありません。ただ、最初の失敗より「そのあとの2回目の選択」で状況が変わることは、実際によくあります。</div>'
+    + '<button class="btn" id="simAgain">別の場面をやってみる</button>';
+  toolShell("この場面で出たあなた", body, "", "re:play");
+  bind("simAgain", renderPlayMenu);
 }
 
-/* ---------- 言い訳翻訳機 ---------- */
-function renderExcuse(){
-  const body = '<div class="ex-list">' + EXCUSES.map(function(e,i){
-      return '<button class="ex-b" data-i="' + i + '">' + e.t + '</button>';
-    }).join("") + '</div><div id="exOut"></div>';
-  toolShell("その言葉、何を守ろうとしてる？", body,
-    "言いたくなったことのある言葉を選んでみてください。断定はしません。その言葉に含まれている可能性のあるものを表示します。");
-  Array.prototype.forEach.call(el.tool.querySelectorAll(".ex-b"), function(b){
+/* ---------------- re:cord ---------------- */
+function renderRecord(){
+  const rs = (state.records || []).slice().reverse();
+  let body = "";
+  if(!rs.length){
+    body = '<div class="note">まだ記録がありません。診断の結果画面から「この結果を記録する」を選ぶと、そのときの自分をここに残せます。</div>';
+  }else{
+    body = rs.map(function(rec){
+      const ch = rec.snap.ch;
+      const c0 = (rec.snap.a2.contradictions && rec.snap.a2.contradictions[0]) || null;
+      return '<div class="rec-card">'
+        + '<div class="rec-date">' + ymd(rec.t) + (rec.preState ? '　' + preStateLabel(rec.preState) : '') + '</div>'
+        + '<div class="rec-mini">' + CHARS[ch.initial].svg + (ch.same ? '' : CHARS[ch.recovery].svg) + '</div>'
+        + '<div class="rec-ch">' + CHARS[ch.initial].name + (ch.same ? '' : ' × ' + CHARS[ch.recovery].name) + '</div>'
+        + (c0 ? '<div class="rec-q">「' + c0.title + '」</div>' : '')
+        + (rec.next ? '<div class="rec-note">次に意識する：' + rec.next + '</div>' : '')
+        + (rec.note ? '<div class="rec-note">' + esc(rec.note) + '</div>' : '')
+        + '<div class="rec-actions"><button data-open="' + rec.id + '">この結果を見る</button>'
+        + '<button data-note="' + rec.id + '">メモ</button>'
+        + '<button data-del="' + rec.id + '">削除</button></div>'
+        + '</div>';
+    }).join("");
+  }
+  body += '<div class="note" style="margin-top:18px">記録はこの端末のブラウザ内だけに残ります。ブラウザのデータを消したときや、別の端末・別のブラウザで開いたときには引き継がれません。</div>';
+  toolShell("自分の記録", body, "そのときの自分を、あとから見返せます。", "re:cord");
+
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-open]"), function(b){
+    b.onclick = function(){ openRecord(b.dataset.open); };
+  });
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-note]"), function(b){
     b.onclick = function(){
-      const e = EXCUSES[parseInt(b.dataset.i,10)];
-      Array.prototype.forEach.call(el.tool.querySelectorAll(".ex-b"), function(x){ x.classList.remove("on"); });
-      b.classList.add("on");
-      document.getElementById("exOut").innerHTML =
-        '<div class="ex-out"><div class="ex-q">「' + e.t + '」</div>'
-        + '<div class="det"><span class="det-l">この言葉の裏で守ろうとしている可能性のあるもの</span>'
-        + e.p.map(function(p){ return '<span class="p-chip">' + p + '</span>'; }).join("") + '</div>'
-        + '<div class="det"><span class="det-l">理由と責任を分けてみる</span>' + e.r + '</div>'
-        + '<div class="disclaimer">これはあなたの本心を当てるものではありません。同じ言葉でも、状況によって意味は変わります。</div></div>';
-      document.getElementById("exOut").scrollIntoView({behavior:"smooth", block:"nearest"});
+      const rec = state.records.filter(function(r){ return r.id === b.dataset.note; })[0];
+      if(!rec) return;
+      const card = b.parentNode && b.parentNode.parentNode;
+      if(!card) return;
+      const open = card.querySelector(".rec-note-edit");
+      if(open){ open.parentNode.removeChild(open); return; }
+      const box = document.createElement("div");
+      box.className = "rec-note-edit";
+      box.innerHTML = '<input class="rec-input" maxlength="120" placeholder="一言メモ（任意）　例：仕事で余裕がなかった時期">'
+        + '<button class="btn-sub" style="margin-top:0">メモを保存する</button>';
+      card.appendChild(box);
+      const input = box.querySelector("input");
+      input.value = rec.note || "";
+      input.focus();
+      box.querySelector("button").onclick = function(){
+        rec.note = input.value.slice(0,120); save(); renderRecord();
+      };
+    };
+  });
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-del]"), function(b){
+    b.onclick = function(){
+      if(!confirmTwice("del_" + b.dataset.del, b, "もう一度押すと削除")) return;
+      state.records = state.records.filter(function(r){ return r.id !== b.dataset.del; });
+      save(); renderRecord();
     };
   });
 }
+function openRecord(id){
+  const rec = (state.records || []).filter(function(r){ return r.id === id; })[0];
+  if(!rec) return;
+  RESULT = {r:rec.snap.r, a2:rec.snap.a2, ch:rec.snap.ch, nar:rec.snap.nar, ift:rec.snap.ift};
+  VIEWING_RECORD = rec;
+  state.level = 3;
+  renderResult(); show("result");
+}
 
-/* ---------- 実際の出来事整理モード ---------- */
-function renderEvent(){
-  const ans = {};
-  let i = 0;
-  function draw(){
-    if(i >= EVENT_Q.length) return eventResult(ans);
-    const q = EVENT_Q[i];
-    const body = '<div class="sim-step">' + (i+1) + ' / ' + EVENT_Q.length + '</div>'
-      + '<div class="qtext">' + q.q + '</div>'
-      + '<div class="opts">' + q.o.map(function(o,j){ return '<button class="opt" data-j="' + j + '">' + o + '</button>'; }).join("") + '</div>'
-      + (i > 0 ? '<button class="btn-sub" id="evPrev">前に戻る</button>' : '');
-    toolShell("実際にあった出来事を整理する", body,
-      i === 0 ? "自由記述はありません。選ぶだけです。入力内容は保存も送信もされません。" : "");
-    Array.prototype.forEach.call(el.tool.querySelectorAll(".opt"), function(b){
-      b.onclick = function(){ ans[q.k] = q.o[parseInt(b.dataset.j,10)]; i++; draw(); };
+/* ---------------- 設定・削除 ---------------- */
+function renderSettings(){
+  const body = '<div class="note">回答と記録は、この端末のブラウザ内だけに保存されます。外部には送信されません。ブラウザのデータを消したときや、別の端末・別のブラウザで開いたときには引き継がれません。</div>'
+    + '<div class="card inner">'
+    + '<button class="row-btn" data-w="records">診断の記録を削除する<span>' + ((state.records||[]).length) + '件</span></button>'
+    + '<button class="row-btn" data-w="memo">未来の自分へのメモを削除する</button>'
+    + '<button class="row-btn" data-w="daily">今日の1問の履歴を削除する<span>' + Object.keys(state.daily||{}).length + '件</span></button>'
+    + '<button class="row-btn" data-w="repair">re:pair の下書きを削除する</button>'
+    + '<button class="row-btn" data-w="answers">いまの回答をリセットする</button>'
+    + '</div>'
+    + '<button class="btn-sub" id="wipeAllBtn" style="color:var(--risk);border-color:var(--risk)">すべてのデータを削除する</button>';
+  toolShell("保存とデータの削除", body, "", "re:act");
+  Array.prototype.forEach.call(el.tool.querySelectorAll("[data-w]"), function(b){
+    b.onclick = function(){
+      const names = {records:"診断の記録", memo:"未来の自分へのメモ", daily:"今日の1問の履歴", repair:"re:pairの下書き", answers:"いまの回答"};
+      if(!confirmTwice("wp_" + b.dataset.w, b, "もう一度押すと、" + names[b.dataset.w] + "を削除します")) return;
+      wipePart(b.dataset.w); renderSettings();
+    };
+  });
+  bind("wipeAllBtn", function(){
+    if(!confirmTwice("wipeAll", "wipeAllBtn", "本当に消していいですか？　もう一度押すと、すべて削除されます（元に戻せません）")) return;
+    wipeAll(); save(); renderIntro(); show("intro");
+  });
+}
+
+/* ---------------- re:share ---------------- */
+const SHARE_PALETTE = {
+  bg1:"#F6EFE4", bg2:"#FFFDFA", bg3:"#F3E6E4",
+  text:"#3D3936", sub:"#665E57", rose:"#C79A96", line:"#E7DFD4"
+};
+/* SVGを画像として書き出すために、CSS変数ではなく実際の色を埋め込む */
+function svgForExport(svg){
+  const css = '<style>'
+    + '.ch-bg{fill:#EFE8DE}.ch-body{fill:#C9BCA9}.ch-body2{fill:#DED3C2}'
+    + '.ch-ink{fill:#4A423B}.ch-accent{fill:#C79A96}'
+    + '.ch-line{fill:none;stroke:#4A423B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'
+    + '.ch-s2{fill:none;stroke:#DED3C2;stroke-linecap:round;stroke-linejoin:round}'
+    + '.ch-s3{fill:none;stroke:#C9BCA9;stroke-linecap:round;stroke-linejoin:round}'
+    + '</style>';
+  let out = svg.replace(/var\(--ch-body\)/g, "#C9BCA9").replace(/var\(--ch-body2\)/g, "#DED3C2");
+  out = out.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ');
+  return out.replace(/(<svg[^>]*>)/, "$1" + css);
+}
+function loadSvgImage(svg){
+  return new Promise(function(res, rej){
+    const img = new Image();
+    img.onload = function(){ res(img); };
+    img.onerror = rej;
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgForExport(svg));
+  });
+}
+/* 日本語の折り返し（文字単位） */
+function wrapLines(ctx, text, maxW){
+  const out = [];
+  let line = "";
+  for(let i=0;i<text.length;i++){
+    const ch = text[i];
+    if(ch === "\n"){ out.push(line); line = ""; continue; }
+    if(ctx.measureText(line + ch).width > maxW && line){ out.push(line); line = ch; }
+    else line += ch;
+  }
+  if(line) out.push(line);
+  return out;
+}
+
+async function buildShareCanvas(opts){
+  if(!RESULT) computeAll();
+  const R = RESULT, ch = R.ch, cN = CHARS[ch.initial], cR = CHARS[ch.recovery];
+  const W = 1080, MAXH = 1700;
+  const F = '"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif';
+
+  /* 中身を透明なキャンバスに描いてから、必要な高さだけ切り出す */
+  const tmp = document.createElement("canvas");
+  tmp.width = W; tmp.height = MAXH;
+  const g = tmp.getContext("2d");
+  g.textAlign = "center";
+
+  /* ロゴ */
+  g.font = "700 62px " + F;
+  const logoW = g.measureText("re:act").width;
+  const lx = W/2 - logoW/2;
+  g.textAlign = "left";
+  g.fillStyle = SHARE_PALETTE.text; g.fillText("re", lx, 118);
+  const reW = g.measureText("re").width;
+  g.fillStyle = SHARE_PALETTE.rose; g.fillText(":", lx + reW, 118);
+  const cW = g.measureText(":").width;
+  g.fillStyle = SHARE_PALETTE.text; g.fillText("act", lx + reW + cW, 118);
+  g.textAlign = "center";
+
+  g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+  g.fillText("あなたの中に出やすいのは", W/2, 192);
+
+  const imgN = await loadSvgImage(cN.svg);
+  g.drawImage(imgN, W/2 - 190, 230, 380, 380);
+  let y = 684;
+
+  g.font = "700 76px " + F; g.fillStyle = SHARE_PALETTE.text;
+  g.fillText(cN.name, W/2, y); y += 76;
+
+  g.font = "700 38px " + F;
+  wrapLines(g, "「" + cN.copy + "」", W - 200).forEach(function(l){ g.fillText(l, W/2, y); y += 56; });
+
+  y += 20;
+  g.strokeStyle = SHARE_PALETTE.line; g.lineWidth = 2;
+  g.beginPath(); g.moveTo(200, y); g.lineTo(W-200, y); g.stroke();
+  y += 62;
+
+  if(!ch.same){
+    const imgR = await loadSvgImage(cR.svg);
+    g.drawImage(imgR, W/2 - 85, y - 40, 170, 170);
+    y += 150;
+    g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    g.fillText("落ち着いたあと", W/2, y); y += 50;
+    g.font = "700 46px " + F; g.fillStyle = SHARE_PALETTE.text;
+    g.fillText(cR.name, W/2, y); y += 52;
+    g.font = "400 28px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    wrapLines(g, "「" + cR.copy + "」", W - 240).forEach(function(l){ g.fillText(l, W/2, y); y += 42; });
+  }else{
+    g.font = "400 30px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    wrapLines(g, "落ち着いたあとも、同じ反応が続きやすい", W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 46; });
+  }
+
+  if(opts.contra && R.a2.contradictions[0]){
+    y += 40;
+    g.font = "700 34px " + F; g.fillStyle = SHARE_PALETTE.text;
+    wrapLines(g, R.a2.contradictions[0].title, W - 220).forEach(function(l){ g.fillText(l, W/2, y); y += 52; });
+  }
+  if(opts.gap){
+    y += 34;
+    g.font = "400 26px " + F; g.fillStyle = SHARE_PALETTE.sub;
+    g.fillText("わかっていることと、やりそうなことの差", W/2, y); y += 50;
+    g.font = "700 48px " + F; g.fillStyle = SHARE_PALETTE.text;
+    g.fillText(String(R.r.gap.value), W/2, y); y += 22;
+  }
+  if(opts.axes){
+    y += 46;
+    const bw = 620, bx = W/2 - bw/2;
+    ["A","B","C","D","E"].forEach(function(k){
+      g.textAlign = "left";
+      g.font = "400 24px " + F; g.fillStyle = SHARE_PALETTE.sub;
+      g.fillText(SOFT[k], bx, y);
+      g.fillStyle = "#E7DFD4"; g.fillRect(bx + 340, y - 16, 280, 12);
+      g.fillStyle = "#8FA187"; g.fillRect(bx + 340, y - 16, 280 * (R.r.norm[k]/100), 12);
+      g.textAlign = "center";
+      y += 44;
     });
-    bind("evPrev", function(){ i--; draw(); });
   }
-  draw();
+
+  /* 高さを内容にあわせて決める（縦長を保つ） */
+  const H = Math.max(1200, Math.min(MAXH, Math.round(y + 170)));
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const o = cv.getContext("2d");
+  const grad = o.createLinearGradient(0, 0, W*0.4, H);
+  grad.addColorStop(0, SHARE_PALETTE.bg1);
+  grad.addColorStop(0.55, SHARE_PALETTE.bg2);
+  grad.addColorStop(1, SHARE_PALETTE.bg3);
+  o.fillStyle = grad; o.fillRect(0,0,W,H);
+  const contentH = Math.min(y + 20, MAXH);
+  const top = Math.round((H - 150 - contentH) / 2);
+  o.drawImage(tmp, 0, 0, W, contentH, 0, Math.max(0, top), W, contentH);
+
+  o.textAlign = "center";
+  o.font = "400 26px " + F; o.fillStyle = SHARE_PALETTE.sub;
+  o.fillText("そのときの自分を知る。", W/2, H - 84);
+  o.font = "400 22px " + F; o.fillStyle = "#948B82";
+  o.fillText("re:act ／ 性格の良し悪しを判定するものではありません", W/2, H - 44);
+
+  return cv;
 }
 
-function eventResult(ans){
-  const hasR = haveResult();
-  const n = hasR ? RESULT.r.norm : null;
-  const trg = hasR && RESULT.a2.triggers.length ? RESULT.a2.triggers[0] : null;
-
-  // 状況から、今いちばん注意すべきことを組み立てる
-  const cautions = [];
-  if(ans.known === "まだ知られていない"){
-    cautions.push("まだ知られていない状態は、判断がいちばん歪みやすい局面です。「黙っていれば済む」という選択肢が見えている間は、開示の判断を先送りしやすくなります。");
-  }
-  if(ans.known === "一部知られている"){
-    cautions.push("一部だけ知られている状態では、小出しになりやすくなります。あとから追加で出てくる情報は、内容よりも「隠していた」という印象を強めます。");
-  }
-  if(ans.known === "すべて知られている"){
-    cautions.push("すべて知られている状態では、説明を増やしたくなりやすい局面です。ここで必要なのは説明の量ではなく、責任の言語化と具体的な回復です。");
-  }
-  if(ans.intent === "自分で選んでやった"){
-    cautions.push("自分で選んだ行動の場合、「そうせざるを得なかった理由」が非常に見つかりやすくなります。理由は理由として置いて、選んだ事実は分けて扱ってください。");
-  }
-  if(ans.resp === "小さい"){
-    cautions.push("自分の責任は小さいと感じている場合でも、相手にとっての大きさは別に存在します。責任の見積もりが小さいほど、対応が相手の期待とずれやすくなります。");
-  }
-  if(ans.impact === "大きい"){
-    cautions.push("影響が大きい場合、謝罪だけでは相手の状態は変わりません。何がどこまで戻せるのかを具体的に示すほうが、結果的に負担が減ります。");
-  }
-  if(ans.done === "まだ何もしていない"){
-    cautions.push("まだ何もしていない場合、最初の一報の早さがそのあと全部に効きます。完璧な説明を待たず、分かっている範囲だけを先に伝える方法があります。");
-  }
-  if(ans.done === "謝罪した"){
-    cautions.push("謝罪が済んでいる場合、次は「これから何をするか」です。謝罪の反復より、ひとつの具体的な行動のほうが伝わります。");
-  }
-
-  const personal = [];
-  if(hasR){
-    const rk = ["F","G","H"].slice().sort(function(a,b){ return n[b]-n[a]; })[0];
-    personal.push({F:"あなたはこの局面で理由づけが動きやすいほうです（自己正当化 "+n.F+"）。筋の通った説明を思いついたら、それを言う前に、自分が選んだ部分を1つ書き出してください。",
-                   G:"あなたはこの局面で言い返す反応が出やすいほうです（防衛的反発 "+n.G+"）。相手の言い方が気になっても、最初の返信は保留してください。",
-                   H:"あなたはこの局面で先送りが起きやすいほうです（回避・隠蔽 "+n.H+"）。今日中に、内容ではなく「いつ連絡するか」だけ決めてください。"}[rk]);
-    if(trg) personal.push("あなたの回答では、" + trg.name + "に判断が変わりやすい傾向がありました（" + trg.score + "／100）。今の状況がそれに当てはまるなら、いつもより一段ゆっくり動いてください。");
-    if(n.S >= 58) personal.push("落ち込みが強く出るタイプです。自分を責める時間を区切らないと、相手への対応が遅れます。");
-  }
-
-  const body = '<div class="det"><span class="det-l">整理した内容</span>'
-      + EVENT_Q.map(function(q){ return ans[q.k] ? ('<span class="p-chip">' + ans[q.k] + '</span>') : ""; }).join("") + '</div>'
-    + '<div class="card inner"><h3>今、いちばん注意したほうがいいこと</h3>' + cautions.slice(0,3).map(function(c){ return '<p class="prose">' + c + '</p>'; }).join("") + '</div>'
-    + '<div class="card inner"><h3>最初に整理すること</h3>'
-      + '<div class="compass">' + TEXT2.COMPASS.map(function(c){ return '<div class="cmp"><div class="cmp-k">' + c.k + '</div><div class="cmp-j">' + c.ja + '</div><div class="cmp-q">' + c.q + '</div></div>'; }).join("") + '</div></div>'
-    + (personal.length ? '<div class="card inner"><h3>あなたの防衛反応が出そうな場所</h3>' + personal.map(function(p){ return '<p class="prose">' + p + '</p>'; }).join("") + '</div>' : '')
-    + '<div class="card inner"><h3>修復で考えること</h3>'
-      + '<p class="prose">相手の負担を減らす方向で、今日から3日以内にできることを1つ決めてください。許してもらうことを目標にしないほうが、結果的に修復は進みます。' + (ans.impact === "大きい" ? "影響が大きい場合は、進捗を途中でも共有すること自体が回復行動になります。" : "") + '</p></div>'
-    + '<div class="note">入力内容はどこにも保存されていません。この画面を離れると消えます。</div>';
-  toolShell("この出来事の整理", body, "");
-}
-
-/* ---------- 共有用カード ---------- */
 function renderShare(){
   if(!RESULT) computeAll();
-  const ch = RESULT.ch, r = RESULT.r;
-  const cN = CHARS[ch.initial], cR = CHARS[ch.recovery];
-  let detail = false;
+  const opts = {contra:false, gap:false, axes:false};
+  let busy = false;
+
   function draw(){
-    const body = '<div class="share-card" id="shareCard">'
-      + '<div class="sh-brand">失敗したときの自分</div>'
-      + '<div class="sh-k">問題が起きた時、自分の中に出てくるもの</div>'
-      + '<div class="sh-pair">'
-        + '<div class="sh-one"><div class="sh-art">' + cN.svg + '</div><div class="sh-role">初動</div><div class="sh-nm">' + cN.name + '</div></div>'
-        + '<div class="sh-arrow">→</div>'
-        + '<div class="sh-one"><div class="sh-art">' + cR.svg + '</div><div class="sh-role">立て直し</div><div class="sh-nm">' + cR.name + '</div></div>'
+    const body =
+      '<div class="share-opts">'
+      + '<button class="share-opt on" disabled><span class="box">✓</span>キャラクターと一言（標準）</button>'
+      + '<button class="share-opt' + (opts.contra?" on":"") + '" data-o="contra"><span class="box">' + (opts.contra?"✓":"") + '</span>あなたの中にある矛盾も入れる</button>'
+      + '<button class="share-opt' + (opts.gap?" on":"") + '" data-o="gap"><span class="box">' + (opts.gap?"✓":"") + '</span>わかっていることとの差も入れる</button>'
+      + '<button class="share-opt' + (opts.axes?" on":"") + '" data-o="axes"><span class="box">' + (opts.axes?"✓":"") + '</span>向き合う力の5つも入れる</button>'
       + '</div>'
-      + '<div class="sh-copy">「' + cN.copy + '」' + (ch.same ? '' : '<br>「' + cR.copy + '」') + '</div>'
-      + '<div class="sh-gap">理解―実行ギャップ <strong>' + r.gap.value + '</strong> / 100</div>'
-      + (detail ? '<div class="sh-detail">' + ["A","B","C","D","E","F","G","H"].map(function(k){ return '<span>' + AXES[k].name + ' ' + r.norm[k] + '</span>'; }).join("") + '</div>' : '')
-      + '<div class="sh-note">性格の良し悪しを判定するものではありません。追い詰められた時に出やすい反応を見るための自己理解ツールです。</div>'
-      + '</div>'
-      + '<label class="sh-toggle"><input type="checkbox" id="shDetail"' + (detail?" checked":"") + '> 8軸などの詳細スコアも入れる</label>'
-      + '<div class="note">初期状態では、回避・隠蔽や自己正当化などの数値は含まれません。スクリーンショットで保存してください。共有は手動で、あなたが選んだ相手にだけ。</div>';
-    toolShell("共有用カード", body, "この画面をスクリーンショットして使えます。外部には何も送信されません。");
-    const cb = document.getElementById("shDetail");
-    if(cb) cb.onchange = function(){ detail = cb.checked; draw(); };
+      + '<div class="note">守りに入るときの反応（回避・自己正当化・防衛）の数値は、選んでも共有カードには入りません。</div>'
+      + '<div class="share-preview" id="sharePrev"></div>'
+      + '<button class="btn" id="shBuild" style="margin-top:18px">カードを作る</button>'
+      + '<div id="shActions"></div>'
+      + '<hr class="sep">'
+      + '<div class="det"><span class="det-l">友達にもやってもらう</span>結果ではなく、re:act そのものを渡せます。</div>'
+      + '<button class="btn-sub" id="shApp">re:act のリンクを送る</button>'
+      + '<div class="disclaimer" id="shAppNote" style="margin-top:8px"></div>'
+      + '<button class="btn-sub" id="shPrint">結果を印刷・PDFで保存する</button>';
+    toolShell("結果をシェアする", body,
+      "何を見せるかは選べます。初期状態では、キャラクターと一言だけです。", "re:share");
+
+    Array.prototype.forEach.call(el.tool.querySelectorAll("[data-o]"), function(b){
+      b.onclick = function(){ opts[b.dataset.o] = !opts[b.dataset.o]; draw(); };
+    });
+    bind("shBuild", function(){ makeCard(); });
+    bind("shApp", shareApp);
+    bind("shPrint", function(){ window.print(); });
   }
+
+  async function makeCard(){
+    if(busy) return; busy = true;
+    const btn = document.getElementById("shBuild");
+    btn.textContent = "作成中…";
+    try{
+      const cv = await buildShareCanvas(opts);
+      const url = cv.toDataURL("image/png");
+      document.getElementById("sharePrev").innerHTML = '<img src="' + url + '" alt="共有カード">';
+      document.getElementById("shActions").innerHTML =
+        '<button class="btn-sub" id="shSave">画像として保存する</button>'
+        + '<button class="btn-sub" id="shShare">シェアする</button>'
+        + '<div class="disclaimer" id="shNote" style="margin-top:10px">保存できないときは、上の画像を長押し（パソコンでは右クリック）すると保存できます。</div>';
+      btn.textContent = "作り直す";
+      bind("shSave", function(){ saveImage(cv); });
+      bind("shShare", function(){ shareImage(cv); });
+      document.getElementById("sharePrev").scrollIntoView({behavior:"smooth", block:"center"});
+    }catch(e){
+      document.getElementById("shActions").innerHTML = '<div class="flag">この環境ではカードを作れませんでした。結果画面をスクリーンショットしてお使いください。</div>';
+      btn.textContent = "カードを作る";
+    }
+    busy = false;
+  }
+
+  /* 画像として保存。
+     公開ページ（claude.ai のビューア）ではブラウザの直接ダウンロードが使えないため、
+     用意されている保存の仕組みがあればそれを使い、無ければ通常のダウンロード、
+     どちらも使えなければ画像の長押し保存に案内する */
+  const LONGPRESS = "この画面からは直接保存できません。上の画像を長押し（パソコンでは右クリック）して保存してください。";
+  function saveImage(cv){
+    cv.toBlob(async function(blob){
+      if(!blob) return;
+      const note = document.getElementById("shNote");
+      if(isHosted()){
+        /* 公開ページではページ側からのダウンロードが止められる。
+           用意されている保存の仕組みを使い、それが無ければ長押し保存に案内する */
+        try{
+          const dl = await window.claude.use("downloads");
+          if(dl){
+            if(note) note.textContent = "保存の確認を待っています…";
+            await dl.save({filename:"re-act.png", data:blob});
+            if(note) note.textContent = "画像を保存しました。";
+            return;
+          }
+        }catch(e){
+          if(e && e.code === "declined"){
+            if(note) note.textContent = "保存をやめました。もう一度押すと、やり直せます。";
+            return;
+          }
+        }
+        if(note) note.textContent = LONGPRESS;
+        return;
+      }
+      try{
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "re-act.png";
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+        if(note) note.textContent = "画像を保存しました。保存されていないときは、上の画像を長押し（右クリック）してください。";
+      }catch(e){
+        if(note) note.textContent = LONGPRESS;
+      }
+    }, "image/png");
+  }
+
+  function shareImage(cv){
+    cv.toBlob(async function(blob){
+      if(!blob) return;
+      const file = new File([blob], "re-act.png", {type:"image/png"});
+      try{
+        if(navigator.canShare && navigator.canShare({files:[file]})){
+          await navigator.share({files:[file], text:"re:act ／ そのときの自分を知る"});
+          return;
+        }
+      }catch(e){ /* キャンセルや非対応 */ }
+      saveImage(cv);
+    }, "image/png");
+  }
+
+  function appNote(text){
+    const n = document.getElementById("shAppNote");
+    if(n) n.textContent = text;
+  }
+  async function shareApp(){
+    const url = location.href.split("#")[0];
+    const text = "re:act ／ そのときの自分を知る";
+    const web = /^https?:/.test(url);
+    if(web){
+      try{
+        if(navigator.share){
+          await navigator.share({title:"re:act", text:text, url:url});
+          return;
+        }
+      }catch(e){
+        /* 共有をやめた場合と、この画面では使えない場合の両方がここに来る */
+      }
+      try{
+        if(navigator.clipboard){
+          await navigator.clipboard.writeText(url);
+          appNote("リンクをコピーしました。");
+          return;
+        }
+      }catch(e){}
+      appNote("このページのURLを共有してください：" + url);
+      return;
+    }
+    appNote("このファイルを直接開いているため、リンクは作れません。ファイルそのものを送るか、公開したURLからお使いください。");
+  }
+
   draw();
 }
+
 
 /* ================= 起動 ================= */
 load();
@@ -3159,192 +4568,15 @@ renderIntro();
 show("intro");
 
 window.__diag = {S1:S1,S2:S2,S3:S3,ITEMS:ITEMS,state:state,SCORING:SCORING,ANALYSIS2:ANALYSIS2,
-  CHARS:CHARS,CHAR_PICK:CHAR_PICK,TEXT:TEXT,TEXT2:TEXT2,SIM:SIM,
-  computeAll:computeAll,renderResult:renderResult,show:show,save:save,nav:nav,finish:finish,optOrder:optOrder,AXES:AXES};
+  CHARS:CHARS,CHAR_PICK:CHAR_PICK,TEXT:TEXT,TEXT2:TEXT2,SIM:SIM,AXES:AXES,SOFT:SOFT,DAILY:DAILY,
+  computeAll:computeAll,renderResult:renderResult,show:show,save:save,load:load,nav:nav,finish:finish,
+  optOrder:optOrder,renderQuestion:renderQuestion,renderCheckpoint:renderCheckpoint,chapterOf:chapterOf,
+  renderIntro:renderIntro,renderPreState:renderPreState,saveRecord:saveRecord,openRecord:openRecord,
+  wipeAll:wipeAll,wipePart:wipePart,ymd:ymd,dailyForToday:dailyForToday,buildShareCanvas:buildShareCanvas,
+  get RESULT(){ return RESULT; }, set RESULT(v){ RESULT = v; },
+  get VIEWING_RECORD(){ return VIEWING_RECORD; }, set VIEWING_RECORD(v){ VIEWING_RECORD = v; }};
 </script>
 
-<style>
-/* ---------- キャラクター ---------- */
-:root{ --ch-bg:#ece7dd; --ch-body:#b3ab9c; --ch-body2:#cfc8bb; --ch-ink:#33302b; --ch-accent:#6f9382; }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --ch-bg:#2a2f35; --ch-body:#909790; --ch-body2:#6f766f; --ch-ink:#1b1e21; --ch-accent:#87b8a6; }
-}
-:root[data-theme="dark"]{ --ch-bg:#2a2f35; --ch-body:#909790; --ch-body2:#6f766f; --ch-ink:#1b1e21; --ch-accent:#87b8a6; }
-.ch-bg{fill:var(--ch-bg);} .ch-body{fill:var(--ch-body);} .ch-body2{fill:var(--ch-body2);}
-.ch-ink{fill:var(--ch-ink);} .ch-accent{fill:var(--ch-accent);}
-.ch-line{fill:none;stroke:var(--ch-ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
-.ch-s2{fill:none;stroke:var(--ch-body2);stroke-linecap:round;stroke-linejoin:round;}
-svg{max-width:100%;height:auto;display:block;}
 
-.sec-k{font-size:.76rem;letter-spacing:.1em;color:var(--text-faint);margin-bottom:10px;}
-.hero{padding-top:22px;}
-.hero-t{font-size:.78rem;letter-spacing:.1em;color:var(--text-faint);text-align:center;margin-bottom:16px;}
-.ch-block{display:flex;gap:14px;align-items:center;}
-.ch-art{flex:0 0 auto;width:96px;}
-.ch-meta{flex:1 1 auto;min-width:0;}
-.ch-role{font-size:.74rem;letter-spacing:.06em;color:var(--text-faint);}
-.ch-name{font-size:1.3rem;font-weight:700;line-height:1.4;margin:1px 0 4px;}
-.ch-tag{font-size:.72rem;font-weight:500;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 9px;margin-left:8px;white-space:nowrap;vertical-align:middle;}
-.ch-line{font-size:.88rem;line-height:1.7;color:var(--text-sub);}
-.hero-arrow{font-size:.74rem;color:var(--text-faint);text-align:center;margin:14px 0;padding:8px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);}
-.hero-copy{margin-top:16px;padding:14px;border-radius:12px;background:var(--surface-2);text-align:center;font-size:1rem;font-weight:600;line-height:1.8;}
-.hero-sub{display:flex;gap:12px;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-sub);}
-.hero-sub svg{width:54px;flex:0 0 auto;}
-.hero-gap{display:flex;align-items:baseline;gap:8px;justify-content:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.84rem;color:var(--text-sub);}
-.hero-gap strong{font-size:1.7rem;color:var(--text);line-height:1;font-variant-numeric:tabular-nums;}
-.det{font-size:.94rem;line-height:1.8;margin-bottom:12px;}
-.det-l{display:block;font-size:.74rem;letter-spacing:.06em;color:var(--text-faint);margin-bottom:2px;}
-.motto{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:1rem;text-align:center;}
-.motto.small{font-size:.86rem;padding:8px 10px;margin-top:10px;}
-.type-inline{font-size:1.22rem;font-weight:700;margin:0 0 8px;}
-
-/* ---------- 矛盾・トリガー ---------- */
-.contra-t{font-size:1.2rem;font-weight:700;line-height:1.6;margin-bottom:10px;}
-.contra-t.small{font-size:1.05rem;}
-.contra-sub{padding-top:14px;margin-top:14px;border-top:1px solid var(--line);}
-.contra-sub:first-of-type{border-top:none;margin-top:0;padding-top:0;}
-.basis{font-size:.76rem;color:var(--text-faint);margin-top:6px;}
-.need{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;font-size:.95rem;font-weight:600;line-height:1.75;}
-.trg{padding:12px 0;border-top:1px solid var(--line);}
-.trg-h{display:flex;align-items:baseline;gap:8px;}
-.trg-n{font-size:.72rem;color:var(--text-faint);flex:0 0 auto;}
-.trg-t{font-weight:700;font-size:1rem;flex:1 1 auto;}
-.trg-v{font-variant-numeric:tabular-nums;font-weight:700;color:var(--risk);}
-.trg-b{font-size:.88rem;line-height:1.7;color:var(--text-sub);margin-top:4px;}
-.trg-d{font-size:.74rem;color:var(--text-faint);margin-left:2px;}
-.trg-m{font-size:.74rem;color:var(--text-faint);margin-top:4px;}
-
-/* ---------- ボタン群 ---------- */
-.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.tool-b{padding:14px 10px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);font-size:.88rem;line-height:1.5;cursor:pointer;text-align:center;}
-.tool-b.alt{grid-column:1 / -1;border-color:var(--risk);color:var(--risk);}
-.lv-btn{margin-bottom:16px;}
-.btn-alt{background:var(--risk);}
-.emergency-card{border-color:var(--line-strong);}
-
-/* ---------- HOT/COLD・ミニバー ---------- */
-.hotcold{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
-.hc-col{border:1px solid var(--line);border-radius:12px;padding:12px 10px;}
-.hc-col.hot{border-color:var(--risk);}
-.hc-k{font-size:.72rem;letter-spacing:.06em;color:var(--text-faint);margin-bottom:10px;text-align:center;}
-.mini{display:flex;align-items:center;gap:6px;margin-bottom:7px;font-size:.72rem;}
-.mini-l{flex:0 0 auto;width:56px;color:var(--text-sub);line-height:1.35;}
-.mini-t{flex:1 1 auto;height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;}
-.mini-f{display:block;height:100%;background:var(--accent);border-radius:3px;}
-.mini-f.risk{background:var(--risk);}
-.mini-v{flex:0 0 auto;width:20px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-faint);}
-.plv{border-top:1px solid var(--line);padding:14px 0;}
-.plv-h{font-size:.88rem;font-weight:700;margin-bottom:10px;}
-
-/* ---------- 分析文 ---------- */
-.narr-b{padding:14px 0;border-top:1px solid var(--line);font-size:.97rem;line-height:1.9;}
-.narr-b:first-child{border-top:none;padding-top:0;}
-.narr-k{display:block;font-size:.7rem;letter-spacing:.12em;color:var(--text-faint);margin-bottom:4px;}
-.narr-b.rule{font-weight:600;}
-.why{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:var(--surface-2);}
-.why-t{font-size:.78rem;color:var(--text-faint);margin-bottom:8px;}
-.why-r{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;padding:3px 0;}
-.why-v{font-variant-numeric:tabular-nums;font-weight:700;}
-.tl{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:.94rem;line-height:1.8;}
-.tl:first-of-type{border-top:none;}
-.tl-k{flex:0 0 auto;width:40px;font-size:.78rem;color:var(--text-faint);padding-top:5px;}
-.hist{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);font-size:.92rem;}
-.hist-v{font-variant-numeric:tabular-nums;color:var(--text-sub);}
-
-/* ---------- IF→THEN ---------- */
-.ifthen{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line);}
-.ifthen:first-of-type{border-top:none;}
-.if-n{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;margin-top:2px;}
-.if-body{flex:1 1 auto;min-width:0;}
-.if-l{font-size:.95rem;line-height:1.7;display:flex;gap:8px;}
-.if-l .k{flex:0 0 auto;font-size:.68rem;letter-spacing:.1em;color:var(--text-faint);padding-top:5px;width:34px;}
-.if-l.then{margin-top:4px;font-weight:600;}
-
-/* ---------- 修復コンパス ---------- */
-.compass{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
-.cmp{border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
-.cmp-k{font-size:.68rem;letter-spacing:.12em;color:var(--accent);}
-.cmp-j{font-weight:700;font-size:.98rem;margin:2px 0 4px;}
-.cmp-q{font-size:.88rem;line-height:1.7;color:var(--text-sub);}
-.cmp-h{font-size:.78rem;color:var(--text-faint);margin-top:4px;}
-
-/* ---------- 図鑑 ---------- */
-.gal{display:flex;flex-direction:column;gap:14px;margin-top:14px;}
-.gal-item{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line);}
-.gal-item:first-child{border-top:none;padding-top:4px;}
-.gal-art{flex:0 0 auto;width:68px;}
-.gal-body{flex:1 1 auto;min-width:0;}
-.gal-copy{font-size:.86rem;color:var(--text);font-weight:600;margin-top:4px;}
-.gal-txt{font-size:.85rem;line-height:1.75;color:var(--text-sub);margin-top:6px;}
-
-/* ---------- チェックポイント ---------- */
-.checkpoint{text-align:center;}
-.cp-n{font-size:.74rem;letter-spacing:.1em;color:var(--text-faint);}
-.cp-t{font-size:1.5rem;font-weight:700;margin:6px 0;}
-.cp-c{font-size:.9rem;color:var(--text-sub);}
-.cp-next{font-size:1rem;font-weight:600;margin-bottom:6px;}
-
-/* ---------- ツール画面 ---------- */
-.tool-h{font-size:1.28rem;}
-.memo{width:100%;border:1px solid var(--line-strong);border-radius:12px;padding:14px;font-family:inherit;font-size:.95rem;line-height:1.85;background:var(--surface);color:var(--text);resize:vertical;margin-bottom:12px;}
-.memo-view{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--surface-2);font-size:.92rem;line-height:1.9;margin-bottom:14px;}
-.panic-q{font-size:1.1rem;font-weight:600;margin-bottom:14px;}
-.panic-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
-.panic-b{padding:12px 0;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);font-size:1rem;cursor:pointer;}
-.panic-scale{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-faint);margin-top:8px;}
-.panic-msg{font-size:1rem;line-height:1.9;margin-bottom:16px;padding:14px;border-radius:12px;background:var(--accent-soft);color:var(--text);}
-.em-step{border:1px solid var(--line-strong);border-radius:14px;padding:18px 16px;margin-bottom:16px;}
-.em-n{font-size:.72rem;letter-spacing:.1em;color:var(--text-faint);}
-.em-t{font-size:1.24rem;font-weight:700;line-height:1.6;margin:6px 0 10px;}
-.em-b{font-size:.95rem;line-height:1.9;color:var(--text-sub);}
-.sim-menu{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
-.sim-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px 16px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);cursor:pointer;text-align:left;}
-.sim-cat{font-size:.72rem;color:var(--text-faint);letter-spacing:.06em;}
-.sim-t{font-size:1.05rem;font-weight:700;}
-.sim-step{font-size:.72rem;letter-spacing:.1em;color:var(--text-faint);margin-bottom:8px;}
-.sim-end{font-size:1.05rem;line-height:1.9;font-weight:600;padding:14px;border-radius:12px;background:var(--surface-2);margin-bottom:16px;}
-.ex-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
-.ex-b{padding:10px 14px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);font-size:.88rem;cursor:pointer;}
-.ex-b.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);}
-.ex-out{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--surface-2);}
-.ex-q{font-size:1.1rem;font-weight:700;margin-bottom:12px;}
-.p-chip{display:inline-block;padding:4px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line-strong);font-size:.82rem;margin:4px 6px 0 0;}
-.card.inner{background:var(--surface-2);margin-top:14px;}
-.lead-list{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
-.lead-i{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;line-height:1.7;color:var(--text-sub);}
-.lead-i span{flex:0 0 auto;width:21px;height:21px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:4px;}
-.vals{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
-.val-chip{display:inline-block;padding:8px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.9rem;font-weight:600;}
-.val-chip.pick{background:var(--surface);color:var(--text);border:1px solid var(--line-strong);cursor:pointer;}
-.val-chip.pick.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent);}
-.vgap{padding:12px 0;border-top:1px solid var(--line);}
-.vgap-h{font-weight:700;font-size:.98rem;margin-bottom:4px;}
-.vgap-b{font-size:.9rem;line-height:1.8;color:var(--text-sub);}
-
-/* ---------- 共有カード ---------- */
-.share-card{border:1px solid var(--line-strong);border-radius:20px;padding:24px 18px 20px;background:var(--surface);text-align:center;box-shadow:0 1px 0 var(--line) inset;}
-.sh-brand{font-size:.82rem;font-weight:700;letter-spacing:.04em;color:var(--accent);}
-.sh-k{font-size:.74rem;letter-spacing:.06em;color:var(--text-faint);margin-top:4px;}
-.sh-pair{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 4px;}
-.sh-one{flex:1 1 0;min-width:0;}
-.sh-art{width:88px;margin:0 auto;}
-.sh-role{font-size:.7rem;letter-spacing:.08em;color:var(--text-faint);margin-top:6px;}
-.sh-nm{font-size:1.16rem;font-weight:700;line-height:1.4;}
-.sh-arrow{flex:0 0 auto;color:var(--text-faint);font-size:1rem;padding-bottom:22px;}
-.sh-copy{margin-top:12px;padding:14px 12px;border-radius:12px;background:var(--surface-2);font-size:.95rem;line-height:1.85;font-weight:600;}
-.sh-detail{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.76rem;color:var(--text-sub);display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:center;}
-.sh-note{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.7rem;line-height:1.7;color:var(--text-faint);}
-.sh-gap{margin-top:12px;font-size:.82rem;color:var(--text-sub);}
-.sh-gap strong{font-size:1.1rem;color:var(--text);}
-.prose.long{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);}
-.sh-foot{margin-top:16px;font-size:.7rem;color:var(--text-faint);letter-spacing:.04em;}
-.sh-toggle{display:flex;align-items:center;gap:8px;font-size:.86rem;color:var(--text-sub);margin:14px 0;}
-
-@media (max-width:360px){
-  .ch-art{width:78px;} .ch-name{font-size:1.14rem;}
-  .tool-grid{grid-template-columns:1fr;}
-  .hotcold{grid-template-columns:1fr;}
-}
-</style>
 </body>
 </html>
